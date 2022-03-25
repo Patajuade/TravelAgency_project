@@ -7,4 +7,6 @@ module com.example.travelagency {
 
     opens com.example.travelagency to javafx.fxml;
     exports com.example.travelagency;
+    exports com.example.travelagency.views;
+    opens com.example.travelagency.views to javafx.fxml;
 }
