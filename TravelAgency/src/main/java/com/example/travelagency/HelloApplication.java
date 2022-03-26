@@ -5,6 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
@@ -17,7 +20,17 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         launch();
+        File destinationFile = new File("mapinfo.txt");
+        readDestinationFile(destinationFile);
+    }
+
+    private static void readDestinationFile(File file) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+        String s;
+        while ((s = bufferedReader.readLine()) != null) {
+            System.out.println(s);
+        }
     }
 }
