@@ -5,8 +5,9 @@ module com.example.travelagency {
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
 
-    opens com.example.travelagency to javafx.fxml;
-    exports com.example.travelagency;
+
     exports com.example.travelagency.views;
     opens com.example.travelagency.views to javafx.fxml;
+    exports com.example.travelagency.controllers;
+    opens com.example.travelagency.controllers to javafx.fxml;
 }
