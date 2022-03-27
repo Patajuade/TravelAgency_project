@@ -21,9 +21,11 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) throws IOException {
-        launch();
+        //launch();
         File destinationFile = new File("mapinfo.txt");
-        readDestinationFile(destinationFile);
+        //readDestinationFile(destinationFile);
+        CityInfos cityInfos = new CityInfos("pouet","pouet","pouet","pouet");
+        cityInfos.parseMapInfoFile();
     }
 
     private static void readDestinationFile(File file) throws IOException {
