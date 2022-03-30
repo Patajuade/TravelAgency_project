@@ -1,13 +1,7 @@
 package com.example.travelagency;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
@@ -22,12 +16,9 @@ public class HelloApplication extends Application {
 
     public static void main(String[] args) throws IOException {
         //launch();
-        City city = new City();
-        CityInfos cityInfos = new CityInfos(city);
-        cityInfos.parseMapInfoFile();
-        cityInfos.initCitiesList();
-        cityInfos.showCitiesList();
+        CityInfos cityInfos = new CityInfos();
+        cityInfos.init();
+        //cityInfos.showCitiesList();
         cityInfos.showOneCity(15);
-        //cityInfos.filterCityInfo();
     }
 }

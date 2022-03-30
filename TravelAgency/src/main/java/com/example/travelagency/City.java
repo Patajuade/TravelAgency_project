@@ -6,7 +6,7 @@ public class City {
     String longitude;
     String countryName;
 
-    public City(){}
+    //public City(){}
 
     public City(String cityName, String latitude, String longitude, String countryName) {
         this.cityName = cityName;
