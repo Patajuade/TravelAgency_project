@@ -62,6 +62,5 @@
             System.out.println(citiesList.get(indexPartition).getLatitude());
             System.out.println(citiesList.get(indexPartition).getLongitude());
             System.out.println(citiesList.get(indexPartition).getCountryName());
-
         }
     }
