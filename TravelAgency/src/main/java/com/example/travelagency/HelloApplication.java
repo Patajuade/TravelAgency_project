@@ -25,6 +25,9 @@ public class HelloApplication extends Application {
         City city = new City();
         CityInfos cityInfos = new CityInfos(city);
         cityInfos.parseMapInfoFile();
+        cityInfos.initCitiesList();
+        cityInfos.showCitiesList();
+        cityInfos.showOneCity(15);
         //cityInfos.filterCityInfo();
     }
 }
