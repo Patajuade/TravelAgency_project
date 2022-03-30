@@ -16,9 +16,11 @@ public class HelloApplication extends Application {
 
     public static void main(String[] args) throws IOException {
         //launch();
-        CityInfos cityInfos = new CityInfos();
-        cityInfos.init();
-        //cityInfos.showCitiesList();
-        cityInfos.showOneCity(15);
+        CityController cityController = new CityController();
+        cityController.init();
+        //cityController.chooseCity("Marseille");
+        //cityController.showCity();
+        cityController.showCities();
+
     }
 }

@@ -1,14 +1,14 @@
 package com.example.travelagency;
 
-public class City {
+public class CityModel {
     String cityName;
     String latitude;
     String longitude;
     String countryName;
 
-    //public City(){}
+    public CityModel(){}
 
-    public City(String cityName, String latitude, String longitude, String countryName) {
+    public CityModel(String cityName, String latitude, String longitude, String countryName) {
         this.cityName = cityName;
         this.latitude = latitude;
         this.longitude = longitude;
