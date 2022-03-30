@@ -9,11 +9,6 @@
         City city;
         private ArrayList<String> infosList = new ArrayList<>();
         private List<List<String>> partitions = new ArrayList<>();
-
-        public ArrayList<City> getCitiesList() {
-            return citiesList;
-        }
-
         private ArrayList<City> citiesList = new ArrayList<City>();
         int partitionSize = 11;
 
@@ -58,14 +53,15 @@
         }
 
         public void showOneCity(int indexPartition){
-            System.out.println(partitions.get(indexPartition).get(0)); // = cityName
-            System.out.println(partitions.get(indexPartition).get(2)); // = latitude
-            System.out.println(partitions.get(indexPartition).get(3)); // = longitude
-            System.out.println(partitions.get(indexPartition).get(4)); // = countryName
+            //System.out.println(partitions.get(indexPartition).get(0)); // = cityName
+            //System.out.println(partitions.get(indexPartition).get(2)); // = latitude
+            //System.out.println(partitions.get(indexPartition).get(3)); // = longitude
+            //System.out.println(partitions.get(indexPartition).get(4)); // = countryName
 
             System.out.println(citiesList.get(indexPartition).getCityName());
-
-            System.out.println(getCitiesList().get(indexPartition).getCityName());
+            System.out.println(citiesList.get(indexPartition).getLatitude());
+            System.out.println(citiesList.get(indexPartition).getLongitude());
+            System.out.println(citiesList.get(indexPartition).getCountryName());
 
         }
     }
