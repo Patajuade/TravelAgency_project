@@ -10,27 +10,36 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
-public class ChooseDestinationViewController implements Initializable  {
+public class ChooseDestinationViewController    {
     @FXML
     private TextField ChooseDestinationTextField;
     @FXML
     private ListView ChooseDestinationListView;
-
     @FXML
-    private Button ChooseDestinationButtonChoose;
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        ChooseDestinationButtonChoose.setOnAction(event -> setText("wouf"));
+    private Button ChooseDestinationButton;
+    @FXML
+    void onChooseDestinationButtonClick(ActionEvent event) {
+        listener.onChooseDestinationButtonClick();
     }
 
-    public String getDestinationText(){
-        return ChooseDestinationTextField.getText();
+    private Listener listener;
+
+    public void setListener(Listener listener) {
+        this.listener = listener;
+    }
+
+    public interface Listener{
+        void onChooseDestinationButtonClick();
     }
 
     public void setText(String string){
         ChooseDestinationTextField.setText(string);
+    }
+
+    public void showCities(){
+
     }
 }

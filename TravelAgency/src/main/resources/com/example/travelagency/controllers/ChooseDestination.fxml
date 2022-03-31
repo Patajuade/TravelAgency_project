@@ -8,7 +8,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.travelagency.views.ChooseDestinationViewController">
    <children>
       <ListView fx:id="ChooseDestinationListView" layoutY="27.0" prefHeight="345.0" prefWidth="600.0" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0" />
-      <Button fx:id="ChooseDestinationButtonChoose" layoutX="530.0" layoutY="374.0" mnemonicParsing="false" text="Choisir ..." AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="6.0" />
+      <Button fx:id="ChooseDestinationButton" layoutX="530.0" layoutY="374.0" mnemonicParsing="false" onAction="#onChooseDestinationButtonClick" text="Choisir ..." AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="6.0" />
       <TextField fx:id="ChooseDestinationTextField" layoutY="2.0" prefHeight="25.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="2.0" />
    </children>
 </AnchorPane>
