@@ -50,11 +50,13 @@
             }
         }
 
-        public void chooseCity(String s){
-            //chercher un objet dans une liste à partir d'une propriété de l'objet
-            //ça marche pas
-            //model = citiesList.stream().filter(cityModel -> cityModel.getCityName()==s).findFirst().get();
-            //TODO : model = une ville de la liste
+        public void chooseCity(String s){ //on cherche un objet ville à partir d'un string
+            for(CityModel cities : citiesList){
+                if (cities.getCityName().equals(s)){
+                    model = cities;
+                    view.showCity(cities);
+                }
+            }
         }
 
         public void showCity(){
