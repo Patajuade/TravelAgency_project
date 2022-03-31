@@ -18,9 +18,9 @@ public class HelloApplication extends Application {
         //launch();
         CityController cityController = new CityController();
         cityController.init();
-        cityController.chooseCity("Marseille");
+        //cityController.chooseCity("Marseille");
         //cityController.showCity();
-        //cityController.showCities();
+        cityController.showCities(cityController.searchCityByName("Mars"));
 
     }
 }
