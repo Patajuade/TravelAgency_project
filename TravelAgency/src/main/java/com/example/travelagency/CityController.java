@@ -3,11 +3,17 @@
     import java.io.*;
     import java.util.ArrayList;
     import java.util.List;
+    import java.util.Locale;
 
     public class CityController {
 
         private CityModel model;
         private CityView view;
+
+        public ArrayList<CityModel> getCitiesList() {
+            return citiesList;
+        }
+
         private ArrayList<CityModel> citiesList = new ArrayList<CityModel>();
         private int partitionSize = 11;
 
@@ -62,7 +68,10 @@
         public ArrayList<CityModel> searchCityByName(String s){ // but : à chaque fois qu'on appuie sur une lettre dans la recherche, on appelle cette fct
             ArrayList<CityModel> matches = new ArrayList<CityModel>();
             for(CityModel city : citiesList){
-                if (city.getCityName().contains(s)){
+                if (city.getCityName().contains(s) || city.getCountryName().contains(s)){
+                    matches.add(city);
+                }
+                else if(city.getCityName().toLowerCase(Locale.ROOT).contains(s) || city.getCountryName().toLowerCase(Locale.ROOT).contains(s)){
                     matches.add(city);
                 }
             }
