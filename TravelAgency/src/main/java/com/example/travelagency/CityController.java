@@ -56,13 +56,13 @@
             }
         }
 
-        public void chooseCity(String s){ //on cherche un objet ville à partir d'un string
+        public CityModel chooseCity(String s){ //on cherche un objet ville à partir d'un string
             for(CityModel city : citiesList){
                 if (city.getCityName().equals(s)){
                     model = city;
-                    showCity();
                 }
             }
+            return model;
         }
 
         public ArrayList<CityModel> searchCityByName(String s){ // but : à chaque fois qu'on appuie sur une lettre dans la recherche, on appelle cette fct

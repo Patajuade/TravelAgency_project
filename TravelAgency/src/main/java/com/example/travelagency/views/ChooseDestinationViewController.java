@@ -1,21 +1,18 @@
 package com.example.travelagency.views;
 
+import com.example.travelagency.CityController;
 import com.example.travelagency.CityModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class ChooseDestinationViewController    {
     @FXML
@@ -26,42 +23,45 @@ public class ChooseDestinationViewController    {
     @FXML
     private Button ChooseDestinationButton;
     @FXML
-    void onChooseDestinationButtonClick(ActionEvent event) {
-        chooseButtonListener.onChooseDestinationButtonClick();
+    void selectedDestinationButton(ActionEvent event) {
+        chooseDestinationListener.selectedDestination();
     }
-
-    public interface ChooseButtonListener{
-        void onChooseDestinationButtonClick();
-    }
-    private ChooseButtonListener chooseButtonListener;
-
-    public void setChooseButtonListener(ChooseButtonListener listener) {
-        this.chooseButtonListener = listener;
-    }
-
-    //Gestion de la recherche automatique
     @FXML
-    void ChooseDestinationOnKeyReleased(KeyEvent event) {
-        textFieldListener.onKeyReleased();
+    void selectedDestinationListView(MouseEvent event) {
+        if(event.getClickCount()==2){
+            chooseDestinationListener.selectedDestination();
+        }
     }
-    public interface TextFieldListener{
-        void onKeyReleased();
+    public interface ChooseDestinationListener {
+        void selectedDestination();
     }
+    private ChooseDestinationListener chooseDestinationListener;
 
-    public void setTextFieldListener(TextFieldListener textFieldListener) {
-        this.textFieldListener = textFieldListener;
-    }
-
-    private TextFieldListener textFieldListener;
-
-    public void setText(String string){
-        ChooseDestinationTextField.setText(string);
+    public void setChooseDestinationListener(ChooseDestinationListener listener) {
+        this.chooseDestinationListener = listener;
     }
 
+    //récupérer la liste pour pouvoir l'afficher
+    private CityController cityController;
+    public void setCityController(CityController cityController) {
+        this.cityController = cityController;
+    }
+
+    private List<CityModel> citiesModelTemp;
+
+    //Gestion de la recherche automatique quand on lache une touche du clavier
+    @FXML
+    void ChooseDestinatiolnOnKeyReeased(KeyEvent event) {
+        this.citiesModelTemp = cityController.searchCityByName(getText());
+        showCities(cityController.searchCityByName(getText()));
+    }
+
+    //On récupère le contenu du textField
     public String getText(){
         return ChooseDestinationTextField.getText();
     }
 
+    //On affiche toutes les villes de la listes dans l'ordre alphabétique
     public void showCities(ArrayList<CityModel> list){
         //Modif pour pouvoir afficher dans l'ordre alphabétique
         List<String> stringCityList = new ArrayList<>();
@@ -74,6 +74,4 @@ public class ChooseDestinationViewController    {
             ChooseDestinationListView.getItems().add(s);
         }
     }
-
-
 }
