@@ -4,7 +4,6 @@ import com.example.travelagency.CityController;
 import com.example.travelagency.CityModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
@@ -21,8 +20,6 @@ public class ChooseDestinationViewController    {
     private ListView ChooseDestinationListView;
     //Gestion du bouton Choisir... MVC
     @FXML
-    private Button ChooseDestinationButton;
-    @FXML
     void selectedDestinationButton(ActionEvent event) {
         chooseDestinationListener.selectedDestination();
     }
@@ -33,7 +30,16 @@ public class ChooseDestinationViewController    {
         }
     }
     public interface ChooseDestinationListener {
-        void selectedDestination();
+        CityModel selectedDestination();
+    }
+    private CityController cityController;
+    public void setCityController(CityController cityController) {
+        this.cityController = cityController;
+    }
+    private List<CityModel> citiesModelTemp;
+    private CityModel currentCity;
+    public CityModel getCurrentCity(){
+        return this.citiesModelTemp.get(ChooseDestinationListView.getSelectionModel().getSelectedIndex());
     }
     private ChooseDestinationListener chooseDestinationListener;
 
@@ -42,16 +48,10 @@ public class ChooseDestinationViewController    {
     }
 
     //récupérer la liste pour pouvoir l'afficher
-    private CityController cityController;
-    public void setCityController(CityController cityController) {
-        this.cityController = cityController;
-    }
-
-    private List<CityModel> citiesModelTemp;
 
     //Gestion de la recherche automatique quand on lache une touche du clavier
     @FXML
-    void ChooseDestinatiolnOnKeyReeased(KeyEvent event) {
+    void ChooseDestinationOnKeyReleased(KeyEvent event) {
         this.citiesModelTemp = cityController.searchCityByName(getText());
         showCities(cityController.searchCityByName(getText()));
     }
@@ -62,7 +62,8 @@ public class ChooseDestinationViewController    {
     }
 
     //On affiche toutes les villes de la listes dans l'ordre alphabétique
-    public void showCities(ArrayList<CityModel> list){
+    private void showCities(ArrayList<CityModel> list){
+        this.citiesModelTemp = list;
         //Modif pour pouvoir afficher dans l'ordre alphabétique
         List<String> stringCityList = new ArrayList<>();
         ChooseDestinationListView.getItems().clear();
@@ -73,5 +74,9 @@ public class ChooseDestinationViewController    {
         for (String s:stringCityList) {
             ChooseDestinationListView.getItems().add(s);
         }
+    }
+
+    public void showAllCities(){
+        this.showCities(cityController.getCitiesList());
     }
 }
