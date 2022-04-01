@@ -9,19 +9,23 @@
 
         private CityModel model;
         private CityView view;
-
         public ArrayList<CityModel> getCitiesList() {
             return citiesList;
         }
-
         private ArrayList<CityModel> citiesList = new ArrayList<CityModel>();
         private int partitionSize = 11;
-
         public CityController(CityModel city) {
             this.model = city;
         }
+        private static CityController instance = new CityController();
 
-        public CityController() {
+        //Get the only object available
+        public static CityController getInstance(){
+            return instance;
+        }
+
+        //make the constructor private so that this class cannot be instantiated
+        private CityController() {
             this.model = new CityModel();
             this.view = new CityView();
         }
@@ -34,10 +38,7 @@
         }
 
         private void parseMapInfoFile(ArrayList<String> infosList, List<List<String>> partitions) throws IOException {
-            //Sur 11 lignes, je dois ignorer les lignes 2,6,7,8,9,10,11
-            // je dois lire que les lignes 1 3 4 5 (donc 0 2 3 4)
             // mettre tout le File dans une liste puis parser la liste en morceaux de 11 lignes
-
             BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\thomc\\Documents\\GitHub\\Groupe14\\TravelAgency\\mapInfo.txt"));
             while (br.ready()) { //on met chaque ligne du fichier texte dans une liste
                 infosList.add(br.readLine());
@@ -56,13 +57,13 @@
             }
         }
 
-        public CityModel chooseCity(String s){ //on cherche un objet ville à partir d'un string
+        public void chooseCity(String s){ //on cherche un objet ville à partir d'un string
             for(CityModel city : citiesList){
                 if (city.getCityName().equals(s)){
                     model = city;
+                    showCity();
                 }
             }
-            return model;
         }
 
         public ArrayList<CityModel> searchCityByName(String s){ // but : à chaque fois qu'on appuie sur une lettre dans la recherche, on appelle cette fct
