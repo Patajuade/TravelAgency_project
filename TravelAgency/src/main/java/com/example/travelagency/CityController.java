@@ -38,7 +38,7 @@
             // je dois lire que les lignes 1 3 4 5 (donc 0 2 3 4)
             // mettre tout le File dans une liste puis parser la liste en morceaux de 11 lignes
 
-            BufferedReader br = new BufferedReader(new FileReader("mapinfo.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\thomc\\Documents\\GitHub\\Groupe14\\TravelAgency\\mapInfo.txt"));
             while (br.ready()) { //on met chaque ligne du fichier texte dans une liste
                 infosList.add(br.readLine());
 
