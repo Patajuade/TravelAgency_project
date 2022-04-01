@@ -22,7 +22,8 @@ public class travelAgencyApplication extends Application  {
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         controller = fxmlLoader.getController();
         ChooseButtonManagement();
-        cityController = new CityController();
+        //cityController = new CityController();
+        cityController = CityController.getInstance(); //singleton
         cityController.init();
         controller.showCities(cityController.getCitiesList());
         searchCityByNameManagement();

@@ -9,19 +9,23 @@
 
         private CityModel model;
         private CityView view;
-
         public ArrayList<CityModel> getCitiesList() {
             return citiesList;
         }
-
         private ArrayList<CityModel> citiesList = new ArrayList<CityModel>();
         private int partitionSize = 11;
-
         public CityController(CityModel city) {
             this.model = city;
         }
+        private static CityController instance = new CityController();
 
-        public CityController() {
+        //Get the only object available
+        public static CityController getInstance(){
+            return instance;
+        }
+
+        //make the constructor private so that this class cannot be instantiated
+        private CityController() {
             this.model = new CityModel();
             this.view = new CityView();
         }
