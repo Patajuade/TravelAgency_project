@@ -29,7 +29,6 @@ public class travelAgencyApplication extends Application  {
         stage.setTitle("Choisir une destination");
         stage.setScene(scene);
         stage.show();
-        
     }
 
     private void searchCityByNameManagement() {
