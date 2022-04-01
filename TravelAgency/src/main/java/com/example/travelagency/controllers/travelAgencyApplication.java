@@ -30,6 +30,9 @@ public class travelAgencyApplication extends Application  {
         stage.setScene(scene);
         stage.show();
         stage.show();
+        stage.show();
+        stage.show();
+        stage.show();
     }
 
     private void searchCityByNameManagement() {
