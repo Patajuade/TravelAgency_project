@@ -51,7 +51,7 @@ public class ChooseDestinationViewController    {
 
     //Gestion de la recherche automatique quand on lache une touche du clavier
     @FXML
-    void ChooseDestinationOnKeyReleased(KeyEvent event) {
+    void chooseDestinationOnKeyReleased(KeyEvent event) {
         this.citiesModelTemp = cityController.searchCityByName(getText());
         showCities(cityController.searchCityByName(getText()));
     }

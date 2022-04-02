@@ -31,11 +31,8 @@ public class travelAgencyApplication extends Application  {
         stage.show();
     }
 
-
-
     private void ChooseButtonManagement() {
         controller.setChooseDestinationListener(new ChooseDestinationViewController.ChooseDestinationListener() {
-
             @Override
             public CityModel selectedDestination() {
                 return controller.getCurrentCity();
