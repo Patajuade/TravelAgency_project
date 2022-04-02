@@ -21,7 +21,7 @@ public class travelAgencyApplication extends Application  {
         FXMLLoader fxmlLoader = new FXMLLoader(travelAgencyApplication.class.getResource("ChooseDestination.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         controller = fxmlLoader.getController();
-        ChooseButtonManagement();
+        ChooseButtonManagement(stage);
         cityController = CityController.getInstance(); //singleton
         cityController.init();
         controller.setCityController(cityController);
@@ -31,13 +31,11 @@ public class travelAgencyApplication extends Application  {
         stage.show();
     }
 
-
-
-    private void ChooseButtonManagement() {
+    private void ChooseButtonManagement(Stage stage) {
         controller.setChooseDestinationListener(new ChooseDestinationViewController.ChooseDestinationListener() {
-
             @Override
             public CityModel selectedDestination() {
+                stage.close();
                 return controller.getCurrentCity();
             }
         });
