@@ -48,4 +48,9 @@ public class CityModel {
     public void setCountryName(String countryName) {
         this.countryName = countryName;
     }
+
+    @Override
+    public String toString(){
+        return this.getCityName()+" (" + this.getCountryName()+")";
+    }
 }
