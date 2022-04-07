@@ -42,13 +42,6 @@ public class DefineTripController {
     @FXML
     private void handleButtonClick(ActionEvent event){
         System.out.println("button clicked!");
-        ChooseButton.setText("clicked");
-
     }
-
-    public void initialize(URL location, ResourceBundleService ressources){
-        ChooseButton.setOnAction(this::handleButtonClick);
-    }
-
 
 }
