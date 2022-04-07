@@ -1,7 +1,7 @@
 package com.example.travelagency.controllers;
 
-import com.example.travelagency.CityController;
-import com.example.travelagency.CityModel;
+import com.example.travelagency.models.CityController;
+import com.example.travelagency.models.CityModel;
 import com.example.travelagency.views.ChooseDestinationViewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -9,9 +9,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class travelAgencyApplication extends Application  {
     ChooseDestinationViewController controller;

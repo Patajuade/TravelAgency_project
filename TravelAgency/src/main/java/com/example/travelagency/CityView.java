@@ -1,5 +1,7 @@
 package com.example.travelagency;
 
+import com.example.travelagency.models.CityModel;
+
 import java.util.ArrayList;
 
 public class CityView {
