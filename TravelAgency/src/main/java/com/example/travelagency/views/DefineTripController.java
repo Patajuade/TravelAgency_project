@@ -1,11 +1,14 @@
 package com.example.travelagency.views;
 
+import com.dlsc.formsfx.model.util.ResourceBundleService;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.net.URL;
 import java.time.LocalDate;
 
 public class DefineTripController {
@@ -36,7 +39,16 @@ public class DefineTripController {
     }
 
     //TODO: Fonction qui appelle la fenêtre ChooseDestination quand on clique sur le bouton choisir
+    @FXML
+    private void handleButtonClick(ActionEvent event){
+        System.out.println("button clicked!");
+        ChooseButton.setText("clicked");
 
+    }
+
+    public void initialize(URL location, ResourceBundleService ressources){
+        ChooseButton.setOnAction(this::handleButtonClick);
+    }
 
 
 }

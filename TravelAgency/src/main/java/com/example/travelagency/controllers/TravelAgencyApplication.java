@@ -3,6 +3,8 @@ package com.example.travelagency.controllers;
 import com.example.travelagency.CityController;
 import com.example.travelagency.CityModel;
 import com.example.travelagency.views.ChooseDestinationViewController;
+import com.example.travelagency.views.DefineTripController;
+import com.example.travelagency.views.PlaneStageController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -24,11 +26,12 @@ public class TravelAgencyApplication extends Application  {
         controller.setCityController(cityController);
         controller.showAllCities();
         stage.setTitle("Choisir une destination");
-        stage.setScene(scene);
+        //stage.setScene(scene);
         //stage.show();
 
         //Essais fenêtre DefineTrip, qui doit appeller la fenêtre choose destination
         //TODO : Faire correctement les ancres de la fenêtre
+        DefineTripController defineTripController;
         FXMLLoader fxmlLoader2 = new FXMLLoader(TravelAgencyApplication.class.getResource("DefineTrip.fxml"));
         Scene test = new Scene(fxmlLoader2.load(), 513, 694);
         stage.setTitle("Définir son voyage");
