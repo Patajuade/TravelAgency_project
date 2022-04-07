@@ -35,7 +35,7 @@ public class DefineTripController {
         return DateField.getValue();
     }
 
-    //TODO: Fonction qui appelle la fenêtre ChooseDestonation quand on clique sur le bouton choisir
+    //TODO: Fonction qui appelle la fenêtre ChooseDestination quand on clique sur le bouton choisir
 
 
 

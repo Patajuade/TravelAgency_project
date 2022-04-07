@@ -28,8 +28,9 @@ public class TravelAgencyApplication extends Application  {
         //stage.show();
 
         //Essais fenêtre DefineTrip, qui doit appeller la fenêtre choose destination
+        //TODO : Faire correctement les ancres de la fenêtre
         FXMLLoader fxmlLoader2 = new FXMLLoader(TravelAgencyApplication.class.getResource("DefineTrip.fxml"));
-        Scene test = new Scene(fxmlLoader2.load(), 474, 652);
+        Scene test = new Scene(fxmlLoader2.load(), 513, 694);
         stage.setTitle("Définir son voyage");
         stage.setScene(test);
         stage.show();
