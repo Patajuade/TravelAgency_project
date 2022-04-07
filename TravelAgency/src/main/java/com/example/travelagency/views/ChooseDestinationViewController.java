@@ -8,6 +8,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -78,5 +79,15 @@ public class ChooseDestinationViewController    {
 
     public void showAllCities(){
         this.showCities(cityController.getCitiesList());
+    }
+
+    public void ChooseButtonManagement(Stage stage) {
+        setChooseDestinationListener(new ChooseDestinationViewController.ChooseDestinationListener() {
+            @Override
+            public CityModel selectedDestination() {
+                stage.close();
+                return getCurrentCity();
+            }
+        });
     }
 }
