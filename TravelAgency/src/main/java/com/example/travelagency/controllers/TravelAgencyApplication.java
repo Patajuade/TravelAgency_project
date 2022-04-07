@@ -25,12 +25,15 @@ public class TravelAgencyApplication extends Application  {
         controller.showAllCities();
         stage.setTitle("Choisir une destination");
         stage.setScene(scene);
+        //stage.show();
+
+        //Essais fenêtre DefineTrip, qui doit appeller la fenêtre choose destination
+        FXMLLoader fxmlLoader2 = new FXMLLoader(TravelAgencyApplication.class.getResource("DefineTrip.fxml"));
+        Scene test = new Scene(fxmlLoader2.load(), 474, 652);
+        stage.setTitle("Définir son voyage");
+        stage.setScene(test);
         stage.show();
 
-        //Essais fenêtre DefineTrip
-        FXMLLoader fxmlLoader2 = new FXMLLoader(TravelAgencyApplication.class.getResource("DefineTrip.fxml"));
-        Scene test = new Scene(fxmlLoader2.load(), 320, 240);
-        //TODO : comprendre comment afficher une fenêtre seule...
 
     }
 
