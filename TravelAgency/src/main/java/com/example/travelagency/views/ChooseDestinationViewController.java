@@ -81,7 +81,7 @@ public class ChooseDestinationViewController    {
         this.showCities(cityController.getCitiesList());
     }
 
-    public void ChooseButtonManagement(Stage stage) {
+    public void chooseButtonManagement(Stage stage) {
         setChooseDestinationListener(new ChooseDestinationViewController.ChooseDestinationListener() {
             @Override
             public CityModel selectedDestination() {

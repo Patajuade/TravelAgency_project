@@ -1,12 +1,10 @@
 package com.example.travelagency.views;
 
-import com.dlsc.formsfx.model.util.ResourceBundleService;
 import com.example.travelagency.CityController;
 import com.example.travelagency.controllers.TravelAgencyApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -15,7 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.time.LocalDate;
 
 public class DefineTripController {
@@ -55,7 +52,7 @@ public class DefineTripController {
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         Stage stage = new Stage();
         chooseDestinationViewController = fxmlLoader.getController();
-        chooseDestinationViewController.ChooseButtonManagement(stage);
+        chooseDestinationViewController.chooseButtonManagement(stage);
         CityController cityController = CityController.getInstance(); //singleton
         cityController.init();
         chooseDestinationViewController.setCityController(cityController);
