@@ -17,10 +17,14 @@
         public CityController(CityModel city) {
             this.model = city;
         }
-        private static CityController instance = new CityController();
+        private static CityController instance = null;
 
         //Get the only object available
-        public static CityController getInstance(){
+        public static CityController getInstance() throws IOException {
+            if(instance==null){
+                instance = new CityController();
+                instance.init();
+            }
             return instance;
         }
 
@@ -30,7 +34,7 @@
             this.view = new CityView();
         }
 
-        public void init() throws IOException {
+        private void init() throws IOException {
             ArrayList<String> infosList = new ArrayList<>();
             List<List<String>> partitions = new ArrayList<>();
             parseMapInfoFile(infosList, partitions);

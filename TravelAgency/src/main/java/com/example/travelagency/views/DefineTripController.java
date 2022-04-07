@@ -58,12 +58,10 @@ public class DefineTripController {
         FXMLLoader fxmlLoader = new FXMLLoader(TravelAgencyApplication.class.getResource("ChooseDestination.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         Stage stage = new Stage();
+        CityController cityController = CityController.getInstance(); //singleton
         chooseDestinationViewController = fxmlLoader.getController();
         chooseDestinationViewController.setDefineTripController(this);
         chooseDestinationViewController.chooseButtonManagement(stage);
-        //chosenCity = chooseDestinationViewController.getCurrentCity().getCityName();
-        CityController cityController = CityController.getInstance(); //singleton
-        cityController.init();
         chooseDestinationViewController.setCityController(cityController);
         chooseDestinationViewController.showCities();
         stage.setTitle("Choisir une destination");
@@ -73,7 +71,7 @@ public class DefineTripController {
     }
 
     public void changeChooseButtonText(){
-        ChooseButton.setText(chooseDestinationViewController.getCurrentCity().getCityName());
+        ChooseButton.setText(chooseDestinationViewController.getCurrentCity().toString());
     }
 
 }
