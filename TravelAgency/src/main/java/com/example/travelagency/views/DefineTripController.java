@@ -59,16 +59,16 @@ public class DefineTripController {
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         Stage stage = new Stage();
         chooseDestinationViewController = fxmlLoader.getController();
+        chooseDestinationViewController.setDefineTripController(this);
         chooseDestinationViewController.chooseButtonManagement(stage);
         //chosenCity = chooseDestinationViewController.getCurrentCity().getCityName();
         CityController cityController = CityController.getInstance(); //singleton
         cityController.init();
         chooseDestinationViewController.setCityController(cityController);
-        chooseDestinationViewController.showAllCities();
+        chooseDestinationViewController.showCities();
         stage.setTitle("Choisir une destination");
         stage.setScene(scene);
         stage.show();
-        ChooseButton.setText("ngngng");
 
     }
 

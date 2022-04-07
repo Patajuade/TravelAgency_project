@@ -3,6 +3,8 @@ package com.example.travelagency.views;
 import com.example.travelagency.CityController;
 import com.example.travelagency.CityModel;
 import com.example.travelagency.interfaces.ChooseDestinationListener;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableListBase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -20,10 +22,16 @@ public class ChooseDestinationViewController    {
 
     private ChooseDestinationListener chooseDestinationListener;
     private CityController cityController;
-    private List<CityModel> citiesModelTemp;
+    private ArrayList<CityModel> cities;
+    private DefineTripController defineTripController;
+
+    @FXML
+    private TextField ChooseDestinationTextField;
+    @FXML
+    private ListView ChooseDestinationListView;
 
     public CityModel getCurrentCity(){
-        return this.citiesModelTemp.get(ChooseDestinationListView.getSelectionModel().getSelectedIndex());
+        return this.cities.get(ChooseDestinationListView.getSelectionModel().getSelectedIndex());
     }
 
     //On récupère le contenu du textField
@@ -39,24 +47,21 @@ public class ChooseDestinationViewController    {
         this.cityController = cityController;
     }
 
-
-    //On affiche toutes les villes de la listes dans l'ordre alphabétique
-    private void showCities(ArrayList<CityModel> list){
-        this.citiesModelTemp = list;
-        //Modif pour pouvoir afficher dans l'ordre alphabétique
-        List<String> stringCityList = new ArrayList<>();
-        ChooseDestinationListView.getItems().clear();
-        for (CityModel c:list) {
-            stringCityList.add(c.getCityName()+" (" + c.getCountryName()+")");
-        }
-        Collections.sort(stringCityList);
-        for (String s:stringCityList) {
-            ChooseDestinationListView.getItems().add(s);
-        }
+    //Pour connaître defineTrip dans ChooseDestination, pour la communication entre les deux fenêtres
+    public void setDefineTripController(DefineTripController defineTripController) {
+        this.defineTripController = defineTripController;
     }
 
-    public void showAllCities(){
-        this.showCities(cityController.getCitiesList());
+    private String formatCityName(CityModel city){
+    return city.getCityName()+" (" + city.getCountryName()+")";
+    }
+
+    //On affiche toutes les villes de la listes dans l'ordre alphabétique
+    public void showCities(){
+        cityController.getCitiesList().sort((o1,o2)->{return o1.getCityName().compareTo(o2.getCityName());});
+        this.cities = cityController.searchCityByName(getText());
+        ChooseDestinationListView.getItems().setAll(this.cities);
+
     }
 
     public void chooseButtonManagement(Stage stage) {
@@ -64,15 +69,12 @@ public class ChooseDestinationViewController    {
             @Override
             public CityModel selectedDestination() {
                 stage.close();
+                defineTripController.changeChooseButtonText();
                 return getCurrentCity();
             }
         });
     }
 
-    @FXML
-    private TextField ChooseDestinationTextField;
-    @FXML
-    private ListView ChooseDestinationListView;
     //Gestion du bouton Choisir... MVC
     @FXML
     void selectedDestinationButton(ActionEvent event) {
@@ -87,7 +89,8 @@ public class ChooseDestinationViewController    {
     //Gestion de la recherche automatique quand on lache une touche du clavier
     @FXML
     void chooseDestinationOnKeyReleased(KeyEvent event) {
-        this.citiesModelTemp = cityController.searchCityByName(getText());
-        showCities(cityController.searchCityByName(getText()));
+        //this.cities = cityController.searchCityByName(getText());
+        showCities();
+        //showCities(cityController.searchCityByName(getText()));
     }
 }
