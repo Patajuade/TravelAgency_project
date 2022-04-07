@@ -1,4 +1,5 @@
 package com.example.travelagency.controllers;
+import com.example.travelagency.views.DefineTripController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -7,6 +8,7 @@ import java.io.IOException;
 
 public class TravelAgencyApplication extends Application  {
 
+    DefineTripController defineTripController;
     @Override
     public void start(Stage stage) throws IOException {
         //TODO : Faire correctement les ancres de la fenêtre

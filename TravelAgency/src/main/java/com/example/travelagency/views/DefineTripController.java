@@ -1,6 +1,7 @@
 package com.example.travelagency.views;
 
 import com.example.travelagency.CityController;
+import com.example.travelagency.CityModel;
 import com.example.travelagency.controllers.TravelAgencyApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,6 +36,7 @@ public class DefineTripController {
     private Label EurosLabel;
 
     ChooseDestinationViewController chooseDestinationViewController;
+    CityModel cityModel;
 
     public String getTripNameTextFieldText(){
         return TripNameTextField.getText();
@@ -43,6 +45,11 @@ public class DefineTripController {
     public LocalDate getDateFieldText(){
         return DateField.getValue();
     }
+
+    public Button getChooseButton() {
+        return ChooseButton;
+    }
+    private String chosenCity;
 
     //TODO: Fonction qui appelle la fenêtre ChooseDestination quand on clique sur le bouton choisir
     @FXML
@@ -53,6 +60,7 @@ public class DefineTripController {
         Stage stage = new Stage();
         chooseDestinationViewController = fxmlLoader.getController();
         chooseDestinationViewController.chooseButtonManagement(stage);
+        //chosenCity = chooseDestinationViewController.getCurrentCity().getCityName();
         CityController cityController = CityController.getInstance(); //singleton
         cityController.init();
         chooseDestinationViewController.setCityController(cityController);
@@ -60,6 +68,12 @@ public class DefineTripController {
         stage.setTitle("Choisir une destination");
         stage.setScene(scene);
         stage.show();
+        ChooseButton.setText("ngngng");
+
+    }
+
+    public void changeChooseButtonText(){
+        ChooseButton.setText(chooseDestinationViewController.getCurrentCity().getCityName());
     }
 
 }
