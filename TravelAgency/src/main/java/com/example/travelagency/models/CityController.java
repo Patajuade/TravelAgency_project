@@ -41,7 +41,7 @@
 
         private void parseMapInfoFile(ArrayList<String> infosList, List<List<String>> partitions) throws IOException {
             // mettre tout le File dans une liste puis parser la liste en morceaux de 11 lignes
-            BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\thomc\\Documents\\GitHub\\Groupe14\\TravelAgency\\mapInfo.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("mapInfo.txt"));
             while (br.ready()) { //on met chaque ligne du fichier texte dans une liste
                 infosList.add(br.readLine());
 
