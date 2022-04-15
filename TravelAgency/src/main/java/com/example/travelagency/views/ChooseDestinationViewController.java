@@ -1,7 +1,7 @@
 package com.example.travelagency.views;
 
-import com.example.travelagency.CityController;
-import com.example.travelagency.CityModel;
+import com.example.travelagency.models.CityController;
+import com.example.travelagency.models.CityModel;
 import com.example.travelagency.interfaces.ChooseDestinationListener;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableListBase;

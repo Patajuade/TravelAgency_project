@@ -1,4 +1,4 @@
-    package com.example.travelagency;
+    package com.example.travelagency.models;
 
     import java.io.*;
     import java.util.ArrayList;
@@ -8,7 +8,6 @@
     public class CityController {
 
         private CityModel model;
-        private CityView view;
         public ArrayList<CityModel> getCitiesList() {
             return citiesList;
         }
@@ -31,7 +30,6 @@
         //make the constructor private so that this class cannot be instantiated
         private CityController() {
             this.model = new CityModel();
-            this.view = new CityView();
         }
 
         private void init() throws IOException {

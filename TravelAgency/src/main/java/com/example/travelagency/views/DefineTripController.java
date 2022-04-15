@@ -1,7 +1,7 @@
 package com.example.travelagency.views;
 
-import com.example.travelagency.CityController;
-import com.example.travelagency.CityModel;
+import com.example.travelagency.models.CityController;
+import com.example.travelagency.models.CityModel;
 import com.example.travelagency.controllers.TravelAgencyApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
