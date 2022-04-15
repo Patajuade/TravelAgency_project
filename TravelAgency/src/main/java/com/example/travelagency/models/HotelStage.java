@@ -1,6 +1,6 @@
 package com.example.travelagency.models;
 
-public class HotelStage extends Stage{
+public class HotelStage extends TripStage {
 
     int numberOfNights;
     int pricePerNight;

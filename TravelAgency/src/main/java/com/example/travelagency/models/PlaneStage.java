@@ -1,6 +1,6 @@
 package com.example.travelagency.models;
 
-public class PlaneStage extends Stage{
+public class PlaneStage extends TripStage {
 
     int flyingSpeed;
     int waitingTime;
@@ -9,6 +9,7 @@ public class PlaneStage extends Stage{
     double pricePerKm;
 
     int distance;
+
 
     public int getDistance() {
         return distance;

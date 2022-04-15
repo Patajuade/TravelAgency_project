@@ -1,6 +1,6 @@
 package com.example.travelagency.models;
 
-public abstract class Stage {
+public abstract class TripStage {
     protected double price;
     protected double duration;
 

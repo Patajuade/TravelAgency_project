@@ -61,7 +61,6 @@ public class ChooseDestinationViewController    {
         cityController.getCitiesList().sort((o1,o2)->{return o1.getCityName().compareTo(o2.getCityName());});
         this.cities = cityController.searchCityByName(getText());
         ChooseDestinationListView.getItems().setAll(this.cities);
-
     }
 
     public void chooseButtonManagement(Stage stage) {
