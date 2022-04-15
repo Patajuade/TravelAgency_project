@@ -1,40 +1,22 @@
 package com.example.travelagency.controllers;
-
-import com.example.travelagency.models.CityController;
-import com.example.travelagency.models.CityModel;
-import com.example.travelagency.views.ChooseDestinationViewController;
+import com.example.travelagency.views.DefineTripController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class TravelAgencyApplication extends Application  {
-    ChooseDestinationViewController controller;
-    CityController cityController;
+
+    DefineTripController defineTripController;
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TravelAgencyApplication.class.getResource("ChooseDestination.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        controller = fxmlLoader.getController();
-        ChooseButtonManagement();
-        cityController = CityController.getInstance(); //singleton
-        cityController.init();
-        controller.setCityController(cityController);
-        controller.showAllCities();
-        stage.setTitle("Choisir une destination");
-        stage.setScene(scene);
+        //TODO : Faire correctement les ancres de la fenêtre
+        FXMLLoader fxmlLoader = new FXMLLoader(TravelAgencyApplication.class.getResource("DefineTrip.fxml"));
+        Scene DefineTripCcene = new Scene(fxmlLoader.load(), 513, 694);
+        stage.setTitle("Définir son voyage");
+        stage.setScene(DefineTripCcene);
         stage.show();
-    }
-
-    private void ChooseButtonManagement() {
-        controller.setChooseDestinationListener(new ChooseDestinationViewController.ChooseDestinationListener() {
-            @Override
-            public CityModel selectedDestination() {
-                return controller.getCurrentCity();
-            }
-        });
     }
 
     public static void main(String[] args) {

@@ -1,6 +1,4 @@
-    package com.example.travelagency.models;
-
-    import com.example.travelagency.CityView;
+    package com.example.travelagency;
 
     import java.io.*;
     import java.util.ArrayList;
@@ -19,10 +17,14 @@
         public CityController(CityModel city) {
             this.model = city;
         }
-        private static CityController instance = new CityController();
+        private static CityController instance = null;
 
         //Get the only object available
-        public static CityController getInstance(){
+        public static CityController getInstance() throws IOException {
+            if(instance==null){
+                instance = new CityController();
+                instance.init();
+            }
             return instance;
         }
 
@@ -32,7 +34,7 @@
             this.view = new CityView();
         }
 
-        public void init() throws IOException {
+        private void init() throws IOException {
             ArrayList<String> infosList = new ArrayList<>();
             List<List<String>> partitions = new ArrayList<>();
             parseMapInfoFile(infosList, partitions);
@@ -59,38 +61,14 @@
             }
         }
 
-        public void chooseCity(String s){ //on cherche un objet ville à partir d'un string
-            for(CityModel city : citiesList){
-                if (city.getCityName().equals(s)){
-                    model = city;
-                    showCity();
-                }
-            }
-        }
-
         public ArrayList<CityModel> searchCityByName(String s){ // but : à chaque fois qu'on appuie sur une lettre dans la recherche, on appelle cette fct
             ArrayList<CityModel> matches = new ArrayList<CityModel>();
             for(CityModel city : citiesList){
-                if (city.getCityName().contains(s) || city.getCountryName().contains(s)){
-                    matches.add(city);
-                }
-                else if(city.getCityName().toLowerCase(Locale.ROOT).contains(s) || city.getCountryName().toLowerCase(Locale.ROOT).contains(s)){
+                if (city.toString().contains(s)){
                     matches.add(city);
                 }
             }
             return matches;
-        }
-
-        public void showCity(){
-            view.showCity(model);
-        }
-
-        public void showAllCities(){
-            view.showCities(citiesList);
-        }
-
-        public void showCities(ArrayList<CityModel> list){
-            view.showCities(list);
         }
 
     }

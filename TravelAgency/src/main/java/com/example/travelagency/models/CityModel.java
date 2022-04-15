@@ -1,4 +1,4 @@
-package com.example.travelagency.models;
+package com.example.travelagency;
 
 public class CityModel {
     String cityName;
@@ -47,5 +47,10 @@ public class CityModel {
 
     public void setCountryName(String countryName) {
         this.countryName = countryName;
+    }
+
+    @Override
+    public String toString(){
+        return this.getCityName()+" (" + this.getCountryName()+")";
     }
 }
