@@ -1,10 +1,7 @@
 package com.example.travelagency.views;
-
 import com.example.travelagency.models.CityController;
 import com.example.travelagency.models.CityModel;
 import com.example.travelagency.interfaces.ChooseDestinationListener;
-import javafx.collections.ObservableList;
-import javafx.collections.ObservableListBase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -12,11 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 
 public class ChooseDestinationViewController    {
 
@@ -31,7 +24,11 @@ public class ChooseDestinationViewController    {
     private ListView ChooseDestinationListView;
 
     public CityModel getCurrentCity(){
-        return this.cities.get(ChooseDestinationListView.getSelectionModel().getSelectedIndex());
+        int selectedIndex = ChooseDestinationListView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            return this.cities.get(selectedIndex);
+        }
+        return null;
     }
 
     //On récupère le contenu du textField
@@ -61,7 +58,6 @@ public class ChooseDestinationViewController    {
         cityController.getCitiesList().sort((o1,o2)->{return o1.getCityName().compareTo(o2.getCityName());});
         this.cities = cityController.searchCityByName(getText());
         ChooseDestinationListView.getItems().setAll(this.cities);
-
     }
 
     public void chooseButtonManagement(Stage stage) {
@@ -86,6 +82,7 @@ public class ChooseDestinationViewController    {
             chooseDestinationListener.selectedDestination();
         }
     }
+
     //Gestion de la recherche automatique quand on lache une touche du clavier
     @FXML
     void chooseDestinationOnKeyReleased(KeyEvent event) {
