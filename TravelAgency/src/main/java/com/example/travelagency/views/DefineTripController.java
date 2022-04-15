@@ -54,7 +54,6 @@ public class DefineTripController {
     //TODO: Fonction qui appelle la fenêtre ChooseDestination quand on clique sur le bouton choisir
     @FXML
     private void handleButtonClick(ActionEvent event) throws IOException {
-        System.out.println("button clicked!");
         FXMLLoader fxmlLoader = new FXMLLoader(TravelAgencyApplication.class.getResource("ChooseDestination.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         Stage stage = new Stage();
@@ -71,7 +70,15 @@ public class DefineTripController {
     }
 
     public void changeChooseButtonText(){
-        ChooseButton.setText(chooseDestinationViewController.getCurrentCity().toString());
+        CityModel currentCity = chooseDestinationViewController.getCurrentCity();
+        if (currentCity != null){
+            String formatedCurrentCityName = currentCity.toString();
+            ChooseButton.setText(formatedCurrentCityName);
+        }
+        else {
+            ChooseButton.setText("Choisir...");
+        }
+
     }
 
 }

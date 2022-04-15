@@ -24,7 +24,11 @@ public class ChooseDestinationViewController    {
     private ListView ChooseDestinationListView;
 
     public CityModel getCurrentCity(){
-        return this.cities.get(ChooseDestinationListView.getSelectionModel().getSelectedIndex());
+        int selectedIndex = ChooseDestinationListView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            return this.cities.get(selectedIndex);
+        }
+        return null;
     }
 
     //On récupère le contenu du textField
@@ -78,12 +82,7 @@ public class ChooseDestinationViewController    {
             chooseDestinationListener.selectedDestination();
         }
     }
-    CityModel isCitySelected(){
-        if(chooseDestinationListener.selectedDestination()==null){
-            System.out.println("pouet");
-        }
-        return chooseDestinationListener.selectedDestination();
-    }
+
     //Gestion de la recherche automatique quand on lache une touche du clavier
     @FXML
     void chooseDestinationOnKeyReleased(KeyEvent event) {
