@@ -85,10 +85,8 @@ public class DefineTripController {
         ArrayList<TripStage> stages= new ArrayList<>();
         TripStage stage1 = new PlaneStage();
         stages.add(stage1);
-        FXMLLoader loader = new FXMLLoader(PlaneStage.class.getResource("PlaneStage.fxml"));
-        Scene scene = new Scene(loader.load(), 320, 240);
+        FXMLLoader loader = new FXMLLoader(TravelAgencyApplication.class.getResource("PlaneStage.fxml"));
         AnchorPane pane = loader.load();
         StageVbox.getChildren().add(pane);
     }
-
 }
