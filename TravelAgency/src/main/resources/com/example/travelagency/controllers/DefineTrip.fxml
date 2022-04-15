@@ -24,7 +24,7 @@
                         <Button fx:id="ChooseButton" layoutX="354.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleChooseButtonClick" prefHeight="27.0" prefWidth="135.0" text="Choisir..." AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="354.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="21.0" />
                      </children>
                   </AnchorPane>
-                  <VBox fx:id="StageVBox" layoutY="69.0" prefHeight="508.0" prefWidth="498.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="69.0" />
+                  <VBox fx:id="StageVbox" layoutX="7.0" layoutY="69.0" prefHeight="509.0" prefWidth="491.0" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="69.0" />
                </children>
             </AnchorPane>
         </content>

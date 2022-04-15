@@ -80,18 +80,15 @@ public class DefineTripController {
         ChooseButton.setText(chooseDestinationViewController.getCurrentCity().toString());
     }
 
-    private void handleAddPlaneStageButtonClick(ActionEvent event){
-        ArrayList<TripStage> stages = null;
+    @FXML
+    private void handleAddPlaneStageButtonClick(ActionEvent event) throws IOException {
+        ArrayList<TripStage> stages= new ArrayList<>();
         TripStage stage1 = new PlaneStage();
         stages.add(stage1);
-    }
-
-    public void setStage(ArrayList<TripStage> stages) throws IOException {
-        for(TripStage s : stages){
-            FXMLLoader loader = new FXMLLoader(PlaneStage.class.getResource("PlaneStage.fxml"));
-            AnchorPane pane = loader.load();
-            StageVbox.getChildren().add(pane);
-        }
+        FXMLLoader loader = new FXMLLoader(PlaneStage.class.getResource("PlaneStage.fxml"));
+        Scene scene = new Scene(loader.load(), 320, 240);
+        AnchorPane pane = loader.load();
+        StageVbox.getChildren().add(pane);
     }
 
 }
