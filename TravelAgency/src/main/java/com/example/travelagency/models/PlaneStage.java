@@ -1,5 +1,8 @@
 package com.example.travelagency.models;
 
+import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
+
 public class PlaneStage extends TripStage {
 
     int flyingSpeed;
@@ -10,6 +13,9 @@ public class PlaneStage extends TripStage {
 
     int distance;
 
+    public PlaneStage(FXMLLoader loader) {
+        super(loader);
+    }
 
     public int getDistance() {
         return distance;

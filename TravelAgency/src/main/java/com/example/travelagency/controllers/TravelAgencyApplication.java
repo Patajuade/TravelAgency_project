@@ -13,7 +13,7 @@ public class TravelAgencyApplication extends Application  {
     public void start(Stage stage) throws IOException {
         //TODO : Faire correctement les ancres de la fenêtre
         FXMLLoader fxmlLoader = new FXMLLoader(TravelAgencyApplication.class.getResource("DefineTrip.fxml"));
-        Scene DefineTripCcene = new Scene(fxmlLoader.load(), 513, 694);
+        Scene DefineTripCcene = new Scene(fxmlLoader.load(), 900, 800);
         stage.setTitle("Définir son voyage");
         stage.setScene(DefineTripCcene);
         stage.show();

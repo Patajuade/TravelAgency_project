@@ -1,10 +1,7 @@
 package com.example.travelagency.views;
 
-import com.example.travelagency.models.CityController;
-import com.example.travelagency.models.CityModel;
+import com.example.travelagency.models.*;
 import com.example.travelagency.controllers.TravelAgencyApplication;
-import com.example.travelagency.models.PlaneStage;
-import com.example.travelagency.models.TripStage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,6 +38,7 @@ public class DefineTripController {
     private Label EurosLabel;
     @FXML
     private VBox StageVbox;
+    ArrayList<TripStage> stages= new ArrayList<>();
 
     ChooseDestinationViewController chooseDestinationViewController;
     CityModel cityModel;
@@ -82,11 +80,15 @@ public class DefineTripController {
 
     @FXML
     private void handleAddPlaneStageButtonClick(ActionEvent event) throws IOException {
-        ArrayList<TripStage> stages= new ArrayList<>();
-        TripStage stage1 = new PlaneStage();
-        stages.add(stage1);
-        FXMLLoader loader = new FXMLLoader(TravelAgencyApplication.class.getResource("PlaneStage.fxml"));
-        AnchorPane pane = loader.load();
-        StageVbox.getChildren().add(pane);
+        TripStage stage = new PlaneStage(new FXMLLoader(TravelAgencyApplication.class.getResource("PlaneStage.fxml")));
+        stages.add(stage);
+        StageVbox.getChildren().add(stage.getLoader().load());
+    }
+
+    @FXML
+    private void handleAddHotelStageButtonClick(ActionEvent event) throws IOException {
+        TripStage stage = new HotelStage(new FXMLLoader(TravelAgencyApplication.class.getResource("HotelStage.fxml")));
+        stages.add(stage);
+        StageVbox.getChildren().add(stage.getLoader().load());
     }
 }
