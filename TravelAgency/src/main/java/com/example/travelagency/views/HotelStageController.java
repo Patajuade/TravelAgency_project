@@ -11,29 +11,58 @@ public class HotelStageController {
     SpinnerValueFactory spinnerValueFactoryNumberNights = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,100);
     SpinnerValueFactory spinnerValueFactoryPriceNights = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,1000);
 
-    @FXML
-    private Label BottomInformationLabel;
+    int numberOfNights;
+    int pricePerNight;
+    int price;
 
     @FXML
-    private Button CloseButton;
+    private Label bottomInfoLabel;
 
     @FXML
-    private Spinner<Integer> NumberOfNightsSpinner;
+    private Button closeButton;
 
     @FXML
-    private Spinner<Integer> PricePerNigthSpinner;
+    private Spinner<Integer> numberOfNightsSpinner;
 
     @FXML
-    private Label TopInformationLabel;
+    private Spinner<Integer> pricePerNightSpinner;
+
+    @FXML
+    private Label topInformationLabel;
 
     @FXML
     private void handleNumberOfNightsSpinner(){
-        NumberOfNightsSpinner.setValueFactory(spinnerValueFactoryNumberNights);
+        numberOfNightsSpinner.setValueFactory(spinnerValueFactoryNumberNights);
+        numberOfNights = numberOfNightsSpinner.getValue();
+        calculatePricePerNight();
+        updateLabel(bottomInfoLabel);
+        updateLabel(topInformationLabel);
     }
 
     @FXML
     private void handlePricePerNightsSpinner(){
-        PricePerNigthSpinner.setValueFactory(spinnerValueFactoryPriceNights);
+        pricePerNightSpinner.setValueFactory(spinnerValueFactoryPriceNights);
+        pricePerNight = pricePerNightSpinner.getValue();
+        calculatePricePerNight();
+        updateLabel(bottomInfoLabel);
+        updateLabel(topInformationLabel);
     }
+
+    public int getNumberOfNights() {
+        return numberOfNights;
+    }
+
+    public int getPricePerNight() {
+        return pricePerNight;
+    }
+
+    private void updateLabel(Label label){
+        label.setText(numberOfNights + " nuit(s) à l'hôtel pour " + price + " euros" );
+    }
+
+    private void calculatePricePerNight(){
+        price = pricePerNight * numberOfNights;
+    }
+
 
 }
