@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="131.0" prefWidth="588.0" style="-fx-border-color: AFAEAE;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.travelagency.views.HotelStageController">
+<AnchorPane prefHeight="131.0" prefWidth="588.0" style="-fx-border-color: AFAEAE;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.travelagency.views.HotelStageController">
    <children>
       <VBox layoutX="1.0" layoutY="1.0" prefHeight="118.0" prefWidth="588.0" style="-fx-border-color: AFAEAE;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -19,8 +19,8 @@
                <children>
                   <Label layoutX="53.0" layoutY="23.0" text="Nombre de nuits" AnchorPane.leftAnchor="53.0" AnchorPane.topAnchor="23.0" />
                   <Label layoutX="363.0" layoutY="23.0" text="Prix par nuit" AnchorPane.rightAnchor="159.0" AnchorPane.topAnchor="23.0" />
-                  <Spinner fx:id="NumberOfNightsSpinner" layoutX="154.0" layoutY="19.0" prefHeight="25.0" prefWidth="100.0" AnchorPane.leftAnchor="154.0" AnchorPane.topAnchor="19.0" />
-                  <Spinner fx:id="PricePerNigthSpinner" layoutX="444.0" layoutY="19.0" prefHeight="25.0" prefWidth="100.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="19.0" />
+                  <Spinner fx:id="NumberOfNightsSpinner" layoutX="154.0" layoutY="19.0" onMouseClicked="#handleNumberOfNightsSpinner" prefHeight="25.0" prefWidth="100.0" AnchorPane.leftAnchor="154.0" AnchorPane.topAnchor="19.0" />
+                  <Spinner fx:id="PricePerNigthSpinner" layoutX="444.0" layoutY="19.0" onMouseClicked="#handlePricePerNightsSpinner" prefHeight="25.0" prefWidth="100.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="19.0" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="65.0" prefWidth="584.0">
