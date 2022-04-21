@@ -1,5 +1,6 @@
 package com.example.travelagency.views;
 
+import com.example.travelagency.interfaces.DefineTripListener;
 import com.example.travelagency.models.*;
 import com.example.travelagency.controllers.TravelAgencyApplication;
 import javafx.event.ActionEvent;
@@ -37,6 +38,13 @@ public class DefineTripController {
     private Label EurosLabel;
     @FXML
     private VBox StageVbox;
+
+    public void setDefineTripListenner(DefineTripListener defineTripListenner) {
+        this.defineTripListenner = defineTripListenner;
+    }
+
+    private DefineTripListener defineTripListenner;
+
     ArrayList<TripStage> stages= new ArrayList<>();
 
     ChooseDestinationViewController chooseDestinationViewController;
@@ -58,7 +66,6 @@ public class DefineTripController {
     //TODO: Fonction qui appelle la fenêtre ChooseDestination quand on clique sur le bouton choisir
     @FXML
     private void handleChooseButtonClick(ActionEvent event) throws IOException {
-        System.out.println("button clicked!");
         FXMLLoader fxmlLoader = new FXMLLoader(TravelAgencyApplication.class.getResource("ChooseDestination.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         Stage stage = new Stage();
@@ -80,14 +87,14 @@ public class DefineTripController {
     @FXML
     private void handleAddPlaneStageButtonClick(ActionEvent event) throws IOException {
         TripStage stage = new PlaneStage(new FXMLLoader(TravelAgencyApplication.class.getResource("PlaneStage.fxml")));
-        stages.add(stage);
         StageVbox.getChildren().add(stage.getFxml().load());
+        defineTripListenner.onClickAddPlaneButton(stage);
     }
 
     @FXML
     private void handleAddHotelStageButtonClick(ActionEvent event) throws IOException {
         TripStage stage = new HotelStage(new FXMLLoader(TravelAgencyApplication.class.getResource("HotelStage.fxml")));
-        stages.add(stage);
         StageVbox.getChildren().add(stage.getFxml().load());
+        defineTripListenner.onClickAddHotelButton(stage);
     }
 }

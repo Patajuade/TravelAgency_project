@@ -2,10 +2,12 @@ package com.example.travelagency.models;
 
 import javafx.fxml.FXMLLoader;
 
+import java.util.ArrayList;
+
 public abstract class TripStage {
     protected double price;
     protected double duration;
-
+    ArrayList<TripStage> stages= new ArrayList<>();
     public FXMLLoader getFxml() {
         return fxmlLoader;
     }
