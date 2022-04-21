@@ -34,18 +34,14 @@ public class HotelStageController {
     private void handleNumberOfNightsSpinner(){
         numberOfNightsSpinner.setValueFactory(spinnerValueFactoryNumberNights);
         numberOfNights = numberOfNightsSpinner.getValue();
-        calculatePricePerNight();
-        updateLabel(bottomInfoLabel);
-        updateLabel(topInformationLabel);
+        updatePrice();
     }
 
     @FXML
     private void handlePricePerNightsSpinner(){
         pricePerNightSpinner.setValueFactory(spinnerValueFactoryPriceNights);
         pricePerNight = pricePerNightSpinner.getValue();
-        calculatePricePerNight();
-        updateLabel(bottomInfoLabel);
-        updateLabel(topInformationLabel);
+        updatePrice();
     }
 
     public int getNumberOfNights() {
@@ -62,6 +58,12 @@ public class HotelStageController {
 
     private void calculatePricePerNight(){
         price = pricePerNight * numberOfNights;
+    }
+
+    private void updatePrice(){
+        calculatePricePerNight();
+        updateLabel(bottomInfoLabel);
+        updateLabel(topInformationLabel);
     }
 
 
