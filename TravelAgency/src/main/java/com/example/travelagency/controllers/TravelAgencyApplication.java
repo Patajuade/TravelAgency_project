@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class TravelAgencyApplication extends Application implements DefineTripListener, PlaneStageListener {
+public class TravelAgencyApplication extends Application implements DefineTripListener {
 
     ArrayList<TripStage> stages= new ArrayList<>();
     @Override
@@ -20,6 +20,7 @@ public class TravelAgencyApplication extends Application implements DefineTripLi
         Scene DefineTripCcene = new Scene(fxmlLoader.load(), 900, 800);
         DefineTripController controller = fxmlLoader.getController();
         controller.setDefineTripListenner(this);
+        controller.setPlaneStageListener(controller);
         stage.setTitle("Définir son voyage");
         stage.setScene(DefineTripCcene);
         stage.show();
@@ -45,8 +46,4 @@ public class TravelAgencyApplication extends Application implements DefineTripLi
         stages.add(stage);
     }
 
-    @Override
-    public void onClickCloseButton(TripStage stage) {
-        stages.remove(stage);
-    }
 }

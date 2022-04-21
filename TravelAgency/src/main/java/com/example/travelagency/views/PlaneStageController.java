@@ -71,9 +71,6 @@ public class PlaneStageController {
     @FXML
     private void handleRadioButton700Click(ActionEvent event){
         stage.setFlyingSpeed(700);
-        if(RadioButton700.isArmed()){
-            RadioButton900.();
-        }
     }
 
     @FXML
@@ -93,7 +90,6 @@ public class PlaneStageController {
 
     @FXML
     private void handleCloseButtonClick(ActionEvent event){
-
         planeStageListener.onClickCloseButton(stage);
     }
 

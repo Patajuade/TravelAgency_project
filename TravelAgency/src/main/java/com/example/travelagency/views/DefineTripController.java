@@ -1,6 +1,7 @@
 package com.example.travelagency.views;
 
 import com.example.travelagency.interfaces.DefineTripListener;
+import com.example.travelagency.interfaces.PlaneStageListener;
 import com.example.travelagency.models.*;
 import com.example.travelagency.controllers.TravelAgencyApplication;
 import javafx.event.ActionEvent;
@@ -18,7 +19,12 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class DefineTripController {
+public class DefineTripController implements PlaneStageListener {
+    public void setPlaneStageListener(PlaneStageListener planeStageListener) {
+        this.planeStageListener = planeStageListener;
+    }
+
+    PlaneStageListener planeStageListener;
 
     @FXML
     private TextField TripNameTextField;
@@ -96,5 +102,11 @@ public class DefineTripController {
         TripStage stage = new HotelStage(new FXMLLoader(TravelAgencyApplication.class.getResource("HotelStage.fxml")));
         StageVbox.getChildren().add(stage.getFxml().load());
         defineTripListenner.onClickAddHotelButton(stage);
+    }
+
+
+    @Override
+    public void onClickCloseButton(TripStage stage) {
+        StageVbox.getChildren().remove(stage);
     }
 }
