@@ -1,6 +1,8 @@
 package com.example.travelagency.views;
 
+import com.example.travelagency.models.HotelStage;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
@@ -11,9 +13,8 @@ public class HotelStageController {
     SpinnerValueFactory spinnerValueFactoryNumberNights = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,100);
     SpinnerValueFactory spinnerValueFactoryPriceNights = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,1000);
 
-    int numberOfNights;
-    int pricePerNight;
-    int price;
+    DefineTripController defineTripController;
+    HotelStage hotelStage = new HotelStage();
 
     @FXML
     private Label bottomInfoLabel;
@@ -33,31 +34,30 @@ public class HotelStageController {
     @FXML
     private void handleNumberOfNightsSpinner(){
         numberOfNightsSpinner.setValueFactory(spinnerValueFactoryNumberNights);
-        numberOfNights = numberOfNightsSpinner.getValue();
+        int numberOfNights = numberOfNightsSpinner.getValue();
+        hotelStage.setNumberOfNights(numberOfNights);
         updatePrice();
     }
 
     @FXML
     private void handlePricePerNightsSpinner(){
         pricePerNightSpinner.setValueFactory(spinnerValueFactoryPriceNights);
-        pricePerNight = pricePerNightSpinner.getValue();
+        int pricePerNight = pricePerNightSpinner.getValue();
+        hotelStage.setPricePerNight(pricePerNight);
         updatePrice();
     }
 
-    public int getNumberOfNights() {
-        return numberOfNights;
-    }
-
-    public int getPricePerNight() {
-        return pricePerNight;
+    @FXML
+    private void handleClose(){
+        defineTripController.removeStage(hotelStage);
     }
 
     private void updateLabel(Label label){
-        label.setText(numberOfNights + " nuit(s) à l'hôtel pour " + price + " euros" );
+        label.setText(hotelStage.getNumberOfNights() + " nuit(s) à l'hôtel pour " + hotelStage.getPrice() + " euros" );
     }
 
     private void calculatePricePerNight(){
-        price = pricePerNight * numberOfNights;
+        hotelStage.priceCompute();
     }
 
     private void updatePrice(){
@@ -65,6 +65,7 @@ public class HotelStageController {
         updateLabel(bottomInfoLabel);
         updateLabel(topInformationLabel);
     }
+
 
 
 }

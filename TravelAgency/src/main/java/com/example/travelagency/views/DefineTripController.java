@@ -86,8 +86,12 @@ public class DefineTripController {
 
     @FXML
     private void handleAddHotelStageButtonClick(ActionEvent event) throws IOException {
-        TripStage stage = new HotelStage(new FXMLLoader(TravelAgencyApplication.class.getResource("HotelStage.fxml")));
+        TripStage stage = new HotelStage();
         stages.add(stage);
         StageVbox.getChildren().add(stage.getFxml().load());
+    }
+
+    public void removeStage(TripStage tripStage){
+        stages.remove(tripStage);
     }
 }
