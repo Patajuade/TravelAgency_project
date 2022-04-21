@@ -1,20 +1,19 @@
 package com.example.travelagency.models;
 
 import javafx.fxml.FXMLLoader;
-import javafx.stage.Stage;
 
 public abstract class TripStage {
     protected double price;
     protected double duration;
 
-    public FXMLLoader getLoader() {
-        return loader;
+    public FXMLLoader getFxml() {
+        return fxmlLoader;
     }
 
-    private FXMLLoader loader;
+    private FXMLLoader fxmlLoader;
 
     public TripStage(FXMLLoader loader) {
-        this.loader = loader;
+        this.fxmlLoader = loader;
     }
 
 

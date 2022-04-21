@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane prefHeight="120.0" prefWidth="588.0" style="-fx-border-color: AFAEAE;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.travelagency.views.HotelStageController">
+<AnchorPane prefHeight="131.0" prefWidth="588.0" style="-fx-border-color: AFAEAE;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.travelagency.views.HotelStageController">
    <children>
       <VBox layoutX="1.0" layoutY="1.0" prefHeight="118.0" prefWidth="588.0" style="-fx-border-color: AFAEAE;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>

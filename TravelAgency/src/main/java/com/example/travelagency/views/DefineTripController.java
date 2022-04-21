@@ -10,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -82,13 +81,13 @@ public class DefineTripController {
     private void handleAddPlaneStageButtonClick(ActionEvent event) throws IOException {
         TripStage stage = new PlaneStage(new FXMLLoader(TravelAgencyApplication.class.getResource("PlaneStage.fxml")));
         stages.add(stage);
-        StageVbox.getChildren().add(stage.getLoader().load());
+        StageVbox.getChildren().add(stage.getFxml().load());
     }
 
     @FXML
     private void handleAddHotelStageButtonClick(ActionEvent event) throws IOException {
         TripStage stage = new HotelStage(new FXMLLoader(TravelAgencyApplication.class.getResource("HotelStage.fxml")));
         stages.add(stage);
-        StageVbox.getChildren().add(stage.getLoader().load());
+        StageVbox.getChildren().add(stage.getFxml().load());
     }
 }
