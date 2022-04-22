@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 public abstract class TripStage {
     protected double price;
     protected double duration;
+    protected int numberOfNights;
+    protected int pricePerNight;
 
     public FXMLLoader getFxml() {
         return fxmlLoader;
@@ -16,7 +18,6 @@ public abstract class TripStage {
         this.fxmlLoader = loader;
     }
 
-
     public abstract void priceCompute();
     public abstract void durationCompute();
 
@@ -27,4 +28,8 @@ public abstract class TripStage {
     public double getDuration() {
         return duration;
     }
+
+    public int getNumberOfNights(){return 0;}
+    public void setNumberOfNights(int numberOfNights) {}
+    public void setPricePerNight(int pricePerNight) {}
 }

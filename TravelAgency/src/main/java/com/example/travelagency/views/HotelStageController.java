@@ -1,6 +1,8 @@
 package com.example.travelagency.views;
 
+import com.example.travelagency.controllers.TravelAgencyApplication;
 import com.example.travelagency.models.HotelStage;
+import com.example.travelagency.models.TripStage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -14,7 +16,7 @@ public class HotelStageController {
     SpinnerValueFactory spinnerValueFactoryPriceNights = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,1000);
 
     DefineTripController defineTripController;
-    HotelStage hotelStage = new HotelStage();
+    TripStage hotelStage = new HotelStage();
 
     @FXML
     private Label bottomInfoLabel;

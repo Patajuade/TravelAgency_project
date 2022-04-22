@@ -13,25 +13,24 @@ public class HotelStage extends TripStage {
         super(new FXMLLoader(TravelAgencyApplication.class.getResource("HotelStage.fxml")));
     }
 
-    public int getNumberOfNights() {
-        return numberOfNights;
-    }
-
-    public void setNumberOfNights(int numberOfNights) {
-        this.numberOfNights = numberOfNights;
-    }
-
-    public void setPricePerNight(int pricePerNight) {
-        this.pricePerNight = pricePerNight;
-    }
-
     @Override
     public void priceCompute() {
         price = pricePerNight * numberOfNights;
     }
-
     @Override
     public void durationCompute() {
         duration = numberOfNights * 24;
+    }
+    @Override
+    public int getNumberOfNights() {
+        return numberOfNights;
+    }
+    @Override
+    public void setNumberOfNights(int numberOfNights) {
+        this.numberOfNights = numberOfNights;
+    }
+    @Override
+    public void setPricePerNight(int pricePerNight) {
+        this.pricePerNight = pricePerNight;
     }
 }
