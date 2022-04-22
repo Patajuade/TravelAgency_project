@@ -5,6 +5,7 @@ import com.example.travelagency.models.PlaneStage;
 import com.example.travelagency.models.TripStage;
 import com.example.travelagency.views.ChooseDestinationViewController;
 import com.example.travelagency.views.DefineTripController;
+import com.example.travelagency.views.PlaneStageController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,7 +13,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class TravelAgencyApplication extends Application implements DefineTripController.Listener{
+public class TravelAgencyApplication extends Application implements DefineTripController.Listener, PlaneStageController.Listener {
 
     ArrayList<TripStage> stages= new ArrayList<>();
     TripStage SourceOfTrip;
@@ -69,5 +70,38 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
         TripStage tripStage = new PlaneStage(new FXMLLoader(TravelAgencyApplication.class.getResource("HotelStage.fxml")));
         stages.add(tripStage);
         defineTripController.addStageToStageVBOX(tripStage);
+    }
+
+
+    @Override
+    public void onChooseButtonClick() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(TravelAgencyApplication.class.getResource("ChooseDestination.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Stage stage = new Stage();
+        CityController cityController = CityController.getInstance(); //singleton
+        ChooseDestinationViewController chooseDestinationViewController = fxmlLoader.getController();
+        chooseDestinationViewController.setListener( new ChooseDestinationViewController.Listener() {
+            @Override
+            public void selectedDestination() {
+                stage.close();
+                CurrentCity = chooseDestinationViewController.getCurrentCity();
+                //TODO : Changer la classe TripStage pour qu'elle partage la Destination aussi et mettre un return 0 dans HotelStage pour gérer avec le polymorphisme
+            }
+        });
+        chooseDestinationViewController.setCityController(cityController);
+        chooseDestinationViewController.showCities();
+        stage.setTitle("Choisir une destination");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @Override
+    public void onRadioButton700Click() {
+
+    }
+
+    @Override
+    public void onRadioButton900Click() {
+
     }
 }

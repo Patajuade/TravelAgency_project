@@ -37,19 +37,20 @@ public class PlaneStageController {
     @FXML
     private Spinner<?> WaitingTimeSpinner;
 
-    private ChooseDestinationViewController.Listener listener;
+    private Listener listener;
 
-    public void setListener(ChooseDestinationViewController.Listener listener) {
+    public void setListener(Listener listener) {
         this.listener = listener;
     }
 
     public interface Listener {
-        void onChooseButtonClick();
+        void onChooseButtonClick() throws IOException;
         void onRadioButton700Click();
         void onRadioButton900Click();
     }
     @FXML
     private void handleChooseButtonClick(ActionEvent event) throws IOException {
+        listener.onChooseButtonClick();
     }
 
     @FXML
@@ -64,7 +65,7 @@ public class PlaneStageController {
 
     @FXML
     private void handleChooseMenuButton(ActionEvent event){
-        
+
     }
 
     @FXML
