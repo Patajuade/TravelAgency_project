@@ -24,7 +24,6 @@ public abstract class TripStage {
     public double getPrice() {
         return price;
     }
-
     public double getDuration() {
         return duration;
     }

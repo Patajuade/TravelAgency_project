@@ -17,6 +17,16 @@ public class HotelStageController {
 
     DefineTripController defineTripController;
     TripStage hotelStage = new HotelStage();
+    Listener listener;
+
+    public void setListener(Listener listener) {
+        this.listener = listener;
+    }
+
+    public interface Listener {
+        void onUpperNumberOfNightsSpinner();
+        void onUpperPricePerNightsSpinner();
+    }
 
     @FXML
     private Label bottomInfoLabel;
@@ -35,17 +45,15 @@ public class HotelStageController {
 
     @FXML
     private void handleNumberOfNightsSpinner(){
-        numberOfNightsSpinner.setValueFactory(spinnerValueFactoryNumberNights);
-        int numberOfNights = numberOfNightsSpinner.getValue();
-        hotelStage.setNumberOfNights(numberOfNights);
+        //TODO : remplacer le code ci-dessous par onUpperNumberOfNightsSpinner
+        listener.onUpperNumberOfNightsSpinner();
         updatePrice();
     }
 
     @FXML
     private void handlePricePerNightsSpinner(){
-        pricePerNightSpinner.setValueFactory(spinnerValueFactoryPriceNights);
-        int pricePerNight = pricePerNightSpinner.getValue();
-        hotelStage.setPricePerNight(pricePerNight);
+        //TODO : remplacer le code ci-dessous par onUpperPricePerNightsSpinner
+        listener.onUpperPricePerNightsSpinner();
         updatePrice();
     }
 
@@ -63,11 +71,7 @@ public class HotelStageController {
     }
 
     private void updatePrice(){
-        calculatePricePerNight();
         updateLabel(bottomInfoLabel);
         updateLabel(topInformationLabel);
     }
-
-
-
 }
