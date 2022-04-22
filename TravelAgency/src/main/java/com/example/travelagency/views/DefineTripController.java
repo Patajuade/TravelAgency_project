@@ -42,8 +42,8 @@ public class DefineTripController {
 
     public interface Listener {
         void onClickChooseDestinationButton() throws IOException;
-        void onClickAddPlaneButton(TripStage stage);
-        void onClickAddHotelButton(TripStage stage);
+        void onClickAddPlaneButton() throws IOException;
+        void onClickAddHotelButton() throws IOException;
     }
 
     ChooseDestinationViewController chooseDestinationViewController;
@@ -59,20 +59,16 @@ public class DefineTripController {
 
     @FXML
     private void handleAddPlaneStageButtonClick(ActionEvent event) throws IOException {
-        TripStage stage = new PlaneStage(new FXMLLoader(TravelAgencyApplication.class.getResource("PlaneStage.fxml")));
-        StageVbox.getChildren().add(stage.getFxml().load());
-        listener.onClickAddPlaneButton(stage);
+        listener.onClickAddPlaneButton();
     }
 
     @FXML
     private void handleAddHotelStageButtonClick(ActionEvent event) throws IOException {
-        TripStage stage = new HotelStage(new FXMLLoader(TravelAgencyApplication.class.getResource("HotelStage.fxml")));
-        StageVbox.getChildren().add(stage.getFxml().load());
-        listener.onClickAddHotelButton(stage);
+        listener.onClickAddHotelButton();
     }
 
-    public void changeChooseButtonText(String string){
-
+    public void addStageToStageVBOX(TripStage tripStage) throws IOException {
+        StageVbox.getChildren().add(tripStage.getFxml().load());
     }
 
 }

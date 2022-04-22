@@ -13,9 +13,6 @@ import javafx.scene.control.Spinner;
 import java.io.IOException;
 
 public class PlaneStageController {
-    PlaneStage stage = new PlaneStage(new FXMLLoader());
-    ChooseDestinationViewController chooseDestinationViewController;
-    DefineTripController defineTripController;
     @FXML
     private Label BottomInformationLabel;
 
@@ -40,23 +37,34 @@ public class PlaneStageController {
     @FXML
     private Spinner<?> WaitingTimeSpinner;
 
+    private ChooseDestinationViewController.Listener listener;
+
+    public void setListener(ChooseDestinationViewController.Listener listener) {
+        this.listener = listener;
+    }
+
+    public interface Listener {
+        void onChooseButtonClick();
+        void onRadioButton700Click();
+        void onRadioButton900Click();
+    }
     @FXML
     private void handleChooseButtonClick(ActionEvent event) throws IOException {
     }
 
     @FXML
     private void handleRadioButton700Click(ActionEvent event){
-        stage.setFlyingSpeed(700);
+
     }
 
     @FXML
     private void handleRadioButton900Click(ActionEvent event){
-        stage.setFlyingSpeed(900);
+
     }
 
     @FXML
     private void handleChooseMenuButton(ActionEvent event){
-
+        
     }
 
     @FXML

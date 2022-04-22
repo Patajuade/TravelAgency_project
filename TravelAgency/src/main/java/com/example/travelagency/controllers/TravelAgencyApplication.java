@@ -1,6 +1,7 @@
 package com.example.travelagency.controllers;
 import com.example.travelagency.models.CityController;
 import com.example.travelagency.models.CityModel;
+import com.example.travelagency.models.PlaneStage;
 import com.example.travelagency.models.TripStage;
 import com.example.travelagency.views.ChooseDestinationViewController;
 import com.example.travelagency.views.DefineTripController;
@@ -57,13 +58,16 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
     }
 
     @Override
-    public void onClickAddPlaneButton(TripStage stage) {
-        stages.add(stage);
+    public void onClickAddPlaneButton() throws IOException {
+        TripStage tripStage = new PlaneStage(new FXMLLoader(TravelAgencyApplication.class.getResource("PlaneStage.fxml")));
+        stages.add(tripStage);
+        defineTripController.addStageToStageVBOX(tripStage);
     }
 
     @Override
-    public void onClickAddHotelButton(TripStage stage) {
-        stages.add(stage);
+    public void onClickAddHotelButton() throws IOException {
+        TripStage tripStage = new PlaneStage(new FXMLLoader(TravelAgencyApplication.class.getResource("HotelStage.fxml")));
+        stages.add(tripStage);
+        defineTripController.addStageToStageVBOX(tripStage);
     }
-
 }
