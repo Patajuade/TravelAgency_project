@@ -1,30 +1,19 @@
 package com.example.travelagency.views;
 
-import com.example.travelagency.interfaces.DefineTripListener;
-import com.example.travelagency.interfaces.PlaneStageListener;
 import com.example.travelagency.models.*;
 import com.example.travelagency.controllers.TravelAgencyApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
 
-public class DefineTripController implements PlaneStageListener {
-    public void setPlaneStageListener(PlaneStageListener planeStageListener) {
-        this.planeStageListener = planeStageListener;
-    }
-
-    PlaneStageListener planeStageListener;
+public class DefineTripController {
 
     @FXML
     private TextField TripNameTextField;
@@ -45,68 +34,45 @@ public class DefineTripController implements PlaneStageListener {
     @FXML
     private VBox StageVbox;
 
-    public void setDefineTripListenner(DefineTripListener defineTripListenner) {
-        this.defineTripListenner = defineTripListenner;
+    public void setListener(Listener listener) {
+        this.listener = listener;
     }
 
-    private DefineTripListener defineTripListenner;
+    private Listener listener;
 
-    ArrayList<TripStage> stages= new ArrayList<>();
+    public interface Listener {
+        void onClickChooseDestinationButton() throws IOException;
+        void onClickAddPlaneButton(TripStage stage);
+        void onClickAddHotelButton(TripStage stage);
+    }
 
     ChooseDestinationViewController chooseDestinationViewController;
-    CityModel cityModel;
-
-    public String getTripNameTextFieldText(){
-        return TripNameTextField.getText();
-    }
-
-    public LocalDate getDateFieldText(){
-        return DateField.getValue();
-    }
-
-    public Button getChooseButton() {
-        return ChooseButton;
-    }
-    private String chosenCity;
-
     //TODO: Fonction qui appelle la fenêtre ChooseDestination quand on clique sur le bouton choisir
     @FXML
     private void handleChooseButtonClick(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TravelAgencyApplication.class.getResource("ChooseDestination.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        Stage stage = new Stage();
-        CityController cityController = CityController.getInstance(); //singleton
-        chooseDestinationViewController = fxmlLoader.getController();
-        chooseDestinationViewController.setDefineTripController(this);
-        chooseDestinationViewController.chooseButtonManagement(stage);
-        chooseDestinationViewController.setCityController(cityController);
-        chooseDestinationViewController.showCities();
-        stage.setTitle("Choisir une destination");
-        stage.setScene(scene);
-        stage.show();
+        listener.onClickChooseDestinationButton();
     }
 
-    public void changeChooseButtonText(){
-        ChooseButton.setText(chooseDestinationViewController.getCurrentCity().toString());
+    public void changeStartCity(CityModel city){
+        ChooseButton.setText(city.getCityName()+ "(" + city.getCountryName() + ")");
     }
 
     @FXML
     private void handleAddPlaneStageButtonClick(ActionEvent event) throws IOException {
         TripStage stage = new PlaneStage(new FXMLLoader(TravelAgencyApplication.class.getResource("PlaneStage.fxml")));
         StageVbox.getChildren().add(stage.getFxml().load());
-        defineTripListenner.onClickAddPlaneButton(stage);
+        listener.onClickAddPlaneButton(stage);
     }
 
     @FXML
     private void handleAddHotelStageButtonClick(ActionEvent event) throws IOException {
         TripStage stage = new HotelStage(new FXMLLoader(TravelAgencyApplication.class.getResource("HotelStage.fxml")));
         StageVbox.getChildren().add(stage.getFxml().load());
-        defineTripListenner.onClickAddHotelButton(stage);
+        listener.onClickAddHotelButton(stage);
     }
 
+    public void changeChooseButtonText(String string){
 
-    @Override
-    public void onClickCloseButton(TripStage stage) {
-        StageVbox.getChildren().remove(stage);
     }
+
 }
