@@ -22,11 +22,11 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
     public void start(Stage stage)  throws IOException {
         //TODO : Faire correctement les ancres de la fenêtre
         FXMLLoader fxmlLoader = new FXMLLoader(TravelAgencyApplication.class.getResource("DefineTrip.fxml"));
-        Scene DefineTripCcene = new Scene(fxmlLoader.load());
+        Scene DefineTripScene = new Scene(fxmlLoader.load());
         defineTripController = fxmlLoader.getController();
         defineTripController.setListener(this);
         stage.setTitle("Définir son voyage");
-        stage.setScene(DefineTripCcene);
+        stage.setScene(DefineTripScene);
         stage.show();
     }
 
@@ -34,9 +34,6 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
         launch();
     }
 
- //   public void onUpperPricePerNightsSpinner(HotelStageController hotelStage) {    //Listener de HotelStageController
-
-    //}
 
     public void onClickChooseDestinationButton() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(TravelAgencyApplication.class.getResource("ChooseDestination.fxml"));
@@ -62,7 +59,6 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
     @Override
     public void onClickAddPlaneButton(TripStage stage) {
         stages.add(stage);
-
     }
 
     @Override

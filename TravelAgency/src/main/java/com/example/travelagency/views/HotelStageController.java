@@ -1,16 +1,11 @@
 package com.example.travelagency.views;
-
-import com.example.travelagency.controllers.TravelAgencyApplication;
 import com.example.travelagency.models.HotelStage;
-import com.example.travelagency.models.TripStage;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.input.MouseEvent;
 
 public class HotelStageController {
 
@@ -44,7 +39,6 @@ public class HotelStageController {
     @FXML
     private Spinner<Integer> numberOfNightsSpinner;
 
-
     @FXML
     private Spinner<Integer> pricePerNightSpinner;
 
@@ -55,15 +49,12 @@ public class HotelStageController {
     private void handleNumberOfNightsSpinner(){
         //TODO : remplacer le code ci-dessous par onUpperNumberOfNightsSpinner
         listener.onUpperNumberOfNightsSpinner();
-        //updatePrice();
     }
-
 
     @FXML
     private void handlePricePerNightsSpinner(){
         //TODO : remplacer le code ci-dessous par onUpperPricePerNightsSpinner
         listener.onUpperPricePerNightsSpinner();
-        //updatePrice();
     }
 
     @FXML
@@ -88,16 +79,8 @@ public class HotelStageController {
         return spinnerValueFactoryNumberNights;
     }
 
-    public void setSpinnerValueFactoryNumberNights(SpinnerValueFactory spinnerValueFactoryNumberNights) {
-        this.spinnerValueFactoryNumberNights = spinnerValueFactoryNumberNights;
-    }
-
     public SpinnerValueFactory getSpinnerValueFactoryPriceNights() {
         return spinnerValueFactoryPriceNights;
-    }
-
-    public void setSpinnerValueFactoryPriceNights(SpinnerValueFactory spinnerValueFactoryPriceNights) {
-        this.spinnerValueFactoryPriceNights = spinnerValueFactoryPriceNights;
     }
 
     public Spinner<Integer> getNumberOfNightsSpinner() {
@@ -106,13 +89,5 @@ public class HotelStageController {
 
     public Spinner<Integer> getPricePerNightSpinner() {
         return pricePerNightSpinner;
-    }
-
-    public void setNumberOfNightsSpinner(Spinner<Integer> numberOfNightsSpinner) {
-        this.numberOfNightsSpinner = numberOfNightsSpinner;
-    }
-
-    public void setPricePerNightSpinner(Spinner<Integer> pricePerNightSpinner) {
-        this.pricePerNightSpinner = pricePerNightSpinner;
     }
 }
