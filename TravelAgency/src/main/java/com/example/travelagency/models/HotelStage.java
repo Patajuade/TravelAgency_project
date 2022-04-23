@@ -9,8 +9,8 @@ public class HotelStage extends TripStage {
     int numberOfNights;
     int pricePerNight;
 
-    public HotelStage() {
-        super(new FXMLLoader(TravelAgencyApplication.class.getResource("HotelStage.fxml")));
+    public HotelStage(FXMLLoader loader) {
+        super(loader);
     }
 
     @Override
