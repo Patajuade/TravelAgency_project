@@ -1,8 +1,6 @@
 package com.example.travelagency.models;
 
-import com.example.travelagency.controllers.TravelAgencyApplication;
 import javafx.fxml.FXMLLoader;
-import javafx.stage.Stage;
 
 public class HotelStage extends TripStage {
 
