@@ -12,7 +12,6 @@ public class HotelStageController {
     SpinnerValueFactory spinnerValueFactoryNumberNights = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,100);
     SpinnerValueFactory spinnerValueFactoryPriceNights = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,1000);
 
-    DefineTripController defineTripController;
 
     public HotelStage getHotelStage() {
         return hotelStage;
@@ -47,13 +46,11 @@ public class HotelStageController {
 
     @FXML
     private void handleNumberOfNightsSpinner(){
-        //TODO : remplacer le code ci-dessous par onUpperNumberOfNightsSpinner
         listener.onUpperNumberOfNightsSpinner();
     }
 
     @FXML
     private void handlePricePerNightsSpinner(){
-        //TODO : remplacer le code ci-dessous par onUpperPricePerNightsSpinner
         listener.onUpperPricePerNightsSpinner();
     }
 

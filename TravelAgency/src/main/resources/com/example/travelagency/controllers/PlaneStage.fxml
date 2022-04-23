@@ -7,6 +7,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -16,7 +17,7 @@
          <children>
             <AnchorPane prefHeight="24.0" prefWidth="635.0" style="-fx-background-color: D4D4D4;">
                <children>
-                  <Label fx:id="TopInformationLabel" layoutX="43.0" layoutY="4.0" prefHeight="17.0" prefWidth="99.0" text="Voyage en avion" AnchorPane.leftAnchor="43.0" />
+                  <Label fx:id="TopInformationLabel" layoutX="43.0" layoutY="4.0" text="Voyage en avion" AnchorPane.leftAnchor="43.0" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="86.0" prefWidth="689.0" style="-fx-border-color: AFAEAE;">
@@ -35,10 +36,13 @@
                   <Spinner fx:id="WaitingTimeSpinner" layoutX="495.0" layoutY="10.0" onDragDetected="#handleWaitingTimeSpinner" prefHeight="25.0" prefWidth="99.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="10.0" />
                   <Group layoutX="134.0" layoutY="56.0">
                      <children>
-                        <RadioButton fx:id="RadioButton700" mnemonicParsing="false" onAction="#handleRadioButton700Click" prefHeight="17.0" prefWidth="72.0" text="700km/h" />
+                        <RadioButton fx:id="RadioButton700" mnemonicParsing="false" onAction="#handleRadioButton700Click" prefHeight="17.0" prefWidth="72.0" text="700km/h">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="Speed" />
+                           </toggleGroup></RadioButton>
                      </children>
                   </Group>
-                  <RadioButton fx:id="RadioButton900" layoutX="225.0" layoutY="56.0" mnemonicParsing="false" onAction="#handleRadioButton900Click" prefHeight="17.0" prefWidth="72.0" text="900km/h" />
+                  <RadioButton fx:id="RadioButton900" layoutX="225.0" layoutY="56.0" mnemonicParsing="false" onAction="#handleRadioButton900Click" prefHeight="17.0" prefWidth="72.0" text="900km/h" toggleGroup="$Speed" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="49.0" prefWidth="625.0">

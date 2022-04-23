@@ -1,5 +1,6 @@
 package com.example.travelagency.views;
 
+import com.example.travelagency.models.CityModel;
 import com.example.travelagency.models.PlaneStage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,10 +38,39 @@ public class PlaneStageController {
     @FXML
     private Spinner<?> WaitingTimeSpinner;
 
+    PlaneStage planeStage;
+
+    public void setPlaneStage(PlaneStage planeStage) {
+        this.planeStage = planeStage;
+    }
+
     private Listener listener;
 
     public void setListener(Listener listener) {
         this.listener = listener;
+    }
+
+    public void changeButtonText() {
+        ChooseButton.setText(planeStage.getDestination().getCityName()+ "(" + planeStage.getDestination().getCountryName() + ")");
+    }
+
+    public void updateLabels() {
+        updateTopLabel();
+        updateBottomLabel();
+    }
+
+    private void updateTopLabel() {
+        if(planeStage.getDestination() != null && planeStage.getSource() != null){
+            TopInformationLabel.setText("Voyage en avion (" + planeStage.getDestination().getCityName() + ","
+                    + planeStage.getDistance() + "km," + planeStage.getDuration() + "heures,"
+                    + planeStage.getPrice() +"euros)");
+        }
+    }
+
+    private void updateBottomLabel() {
+        if(planeStage.getDestination() != null && planeStage.getSource() != null) {
+            BottomInformationLabel.setText(planeStage.getDistance() + "km," + planeStage.getDuration() + "heures," + planeStage.getPrice() + "euros");
+        }
     }
 
     public interface Listener {
@@ -55,12 +85,12 @@ public class PlaneStageController {
 
     @FXML
     private void handleRadioButton700Click(ActionEvent event){
-
+        listener.onRadioButton700Click();
     }
 
     @FXML
     private void handleRadioButton900Click(ActionEvent event){
-
+        listener.onRadioButton900Click();
     }
 
     @FXML

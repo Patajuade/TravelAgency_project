@@ -5,9 +5,17 @@ import javafx.fxml.FXMLLoader;
 public abstract class TripStage {
     protected double price;
     protected double duration;
-    protected int numberOfNights;
-    protected int pricePerNight;
 
+    public CityModel getSource() {
+        return source;
+    }
+
+    public CityModel getDestination() {
+        return destination;
+    }
+
+    protected CityModel source;
+    protected CityModel destination;
     public FXMLLoader getFxml() {
         return fxmlLoader;
     }
@@ -28,7 +36,13 @@ public abstract class TripStage {
         return duration;
     }
 
-    public int getNumberOfNights(){return 0;}
-    public void setNumberOfNights(int numberOfNights) {}
-    public void setPricePerNight(int pricePerNight) {}
+    public void setDestination(CityModel destination){
+        this.destination = destination;
+    }
+
+    public void setSource(CityModel source) {
+        this.source = source;
+    }
+
+
 }
