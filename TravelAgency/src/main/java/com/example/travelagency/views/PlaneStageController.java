@@ -77,6 +77,13 @@ public class PlaneStageController {
         void onChooseButtonClick() throws IOException;
         void onRadioButton700Click();
         void onRadioButton900Click();
+        void onUpperWaitingTimeSpinner();
+        void onMenuItem0025Click();
+        void onMenuItem00507Click();
+        void onMenuItem00758Click();
+        void onMenuItem01005Click();
+        void onMenuItem02Click();
+        void onCloseButtonClick();
     }
     @FXML
     private void handleChooseButtonClick(ActionEvent event) throws IOException {
@@ -99,13 +106,43 @@ public class PlaneStageController {
     }
 
     @FXML
-    private void handleWaitingTimeSpinner(ActionEvent event){
+    void handleMenuItem0025(ActionEvent event) {
+        listener.onMenuItem0025Click();
+        PricePerKmMenuButton.setText("0.025");
+    }
 
+    @FXML
+    void handleMenuItem00507(ActionEvent event) {
+        listener.onMenuItem00507Click();
+        PricePerKmMenuButton.setText("0.0507");
+    }
+
+    @FXML
+    void handleMenuItem00758(ActionEvent event) {
+        listener.onMenuItem00758Click();
+        PricePerKmMenuButton.setText("0.0758");
+    }
+
+    @FXML
+    void handleMenuItem01005(ActionEvent event) {
+        listener.onMenuItem01005Click();
+        PricePerKmMenuButton.setText("0.1005");
+    }
+
+    @FXML
+    void handleMenuItem02(ActionEvent event) {
+        listener.onMenuItem02Click();
+        PricePerKmMenuButton.setText("0.2");
+    }
+
+    @FXML
+    private void handleWaitingTimeSpinner(ActionEvent event){
+        listener.onUpperWaitingTimeSpinner();
     }
 
     @FXML
     private void handleCloseButtonClick(ActionEvent event){
-
+        listener.onCloseButtonClick();
     }
 
 }

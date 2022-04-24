@@ -46,8 +46,6 @@ public class DefineTripController {
         void onClickAddHotelButton() throws IOException;
     }
 
-    ChooseDestinationViewController chooseDestinationViewController;
-    //TODO: Fonction qui appelle la fenêtre ChooseDestination quand on clique sur le bouton choisir
     @FXML
     private void handleChooseButtonClick(ActionEvent event) throws IOException {
         listener.onClickChooseDestinationButton();
@@ -69,6 +67,10 @@ public class DefineTripController {
 
     public void addStageToStageVBOX(TripStage tripStage) throws IOException {
         StageVbox.getChildren().add(tripStage.getFxml().load());
+    }
+
+    public void deleteStageOfStageVBOX(TripStage tripStage) {
+        StageVbox.getChildren().remove(tripStage.getFxml());
     }
 
 }

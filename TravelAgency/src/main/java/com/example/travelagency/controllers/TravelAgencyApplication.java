@@ -58,6 +58,7 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
         stage.show();
     }
 
+    //TODO : Optimiser le MenuButton car il prend une fonction par MenuItem mais doit y avoir moyen avec un switch j'imagine
 
     @Override
     public void onClickAddPlaneButton() throws IOException {
@@ -81,7 +82,8 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
                         stage.close();
                         planeStage.setDestination(chooseDestinationViewController.getCurrentCity());
                         planeStage.distanceCompute();
-                        System.out.println(planeStage.getDistance());
+                        planeStage.durationCompute();
+                        planeStage.priceCompute();
                         planeStageController.changeButtonText();
                         planeStageController.updateLabels();
                     }
@@ -96,12 +98,61 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
             @Override
             public void onRadioButton700Click() {
                 planeStage.setFlyingSpeed(700);
+                planeStage.durationCompute();
                 planeStageController.updateLabels();
             }
 
             @Override
             public void onRadioButton900Click() {
                 planeStage.setFlyingSpeed(900);
+                planeStage.durationCompute();
+                planeStageController.updateLabels();
+            }
+
+            @Override
+            public void onUpperWaitingTimeSpinner() {
+
+            }
+
+            @Override
+            public void onMenuItem0025Click() {
+                planeStage.setPricePerKm(0.025);
+                planeStage.priceCompute();
+                planeStageController.updateLabels();
+            }
+
+            @Override
+            public void onMenuItem00507Click() {
+                planeStage.setPricePerKm(0.0507);
+                planeStage.priceCompute();
+                planeStageController.updateLabels();
+            }
+
+            @Override
+            public void onMenuItem00758Click() {
+                planeStage.setPricePerKm(0.0758);
+                planeStage.priceCompute();
+                planeStageController.updateLabels();
+            }
+
+            @Override
+            public void onMenuItem01005Click() {
+                planeStage.setPricePerKm(0.1005);
+                planeStage.priceCompute();
+                planeStageController.updateLabels();
+            }
+
+            @Override
+            public void onMenuItem02Click() {
+                planeStage.setPricePerKm(0.2);
+                planeStage.priceCompute();
+                planeStageController.updateLabels();
+            }
+
+            @Override
+            public void onCloseButtonClick() {
+                defineTripController.deleteStageOfStageVBOX(planeStage);
+                stages.remove(planeStage);
             }
         });
     }

@@ -26,17 +26,20 @@
                   <Label layoutX="56.0" layoutY="58.0" text="Vitesse" AnchorPane.leftAnchor="56.0" AnchorPane.topAnchor="55.0" />
                   <Label layoutX="341.0" layoutY="14.0" text="Temps d'attente (minutes) : " AnchorPane.rightAnchor="119.0" AnchorPane.topAnchor="14.0" />
                   <Label layoutX="341.0" layoutY="58.0" text="Prix par kilomètre parcouru :" AnchorPane.rightAnchor="117.0" AnchorPane.topAnchor="55.0" />
-                  <Button fx:id="ChooseButton" layoutX="133.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleChooseButtonClick" prefHeight="25.0" prefWidth="72.0" text="Choisir ..." AnchorPane.leftAnchor="133.0" AnchorPane.topAnchor="10.0" />
-                  <MenuButton fx:id="PricePerKmMenuButton" layoutX="495.0" layoutY="54.0" mnemonicParsing="false" onAction="#handleChooseMenuButton" text="MenuButton" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="54.0">
+                  <Button fx:id="ChooseButton" layoutX="133.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleChooseButtonClick" text="Choisir ..." AnchorPane.leftAnchor="133.0" AnchorPane.topAnchor="10.0" />
+                  <MenuButton fx:id="PricePerKmMenuButton" layoutX="495.0" layoutY="52.0" mnemonicParsing="false" onAction="#handleChooseMenuButton" text="0.025" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="52.0">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Action 1" />
-                      <MenuItem mnemonicParsing="false" text="Action 2" />
+                      <MenuItem fx:id="menuItem0025" mnemonicParsing="false" onAction="#handleMenuItem0025" text="0.025" />
+                      <MenuItem fx:id="menuItem00507" mnemonicParsing="false" onAction="#handleMenuItem00507" text="0.0507" />
+                        <MenuItem fx:id="menuItem00758" mnemonicParsing="false" onAction="#handleMenuItem00758" text="0.0758" />
+                        <MenuItem fx:id="menuItem01005" mnemonicParsing="false" onAction="#handleMenuItem01005" text="0.1005" />
+                        <MenuItem fx:id="menuItem02" mnemonicParsing="false" onAction="#handleMenuItem02" text="0.2" />
                     </items>
                   </MenuButton>
                   <Spinner fx:id="WaitingTimeSpinner" layoutX="495.0" layoutY="10.0" onDragDetected="#handleWaitingTimeSpinner" prefHeight="25.0" prefWidth="99.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="10.0" />
                   <Group layoutX="134.0" layoutY="56.0">
                      <children>
-                        <RadioButton fx:id="RadioButton700" mnemonicParsing="false" onAction="#handleRadioButton700Click" prefHeight="17.0" prefWidth="72.0" text="700km/h">
+                        <RadioButton fx:id="RadioButton700" mnemonicParsing="false" onAction="#handleRadioButton700Click" prefHeight="17.0" prefWidth="72.0" selected="true" text="700km/h">
                            <toggleGroup>
                               <ToggleGroup fx:id="Speed" />
                            </toggleGroup></RadioButton>
@@ -47,7 +50,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="49.0" prefWidth="625.0">
                <children>
-                  <Label fx:id="BottomInformationLabel" layoutX="233.0" layoutY="17.0" prefHeight="17.0" prefWidth="184.0" text="Label" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="233.0" />
+                  <Label fx:id="BottomInformationLabel" layoutX="233.0" layoutY="17.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="233.0" />
                   <Button fx:id="CloseButton" layoutX="570.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleCloseButtonClick" text="X" AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="14.0" />
                </children>
             </AnchorPane>

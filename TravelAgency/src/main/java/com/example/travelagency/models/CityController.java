@@ -62,7 +62,7 @@
         public ArrayList<CityModel> searchCityByName(String s){ // but : à chaque fois qu'on appuie sur une lettre dans la recherche, on appelle cette fct
             ArrayList<CityModel> matches = new ArrayList<CityModel>();
             for(CityModel city : citiesList){
-                if (city.toString().contains(s)){
+                if (city.toString().toLowerCase(Locale.ROOT).contains(s.toLowerCase(Locale.ROOT))){
                     matches.add(city);
                 }
             }

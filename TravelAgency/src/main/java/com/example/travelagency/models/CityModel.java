@@ -28,6 +28,14 @@ public class CityModel {
         return longitude;
     }
 
+    public double getLatitudeDouble(){
+        return Double.parseDouble(latitude);
+    }
+
+    public double getLongitudeDouble(){
+        return Double.parseDouble(longitude);
+    }
+
     public String getCountryName() {
         return countryName;
     }
