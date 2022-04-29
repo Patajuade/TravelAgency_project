@@ -6,11 +6,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.input.KeyEvent;
 
 public class HotelStageController {
 
     SpinnerValueFactory spinnerValueFactoryNumberNights = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,100);
-    SpinnerValueFactory spinnerValueFactoryPriceNights = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,1000);
+    SpinnerValueFactory spinnerValueFactoryPriceNights = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,5000);
 
 
     public HotelStage getHotelStage() {
@@ -27,6 +28,8 @@ public class HotelStageController {
     public interface Listener {
         void onUpperNumberOfNightsSpinner();
         void onUpperPricePerNightsSpinner();
+        void onKeyReleasedNumberOfNightsSpinner();
+        void onKeyReleasedPricePerNightsSpinner();
     }
 
     @FXML
@@ -48,13 +51,28 @@ public class HotelStageController {
     private void handleNumberOfNightsSpinner(){
         getNumberOfNightsSpinner().setValueFactory(getSpinnerValueFactoryNumberNights());
         listener.onUpperNumberOfNightsSpinner();
+        listener.onKeyReleasedNumberOfNightsSpinner();
     }
 
     @FXML
     private void handlePricePerNightsSpinner(){
         getPricePerNightSpinner().setValueFactory(getSpinnerValueFactoryPriceNights());
         listener.onUpperPricePerNightsSpinner();
+        listener.onKeyReleasedPricePerNightsSpinner();
     }
+
+//    @FXML
+//    void handleNumberOfNightsSpinnerOnKey(KeyEvent event) {
+//        getNumberOfNightsSpinner().setValueFactory(getSpinnerValueFactoryNumberNights());
+//        listener.onKeyReleasedNumberOfNightsSpinner();
+//    }
+//
+//    @FXML
+//    void handlePricePerNightSpinnerOnKey(){
+//        getPricePerNightSpinner().setValueFactory(getSpinnerValueFactoryPriceNights());
+//        listener.onKeyReleasedPricePerNightsSpinner();
+//    }
+
 
     @FXML
     private void handleClose(){
