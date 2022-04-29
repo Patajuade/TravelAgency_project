@@ -186,6 +186,20 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
             }
 
             @Override
+            public void onKeyReleasedNumberOfNightsSpinner() {
+                int numberOfNights = hotelStageController.getNumberOfNightsSpinner().getValue();
+                hotelStageController.getHotelStage().setNumberOfNights(numberOfNights);
+                hotelStageController.updatePrice();
+            }
+
+            @Override
+            public void onKeyReleasedPricePerNightsSpinner() {
+                int pricePerNight = hotelStageController.getPricePerNightSpinner().getValue();
+                hotelStageController.getHotelStage().setPricePerNight(pricePerNight);
+                hotelStageController.calculatePricePerNight();
+                hotelStageController.updatePrice();}
+
+            @Override
             public void onCloseButtonClick() {
                 try {
                     defineTripController.deleteStageOfStageVBOX(hotelStage);
