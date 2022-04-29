@@ -27,6 +27,7 @@ public class HotelStageController {
     public interface Listener {
         void onUpperNumberOfNightsSpinner();
         void onUpperPricePerNightsSpinner();
+        void onCloseButtonClick();
     }
 
     @FXML
@@ -56,7 +57,7 @@ public class HotelStageController {
 
     @FXML
     private void handleClose(){
-        //defineTripController.removeStage(hotelStage);
+        listener.onCloseButtonClick();
     }
 
     private void updateLabel(Label label){

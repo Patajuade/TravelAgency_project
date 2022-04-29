@@ -1,6 +1,9 @@
 package com.example.travelagency.models;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.AnchorPane;
+
+import java.io.IOException;
 
 public abstract class TripStage {
     protected double price;
@@ -21,6 +24,8 @@ public abstract class TripStage {
     }
 
     private FXMLLoader fxmlLoader;
+
+    private AnchorPane anchorPane;
 
     public TripStage(FXMLLoader loader) {
         this.fxmlLoader = loader;
@@ -44,5 +49,8 @@ public abstract class TripStage {
         this.source = source;
     }
 
-
+    public AnchorPane getAnchorPane() throws IOException {
+        anchorPane = getFxml().load();
+        return anchorPane;
+    }
 }

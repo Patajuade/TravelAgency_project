@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -33,6 +34,8 @@ public class DefineTripController {
     private Label EurosLabel;
     @FXML
     private VBox StageVbox;
+
+    AnchorPane anchorPane;
 
     public void setListener(Listener listener) {
         this.listener = listener;
@@ -66,11 +69,11 @@ public class DefineTripController {
     }
 
     public void addStageToStageVBOX(TripStage tripStage) throws IOException {
-        StageVbox.getChildren().add(tripStage.getFxml().load());
+        StageVbox.getChildren().add(tripStage.getAnchorPane());
     }
 
-    public void deleteStageOfStageVBOX(TripStage tripStage) {
-        StageVbox.getChildren().remove(tripStage.getFxml());
+    public void deleteStageOfStageVBOX(TripStage tripStage) throws IOException {
+        StageVbox.getChildren().remove(tripStage.getAnchorPane());
     }
 
 }

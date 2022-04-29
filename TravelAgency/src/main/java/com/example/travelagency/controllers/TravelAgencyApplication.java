@@ -74,7 +74,6 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
                 FXMLLoader fxmlLoader = new FXMLLoader(TravelAgencyApplication.class.getResource("ChooseDestination.fxml"));
                 Scene scene = new Scene(fxmlLoader.load(), 320, 240);
                 Stage stage = new Stage();
-                CityController cityController = CityController.getInstance(); //singleton
                 ChooseDestinationViewController chooseDestinationViewController = fxmlLoader.getController();
                 chooseDestinationViewController.setListener( new ChooseDestinationViewController.Listener() {
                     @Override
@@ -88,7 +87,7 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
                         planeStageController.updateLabels();
                     }
                 });
-                chooseDestinationViewController.setCityController(cityController);
+                chooseDestinationViewController.setCityController(CityController.getInstance());
                 chooseDestinationViewController.showCities();
                 stage.setTitle("Choisir une destination");
                 stage.setScene(scene);
@@ -151,7 +150,11 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
 
             @Override
             public void onCloseButtonClick() {
-                defineTripController.deleteStageOfStageVBOX(planeStage);
+                try {
+                    defineTripController.deleteStageOfStageVBOX(planeStage);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 stages.remove(planeStage);
             }
         });
@@ -159,10 +162,10 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
 
     @Override
     public void onClickAddHotelButton() throws IOException {
-        TripStage tripStage = new HotelStage(new FXMLLoader(TravelAgencyApplication.class.getResource("HotelStage.fxml")));
-        stages.add(tripStage);
-        defineTripController.addStageToStageVBOX(tripStage);
-        HotelStageController hotelStageController = tripStage.getFxml().getController();
+        TripStage hotelStage = new HotelStage(new FXMLLoader(TravelAgencyApplication.class.getResource("HotelStage.fxml")));
+        stages.add(hotelStage);
+        defineTripController.addStageToStageVBOX(hotelStage);
+        HotelStageController hotelStageController = hotelStage.getFxml().getController();
         hotelStageController.setListener(new HotelStageController.Listener() {
             @Override
             public void onUpperNumberOfNightsSpinner() {
@@ -181,6 +184,15 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
                 hotelStageController.updatePrice();
             }
 
+            @Override
+            public void onCloseButtonClick() {
+                try {
+                    defineTripController.deleteStageOfStageVBOX(hotelStage);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                stages.remove(hotelStage);
+            }
         });
     }
 }

@@ -3,6 +3,8 @@ package com.example.travelagency.models;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class PlaneStage extends TripStage {
 
     int flyingSpeed;
