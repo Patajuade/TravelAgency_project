@@ -49,8 +49,11 @@ public abstract class TripStage {
         this.source = source;
     }
 
+    public void setAnchorPane() throws IOException {
+        anchorPane = fxmlLoader.load();
+    }
+
     public AnchorPane getAnchorPane() throws IOException {
-        anchorPane = getFxml().load();
         return anchorPane;
     }
 }

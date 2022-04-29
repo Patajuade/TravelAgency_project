@@ -65,6 +65,7 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
         PlaneStage planeStage = new PlaneStage(new FXMLLoader(TravelAgencyApplication.class.getResource("PlaneStage.fxml")));
         planeStage.setSource(CurrentStageCitySource);
         stages.add(planeStage);
+        planeStage.setAnchorPane();
         defineTripController.addStageToStageVBOX(planeStage);
         PlaneStageController planeStageController = planeStage.getFxml().getController();
         planeStageController.setPlaneStage(planeStage);
@@ -164,6 +165,7 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
     public void onClickAddHotelButton() throws IOException {
         TripStage hotelStage = new HotelStage(new FXMLLoader(TravelAgencyApplication.class.getResource("HotelStage.fxml")));
         stages.add(hotelStage);
+        hotelStage.setAnchorPane();
         defineTripController.addStageToStageVBOX(hotelStage);
         HotelStageController hotelStageController = hotelStage.getFxml().getController();
         hotelStageController.setListener(new HotelStageController.Listener() {
