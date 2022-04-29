@@ -173,6 +173,7 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
             public void onUpperNumberOfNightsSpinner() {
                 int numberOfNights = hotelStageController.getNumberOfNightsSpinner().getValue();
                 hotelStageController.getHotelStage().setNumberOfNights(numberOfNights);
+                hotelStageController.calculatePricePerNight();
                 hotelStageController.updatePrice();
             }
 
