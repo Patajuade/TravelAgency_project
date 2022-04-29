@@ -47,11 +47,13 @@ public class HotelStageController {
 
     @FXML
     private void handleNumberOfNightsSpinner(){
+        getNumberOfNightsSpinner().setValueFactory(getSpinnerValueFactoryNumberNights());
         listener.onUpperNumberOfNightsSpinner();
     }
 
     @FXML
     private void handlePricePerNightsSpinner(){
+        getPricePerNightSpinner().setValueFactory(getSpinnerValueFactoryPriceNights());
         listener.onUpperPricePerNightsSpinner();
     }
 

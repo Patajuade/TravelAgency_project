@@ -171,7 +171,6 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
         hotelStageController.setListener(new HotelStageController.Listener() {
             @Override
             public void onUpperNumberOfNightsSpinner() {
-                hotelStageController.getNumberOfNightsSpinner().setValueFactory(hotelStageController.getSpinnerValueFactoryNumberNights());
                 int numberOfNights = hotelStageController.getNumberOfNightsSpinner().getValue();
                 hotelStageController.getHotelStage().setNumberOfNights(numberOfNights);
                 hotelStageController.updatePrice();
@@ -179,7 +178,6 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
 
             @Override
             public void onUpperPricePerNightsSpinner() {
-                hotelStageController.getPricePerNightSpinner().setValueFactory(hotelStageController.getSpinnerValueFactoryPriceNights());
                 int pricePerNight = hotelStageController.getPricePerNightSpinner().getValue();
                 hotelStageController.getHotelStage().setPricePerNight(pricePerNight);
                 hotelStageController.calculatePricePerNight();
