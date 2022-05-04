@@ -4,6 +4,4 @@ import java.util.ArrayList;
 
 public class TripsResume {
     ArrayList<TripResume> trips;
-
-
 }
