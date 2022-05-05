@@ -8,4 +8,12 @@ public class TripsResume {
     public TripsResume() {
         trips = new ArrayList<>();
     }
+
+    public void addTripResume(TripResume tripResume){
+        trips.add(tripResume);
+    }
+
+    public void removeTripResume(TripResume tripResume){
+        trips.remove(tripResume);
+    }
 }
