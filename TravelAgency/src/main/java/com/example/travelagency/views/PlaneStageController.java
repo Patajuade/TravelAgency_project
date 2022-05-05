@@ -1,6 +1,7 @@
 package com.example.travelagency.views;
 
 import com.example.travelagency.models.CityModel;
+import com.example.travelagency.models.HotelStage;
 import com.example.travelagency.models.PlaneStage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,6 +38,10 @@ public class PlaneStageController {
 
     @FXML
     private Spinner<Integer> WaitingTimeSpinner;
+
+    public PlaneStage getPlaneStage() {
+        return planeStage;
+    }
 
     PlaneStage planeStage;
 
