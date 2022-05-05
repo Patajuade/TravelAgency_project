@@ -13,12 +13,8 @@ import java.util.ArrayList;
 
 public class TravelAgencyApplication extends Application implements DefineTripController.Listener {
 
-    ArrayList<TripStage> stages= new ArrayList<>();
-    TripStage SourceOfTrip;
-    CityModel CurrentStageCitySource;
     DefineTripController defineTripController;
     TripResume tripResume = new TripResume();
-
 
     @Override
     public void start(Stage stage)  throws IOException {
@@ -156,7 +152,7 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                stages.remove(planeStage);
+                tripResume.removeStage(planeStage);
             }
         });
     }
@@ -164,7 +160,7 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
     @Override
     public void onClickAddHotelButton() throws IOException {
         TripStage hotelStage = new HotelStage(new FXMLLoader(TravelAgencyApplication.class.getResource("HotelStage.fxml")));
-        stages.add(hotelStage);
+        tripResume.addStage(hotelStage);
         hotelStage.setAnchorPane();
         defineTripController.addStageToStageVBOX(hotelStage);
         HotelStageController hotelStageController = hotelStage.getFxml().getController();
@@ -206,7 +202,7 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                stages.remove(hotelStage);
+                tripResume.removeStage(hotelStage);
             }
         });
     }

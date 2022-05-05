@@ -35,8 +35,6 @@ public class DefineTripController {
     @FXML
     private VBox StageVbox;
 
-    AnchorPane anchorPane;
-
     public void setListener(Listener listener) {
         this.listener = listener;
     }
