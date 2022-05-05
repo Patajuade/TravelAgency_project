@@ -36,15 +36,19 @@ public class PlaneStageController {
     private Label TopInformationLabel;
 
     @FXML
-    private Spinner<?> WaitingTimeSpinner;
+    private Spinner<Integer> WaitingTimeSpinner;
 
     PlaneStage planeStage;
+
+    private Listener listener;
+
+    public Spinner<Integer> getWaitingTimeSpinner() {
+        return WaitingTimeSpinner;
+    }
 
     public void setPlaneStage(PlaneStage planeStage) {
         this.planeStage = planeStage;
     }
-
-    private Listener listener;
 
     public void setListener(Listener listener) {
         this.listener = listener;

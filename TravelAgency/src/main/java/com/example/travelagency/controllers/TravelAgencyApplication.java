@@ -115,6 +115,7 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
 //                hotelStageController.calculatePricePerNight();
 //                hotelStageController.updatePrice();
                 // ce que j'ai fait pour les autres spinners
+                int waitingTime = planeStageController.g
             }
 
             @Override

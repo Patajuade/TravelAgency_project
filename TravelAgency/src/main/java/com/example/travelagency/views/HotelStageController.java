@@ -62,19 +62,6 @@ public class HotelStageController {
         listener.onKeyReleasedPricePerNightsSpinner();
     }
 
-//    @FXML
-//    void handleNumberOfNightsSpinnerOnKey(KeyEvent event) {
-//        getNumberOfNightsSpinner().setValueFactory(getSpinnerValueFactoryNumberNights());
-//        listener.onKeyReleasedNumberOfNightsSpinner();
-//    }
-//
-//    @FXML
-//    void handlePricePerNightSpinnerOnKey(){
-//        getPricePerNightSpinner().setValueFactory(getSpinnerValueFactoryPriceNights());
-//        listener.onKeyReleasedPricePerNightsSpinner();
-//    }
-
-
     @FXML
     private void handleClose(){
         listener.onCloseButtonClick();
