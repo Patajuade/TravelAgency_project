@@ -6,12 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class TravelAgencyApplication extends Application implements TripsResumeViewController.Listener{
 
-    TripResume tripResume;
-    DefineTripController defineTripController;
     TripsResume trips = new TripsResume();
     TripsResumeViewController tripsResumeViewController;
 
@@ -33,7 +30,7 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
 
     @Override
     public void onClickCreateTripButton() throws IOException {
-        tripResume = new TripResume(new FXMLLoader(TravelAgencyApplication.class.getResource("TripResume.fxml")));
+        TripResume tripResume = new TripResume(new FXMLLoader(TravelAgencyApplication.class.getResource("TripResume.fxml")));
         trips.addTripResume(tripResume);
         tripResume.setAnchorPane();
         tripsResumeViewController.addTripResumeToTripVbox(tripResume);
@@ -54,8 +51,8 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
             public void onClickShowTripButton() throws IOException {
                 FXMLLoader fxmlLoader = new FXMLLoader(TravelAgencyApplication.class.getResource("DefineTrip.fxml"));
                 Scene DefineTripScene = new Scene(fxmlLoader.load());
-                DefineTripController defineTripController = fxmlLoader.getController();
-                defineTripController.setListener(new DefineTripController.Listener() {
+                DefineTripViewController defineTripController = fxmlLoader.getController();
+                defineTripController.setListener(new DefineTripViewController.Listener() {
                     @Override
                     public void onClickChooseDestinationButton() throws IOException {
                         FXMLLoader fxmlLoader = new FXMLLoader(TravelAgencyApplication.class.getResource("ChooseDestination.fxml"));
@@ -86,9 +83,9 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                         tripResume.addStage(planeStage);
                         planeStage.setAnchorPane();
                         defineTripController.addStageToStageVBOX(planeStage);
-                        PlaneStageController planeStageController = planeStage.getFxml().getController();
+                        PlaneStageViewController planeStageController = planeStage.getFxml().getController();
                         planeStageController.setPlaneStage(planeStage);
-                        planeStageController.setListener(new PlaneStageController.Listener() {
+                        planeStageController.setListener(new PlaneStageViewController.Listener() {
                             @Override
                             public void onChooseButtonClick() throws IOException {
                                 FXMLLoader fxmlLoader = new FXMLLoader(TravelAgencyApplication.class.getResource("ChooseDestination.fxml"));
@@ -186,8 +183,8 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                         tripResume.addStage(hotelStage);
                         hotelStage.setAnchorPane();
                         defineTripController.addStageToStageVBOX(hotelStage);
-                        HotelStageController hotelStageController = hotelStage.getFxml().getController();
-                        hotelStageController.setListener(new HotelStageController.Listener() {
+                        HotelStageViewController hotelStageController = hotelStage.getFxml().getController();
+                        hotelStageController.setListener(new HotelStageViewController.Listener() {
                             @Override
                             public void onUpperNumberOfNightsSpinner() {
                                 int numberOfNights = hotelStageController.getNumberOfNightsSpinner().getValue();

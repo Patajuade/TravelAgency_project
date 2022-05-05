@@ -13,7 +13,7 @@ public class ChooseDestinationViewController    {
 
 
     private ArrayList<CityModel> cities;
-    private DefineTripController defineTripController;
+    private DefineTripViewController defineTripController;
 
     @FXML
     private TextField ChooseDestinationTextField;

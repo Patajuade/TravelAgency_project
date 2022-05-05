@@ -1,10 +1,8 @@
 package com.example.travelagency.views;
 
-import com.example.travelagency.models.CityModel;
 import com.example.travelagency.models.PlaneStage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
@@ -13,7 +11,7 @@ import javafx.scene.control.Spinner;
 
 import java.io.IOException;
 
-public class PlaneStageController {
+public class PlaneStageViewController {
     @FXML
     private Label BottomInformationLabel;
 
