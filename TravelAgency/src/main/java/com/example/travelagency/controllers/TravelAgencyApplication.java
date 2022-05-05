@@ -21,7 +21,6 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
 
     @Override
     public void start(Stage stage)  throws IOException {
-        //TODO : Faire correctement les ancres de la fenêtre
         FXMLLoader fxmlLoader = new FXMLLoader(TravelAgencyApplication.class.getResource("DefineTrip.fxml"));
         Scene DefineTripScene = new Scene(fxmlLoader.load());
         defineTripController = fxmlLoader.getController();
@@ -111,7 +110,11 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
 
             @Override
             public void onUpperWaitingTimeSpinner() {
-
+//                int numberOfNights = hotelStageController.getNumberOfNightsSpinner().getValue();
+//                hotelStageController.getHotelStage().setNumberOfNights(numberOfNights);
+//                hotelStageController.calculatePricePerNight();
+//                hotelStageController.updatePrice();
+                // ce que j'ai fait pour les autres spinners
             }
 
             @Override
@@ -189,6 +192,7 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
             public void onKeyReleasedNumberOfNightsSpinner() {
                 int numberOfNights = hotelStageController.getNumberOfNightsSpinner().getValue();
                 hotelStageController.getHotelStage().setNumberOfNights(numberOfNights);
+                hotelStageController.calculatePricePerNight();
                 hotelStageController.updatePrice();
             }
 
