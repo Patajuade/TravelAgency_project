@@ -17,11 +17,11 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
     TripStage SourceOfTrip;
     CityModel CurrentStageCitySource;
     DefineTripController defineTripController;
+    TripResume tripResume = new TripResume();
 
 
     @Override
     public void start(Stage stage)  throws IOException {
-        //TODO : Faire correctement les ancres de la fenêtre
         FXMLLoader fxmlLoader = new FXMLLoader(TravelAgencyApplication.class.getResource("DefineTrip.fxml"));
         Scene DefineTripScene = new Scene(fxmlLoader.load());
         defineTripController = fxmlLoader.getController();
@@ -47,8 +47,8 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
             public void selectedDestination() {
                 stage.close();
                 //TODO : Remplacer la variable par le voyage.setCitySource
-                CurrentStageCitySource = chooseDestinationViewController.getCurrentCity();
-                defineTripController.changeStartCity(CurrentStageCitySource);
+                tripResume.setSource(chooseDestinationViewController.getCurrentCity());
+                defineTripController.changeStartCity(tripResume.getSource());
             }
         });
         chooseDestinationViewController.setCityController(cityController);
@@ -63,8 +63,8 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
     @Override
     public void onClickAddPlaneButton() throws IOException {
         PlaneStage planeStage = new PlaneStage(new FXMLLoader(TravelAgencyApplication.class.getResource("PlaneStage.fxml")));
-        planeStage.setSource(CurrentStageCitySource);
-        stages.add(planeStage);
+        planeStage.setSource(tripResume.getSource());
+        tripResume.addStage(planeStage);
         planeStage.setAnchorPane();
         defineTripController.addStageToStageVBOX(planeStage);
         PlaneStageController planeStageController = planeStage.getFxml().getController();
@@ -81,7 +81,7 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
                     public void selectedDestination() {
                         stage.close();
                         planeStage.setDestination(chooseDestinationViewController.getCurrentCity());
-                        planeStage.distanceCompute();
+                        planeStage.setDistance(planeStage.getDestination().distanceCompute(tripResume.getSource()));
                         planeStage.durationCompute();
                         planeStage.priceCompute();
                         planeStageController.changeButtonText();

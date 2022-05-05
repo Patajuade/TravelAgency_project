@@ -12,6 +12,10 @@ public class PlaneStage extends TripStage {
 
     double pricePerKm;
 
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
     double distance;
 
     public PlaneStage(FXMLLoader loader) {
