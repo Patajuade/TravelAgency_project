@@ -5,7 +5,7 @@
     import java.util.List;
     import java.util.Locale;
 
-    public class CityController {
+    public class ManagementCity {
 
         private CityModel model;
         public ArrayList<CityModel> getCitiesList() {
@@ -13,22 +13,19 @@
         }
         private ArrayList<CityModel> citiesList = new ArrayList<CityModel>();
         private int partitionSize = 11;
-        public CityController(CityModel city) {
-            this.model = city;
-        }
-        private static CityController instance = null;
+        private static ManagementCity instance = null;
 
         //Get the only object available
-        public static CityController getInstance() throws IOException {
+        public static ManagementCity getInstance() throws IOException {
             if(instance==null){
-                instance = new CityController();
+                instance = new ManagementCity();
                 instance.init();
             }
             return instance;
         }
 
         //make the constructor private so that this class cannot be instantiated
-        private CityController() {
+        private ManagementCity() {
             this.model = new CityModel();
         }
 

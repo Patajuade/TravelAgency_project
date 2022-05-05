@@ -58,7 +58,7 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                         FXMLLoader fxmlLoader = new FXMLLoader(TravelAgencyApplication.class.getResource("ChooseDestination.fxml"));
                         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
                         Stage stage = new Stage();
-                        CityController cityController = CityController.getInstance(); //singleton
+                        ManagementCity cityController = ManagementCity.getInstance(); //singleton
                         ChooseDestinationViewController chooseDestinationViewController = fxmlLoader.getController();
                         chooseDestinationViewController.setListener( new ChooseDestinationViewController.Listener() {
                             @Override
@@ -104,7 +104,7 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                         planeStageController.updateLabels();
                                     }
                                 });
-                                chooseDestinationViewController.setCityController(CityController.getInstance());
+                                chooseDestinationViewController.setCityController(ManagementCity.getInstance());
                                 chooseDestinationViewController.showCities();
                                 stage.setTitle("Choisir une destination");
                                 stage.setScene(scene);
