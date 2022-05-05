@@ -137,6 +137,7 @@ public class PlaneStageController {
 
     @FXML
     private void handleWaitingTimeSpinner(ActionEvent event){
+
         listener.onUpperWaitingTimeSpinner();
     }
 
