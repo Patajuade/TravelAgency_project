@@ -1,16 +1,12 @@
 package com.example.travelagency.views;
 
-import com.example.travelagency.models.CityModel;
-import com.example.travelagency.models.HotelStage;
 import com.example.travelagency.models.PlaneStage;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Spinner;
+import javafx.scene.control.*;
+import javafx.util.StringConverter;
 
 import java.io.IOException;
 
@@ -39,17 +35,23 @@ public class PlaneStageController {
     @FXML
     private Spinner<Integer> WaitingTimeSpinner;
 
-    public PlaneStage getPlaneStage() {
-        return planeStage;
-    }
+    SpinnerValueFactory spinnerValueFactoryWaitingTime = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,1000);
 
-    PlaneStage planeStage;
+    PlaneStage planeStage = new PlaneStage(new FXMLLoader());
+    //PlaneStage planeStage;
 
     private Listener listener;
 
     public Spinner<Integer> getWaitingTimeSpinner() {
         return WaitingTimeSpinner;
     }
+
+    public PlaneStage getPlaneStage() {
+        return planeStage;
+    }
+
+
+    public SpinnerValueFactory getSpinnerValueFactoryWaitingTime() { return spinnerValueFactoryWaitingTime; }
 
     public void setPlaneStage(PlaneStage planeStage) {
         this.planeStage = planeStage;
@@ -82,11 +84,16 @@ public class PlaneStageController {
         }
     }
 
+    public void calculateDuration(){
+        planeStage.durationCompute();
+    }
+
     public interface Listener {
         void onChooseButtonClick() throws IOException;
         void onRadioButton700Click();
         void onRadioButton900Click();
         void onUpperWaitingTimeSpinner();
+//        void onKeyReleasedWaitingTimeSpinner();
         void onMenuItem0025Click();
         void onMenuItem00507Click();
         void onMenuItem00758Click();
@@ -145,9 +152,11 @@ public class PlaneStageController {
     }
 
     @FXML
-    private void handleWaitingTimeSpinner(ActionEvent event){
-
+    private void handleWaitingTimeSpinner(){
+        getWaitingTimeSpinner().setValueFactory(getSpinnerValueFactoryWaitingTime());
         listener.onUpperWaitingTimeSpinner();
+        //TODO : régler le souci : OnKeyReleased fonctionne pas
+//        listener.onKeyReleasedWaitingTimeSpinner();
     }
 
     @FXML

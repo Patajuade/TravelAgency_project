@@ -7,7 +7,11 @@ import com.example.travelagency.views.PlaneStageController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -81,7 +85,7 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
                         stage.close();
                         planeStage.setDestination(chooseDestinationViewController.getCurrentCity());
                         planeStage.distanceCompute();
-                        planeStage.durationCompute();
+                        planeStageController.calculateDuration();
                         planeStage.priceCompute();
                         planeStageController.changeButtonText();
                         planeStageController.updateLabels();
@@ -97,27 +101,35 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
             @Override
             public void onRadioButton700Click() {
                 planeStage.setFlyingSpeed(700);
-                planeStage.durationCompute();
+                planeStageController.calculateDuration();
                 planeStageController.updateLabels();
             }
 
             @Override
             public void onRadioButton900Click() {
                 planeStage.setFlyingSpeed(900);
-                planeStage.durationCompute();
+                planeStageController.calculateDuration();
                 planeStageController.updateLabels();
             }
 
             @Override
             public void onUpperWaitingTimeSpinner() {
-//                int numberOfNights = hotelStageController.getNumberOfNightsSpinner().getValue();
-//                hotelStageController.getHotelStage().setNumberOfNights(numberOfNights);
-//                hotelStageController.calculatePricePerNight();
-//                hotelStageController.updatePrice();
-                // ce que j'ai fait pour les autres spinners
                 int waitingTime = planeStageController.getWaitingTimeSpinner().getValue();
                 planeStageController.getPlaneStage().setWaitingTime(waitingTime);
+                planeStageController.calculateDuration();
+                planeStageController.updateLabels();
             }
+
+//            @Override
+//            public void onKeyReleasedWaitingTimeSpinner() {
+//                //TODO : régler le souci : OnKeyReleased fonctionne pas
+//                int waitingTime = planeStageController.getWaitingTimeSpinner().getValue();
+//                planeStageController.getPlaneStage().setWaitingTime(waitingTime);
+//                planeStageController.calculateDuration();
+//                planeStageController.updateLabels();
+//
+//            }
+
 
             @Override
             public void onMenuItem0025Click() {
@@ -179,7 +191,7 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
                 int numberOfNights = hotelStageController.getNumberOfNightsSpinner().getValue();
                 hotelStageController.getHotelStage().setNumberOfNights(numberOfNights);
                 hotelStageController.calculatePricePerNight();
-                hotelStageController.updatePrice();
+                hotelStageController.updateLabels();
             }
 
             @Override
@@ -187,23 +199,24 @@ public class TravelAgencyApplication extends Application implements DefineTripCo
                 int pricePerNight = hotelStageController.getPricePerNightSpinner().getValue();
                 hotelStageController.getHotelStage().setPricePerNight(pricePerNight);
                 hotelStageController.calculatePricePerNight();
-                hotelStageController.updatePrice();
+                hotelStageController.updateLabels();
             }
 
-            @Override
-            public void onKeyReleasedNumberOfNightsSpinner() {
-                int numberOfNights = hotelStageController.getNumberOfNightsSpinner().getValue();
-                hotelStageController.getHotelStage().setNumberOfNights(numberOfNights);
-                hotelStageController.calculatePricePerNight();
-                hotelStageController.updatePrice();
-            }
-
-            @Override
-            public void onKeyReleasedPricePerNightsSpinner() {
-                int pricePerNight = hotelStageController.getPricePerNightSpinner().getValue();
-                hotelStageController.getHotelStage().setPricePerNight(pricePerNight);
-                hotelStageController.calculatePricePerNight();
-                hotelStageController.updatePrice();}
+//            @Override
+//            public void onKeyReleasedNumberOfNightsSpinner() {
+//                int numberOfNights = hotelStageController.getNumberOfNightsSpinner().getValue();
+//                hotelStageController.getHotelStage().setNumberOfNights(numberOfNights);
+//                hotelStageController.calculatePricePerNight();
+//                //hotelStageController.updateLabels();
+//            }
+//
+//            @Override
+//            public void onKeyReleasedPricePerNightsSpinner() {
+//                int pricePerNight = hotelStageController.getPricePerNightSpinner().getValue();
+//                hotelStageController.getHotelStage().setPricePerNight(pricePerNight);
+//                hotelStageController.calculatePricePerNight();
+//                //hotelStageController.updateLabels();
+//            }
 
             @Override
             public void onCloseButtonClick() {

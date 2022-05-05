@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.input.KeyEvent;
 
 public class HotelStageController {
 
@@ -28,8 +27,8 @@ public class HotelStageController {
     public interface Listener {
         void onUpperNumberOfNightsSpinner();
         void onUpperPricePerNightsSpinner();
-        void onKeyReleasedNumberOfNightsSpinner();
-        void onKeyReleasedPricePerNightsSpinner();
+//        void onKeyReleasedNumberOfNightsSpinner();
+//        void onKeyReleasedPricePerNightsSpinner();
         void onCloseButtonClick();
     }
 
@@ -52,14 +51,14 @@ public class HotelStageController {
     private void handleNumberOfNightsSpinner(){
         getNumberOfNightsSpinner().setValueFactory(getSpinnerValueFactoryNumberNights());
         listener.onUpperNumberOfNightsSpinner();
-        listener.onKeyReleasedNumberOfNightsSpinner();
+//        listener.onKeyReleasedNumberOfNightsSpinner();
     }
 
     @FXML
     private void handlePricePerNightsSpinner(){
         getPricePerNightSpinner().setValueFactory(getSpinnerValueFactoryPriceNights());
         listener.onUpperPricePerNightsSpinner();
-        listener.onKeyReleasedPricePerNightsSpinner();
+//        listener.onKeyReleasedPricePerNightsSpinner();
     }
 
     @FXML
@@ -75,7 +74,7 @@ public class HotelStageController {
         hotelStage.priceCompute();
     }
 
-    public void updatePrice(){
+    public void updateLabels(){
         updateLabel(bottomInfoLabel);
         updateLabel(topInformationLabel);
     }
