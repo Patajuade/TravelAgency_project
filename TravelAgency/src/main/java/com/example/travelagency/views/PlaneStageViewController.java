@@ -78,11 +78,17 @@ public class PlaneStageViewController {
                     + planeStage.getDistance() + "km," + planeStage.getDuration() + "heures,"
                     + planeStage.getPrice() +"euros)");
         }
+        else{
+            TopInformationLabel.setText("Voyage en avion ( Aucune , 0km, 0heures, 0euros )");
+        }
     }
 
     private void updateBottomLabel() {
         if(planeStage.getDestination() != null && planeStage.getSource() != null) {
             BottomInformationLabel.setText(planeStage.getDistance() + "km," + planeStage.getDuration() + "heures," + planeStage.getPrice() + "euros");
+        }
+        else{
+            BottomInformationLabel.setText("Voyage en avion ( Aucune , 0km, 0heures, 0euros )");
         }
     }
 

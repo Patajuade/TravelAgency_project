@@ -67,6 +67,7 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                 //TODO : Remplacer la variable par le voyage.setCitySource
                                 tripResume.setSource(chooseDestinationViewController.getCurrentCity());
                                 defineTripController.changeStartCity(tripResume.getSource());
+                                //TODO : mettre à jour les étapes avion à chaque fois qu'on modifie le chooseDestination
                             }
                         });
                         chooseDestinationViewController.setCityController(cityController);
