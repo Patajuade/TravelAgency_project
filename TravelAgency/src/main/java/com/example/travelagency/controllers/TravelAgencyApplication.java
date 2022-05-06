@@ -191,7 +191,8 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                         hotelStageController.setListener(new HotelStageViewController.Listener() {
                             @Override
                             public void onUpperNumberOfNightsSpinner() {
-                                int numberOfNights = hotelStageController.getNumberOfNightsSpinner().getValue();
+                                int numberOfNights = hotelStageController.getNumberOfNights();
+                                //int waitingTime = planeStageController.getWaitingTime();
                                 hotelStageController.getHotelStage().setNumberOfNights(numberOfNights);
                                 hotelStageController.calculatePricePerNight();
                                 hotelStageController.updateLabels();
@@ -199,7 +200,7 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
 
                             @Override
                             public void onUpperPricePerNightsSpinner() {
-                                int pricePerNight = hotelStageController.getPricePerNightSpinner().getValue();
+                                int pricePerNight = hotelStageController.getPricePerNights();
                                 hotelStageController.getHotelStage().setPricePerNight(pricePerNight);
                                 hotelStageController.calculatePricePerNight();
                                 hotelStageController.updateLabels();

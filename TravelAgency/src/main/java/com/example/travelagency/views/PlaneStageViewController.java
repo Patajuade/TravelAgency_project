@@ -60,11 +60,7 @@ public class PlaneStageViewController implements Initializable {
 
     public void setListener(Listener listener) {
         this.listener = listener;
-        WaitingTimeSpinner.valueProperty().addListener((observer, oldvalue, newvalue)->{
-            handleWaitingTimeSpinner();
-        });
     }
-
 
     public void changeButtonText() {
         ChooseButton.setText(planeStage.getDestination().getCityName()+ "(" + planeStage.getDestination().getCountryName() + ")");
