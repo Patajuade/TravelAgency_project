@@ -27,16 +27,11 @@ public class HotelStageViewController {
     public interface Listener {
         void onUpperNumberOfNightsSpinner();
         void onUpperPricePerNightsSpinner();
-//        void onKeyReleasedNumberOfNightsSpinner();
-//        void onKeyReleasedPricePerNightsSpinner();
         void onCloseButtonClick();
     }
 
     @FXML
     private Label bottomInfoLabel;
-
-    @FXML
-    private Button closeButton;
 
     @FXML
     private Spinner<Integer> numberOfNightsSpinner;
@@ -51,14 +46,12 @@ public class HotelStageViewController {
     private void handleNumberOfNightsSpinner(){
         getNumberOfNightsSpinner().setValueFactory(getSpinnerValueFactoryNumberNights());
         listener.onUpperNumberOfNightsSpinner();
-//        listener.onKeyReleasedNumberOfNightsSpinner();
     }
 
     @FXML
     private void handlePricePerNightsSpinner(){
         getPricePerNightSpinner().setValueFactory(getSpinnerValueFactoryPriceNights());
         listener.onUpperPricePerNightsSpinner();
-//        listener.onKeyReleasedPricePerNightsSpinner();
     }
 
     @FXML

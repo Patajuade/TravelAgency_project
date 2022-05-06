@@ -42,10 +42,6 @@ public class PlaneStage extends TripStage {
         duration = (double) Math.round(duration * 100) / 100;
     }
 
-    public int getWaitingTime() {
-        return waitingTime;
-    }
-
     public void setFlyingSpeed(int flyingSpeed) {
         this.flyingSpeed = flyingSpeed;
     }
