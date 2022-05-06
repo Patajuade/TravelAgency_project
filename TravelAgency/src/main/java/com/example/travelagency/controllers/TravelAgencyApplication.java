@@ -190,7 +190,7 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                 int numberOfNights = hotelStageController.getNumberOfNightsSpinner().getValue();
                                 hotelStageController.getHotelStage().setNumberOfNights(numberOfNights);
                                 hotelStageController.calculatePricePerNight();
-                                hotelStageController.updatePrice();
+                                hotelStageController.updateLabels();
                             }
 
                             @Override
@@ -198,22 +198,22 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                 int pricePerNight = hotelStageController.getPricePerNightSpinner().getValue();
                                 hotelStageController.getHotelStage().setPricePerNight(pricePerNight);
                                 hotelStageController.calculatePricePerNight();
-                                hotelStageController.updatePrice();
+                                hotelStageController.updateLabels();
                             }
 
-                            @Override
-                            public void onKeyReleasedNumberOfNightsSpinner() {
-                                int numberOfNights = hotelStageController.getNumberOfNightsSpinner().getValue();
-                                hotelStageController.getHotelStage().setNumberOfNights(numberOfNights);
-                                hotelStageController.updatePrice();
-                            }
-
-                            @Override
-                            public void onKeyReleasedPricePerNightsSpinner() {
-                                int pricePerNight = hotelStageController.getPricePerNightSpinner().getValue();
-                                hotelStageController.getHotelStage().setPricePerNight(pricePerNight);
-                                hotelStageController.calculatePricePerNight();
-                                hotelStageController.updatePrice();}
+//                            @Override
+//                            public void onKeyReleasedNumberOfNightsSpinner() {
+//                                int numberOfNights = hotelStageController.getNumberOfNightsSpinner().getValue();
+//                                hotelStageController.getHotelStage().setNumberOfNights(numberOfNights);
+//                                hotelStageController.updateLabels();
+//                            }
+//
+//                            @Override
+//                            public void onKeyReleasedPricePerNightsSpinner() {
+//                                int pricePerNight = hotelStageController.getPricePerNightSpinner().getValue();
+//                                hotelStageController.getHotelStage().setPricePerNight(pricePerNight);
+//                                hotelStageController.calculatePricePerNight();
+//                                hotelStageController.updateLabels();}
 
                             @Override
                             public void onCloseButtonClick() {

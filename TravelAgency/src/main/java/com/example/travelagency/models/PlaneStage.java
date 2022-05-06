@@ -8,6 +8,7 @@ import java.io.IOException;
 public class PlaneStage extends TripStage {
 
     int flyingSpeed;
+
     int waitingTime;
 
     double pricePerKm;
@@ -39,6 +40,10 @@ public class PlaneStage extends TripStage {
     public void durationCompute() {
         duration = (waitingTime + (distance * 60/flyingSpeed)) /60;
         duration = (double) Math.round(duration * 100) / 100;
+    }
+
+    public int getWaitingTime() {
+        return waitingTime;
     }
 
     public void setFlyingSpeed(int flyingSpeed) {

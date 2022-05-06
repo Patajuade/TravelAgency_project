@@ -27,8 +27,8 @@ public class HotelStageViewController {
     public interface Listener {
         void onUpperNumberOfNightsSpinner();
         void onUpperPricePerNightsSpinner();
-        void onKeyReleasedNumberOfNightsSpinner();
-        void onKeyReleasedPricePerNightsSpinner();
+//        void onKeyReleasedNumberOfNightsSpinner();
+//        void onKeyReleasedPricePerNightsSpinner();
         void onCloseButtonClick();
     }
 
@@ -51,28 +51,15 @@ public class HotelStageViewController {
     private void handleNumberOfNightsSpinner(){
         getNumberOfNightsSpinner().setValueFactory(getSpinnerValueFactoryNumberNights());
         listener.onUpperNumberOfNightsSpinner();
-        listener.onKeyReleasedNumberOfNightsSpinner();
+//        listener.onKeyReleasedNumberOfNightsSpinner();
     }
 
     @FXML
     private void handlePricePerNightsSpinner(){
         getPricePerNightSpinner().setValueFactory(getSpinnerValueFactoryPriceNights());
         listener.onUpperPricePerNightsSpinner();
-        listener.onKeyReleasedPricePerNightsSpinner();
-    }
-
-//    @FXML
-//    void handleNumberOfNightsSpinnerOnKey(KeyEvent event) {
-//        getNumberOfNightsSpinner().setValueFactory(getSpinnerValueFactoryNumberNights());
-//        listener.onKeyReleasedNumberOfNightsSpinner();
-//    }
-//
-//    @FXML
-//    void handlePricePerNightSpinnerOnKey(){
-//        getPricePerNightSpinner().setValueFactory(getSpinnerValueFactoryPriceNights());
 //        listener.onKeyReleasedPricePerNightsSpinner();
-//    }
-
+    }
 
     @FXML
     private void handleClose(){
@@ -87,7 +74,7 @@ public class HotelStageViewController {
         hotelStage.priceCompute();
     }
 
-    public void updatePrice(){
+    public void updateLabels(){
         updateLabel(bottomInfoLabel);
         updateLabel(topInformationLabel);
     }
