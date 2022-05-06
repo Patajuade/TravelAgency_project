@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="447.0" prefWidth="582.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.travelagency.views.TripsResumeViewController">
+   <top>
+      <AnchorPane prefHeight="44.0" prefWidth="353.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="createTripButton" layoutX="459.0" layoutY="10.0" mnemonicParsing="false" onAction="#createTripButtonClick" text="Créer un voyage" AnchorPane.rightAnchor="20.0" />
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <VBox fx:id="tripVbox" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #D3D3D3;" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

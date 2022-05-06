@@ -13,6 +13,10 @@ public class PlaneStage extends TripStage {
 
     double pricePerKm;
 
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
     double distance;
 
     public PlaneStage(FXMLLoader loader) {
@@ -24,22 +28,6 @@ public class PlaneStage extends TripStage {
 
     public double getDistance() {
         return distance;
-    }
-
-    public void distanceCompute() {
-        final int R = 6371; // Radius of the earth
-        double latDistance = Math.toRadians(destination.getLatitudeDouble() - source.getLatitudeDouble());
-        double lonDistance = Math.toRadians(destination.getLongitudeDouble() - source.getLongitudeDouble());
-        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
-                + Math.cos(Math.toRadians(source.getLatitudeDouble())) *
-                Math.cos(Math.toRadians(destination.getLatitudeDouble()))
-                * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        double distanceLocal = R * c * 1000; // convert to meters
-        distanceLocal = Math.pow(distanceLocal, 2);
-        distance = Math.sqrt(distanceLocal)/1000;
-        //Pour n'afficher que 2 décimales sans prise de tête
-        distance = (double) Math.round(distance * 100) / 100;
     }
 
     @Override

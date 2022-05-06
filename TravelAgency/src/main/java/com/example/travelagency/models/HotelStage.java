@@ -18,7 +18,6 @@ public class HotelStage extends TripStage {
     @Override
     public void durationCompute() {
         duration = numberOfNights * 24;
-
     }
 
     public int getNumberOfNights() {

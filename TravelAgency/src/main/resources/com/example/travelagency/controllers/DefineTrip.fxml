@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="726.0" prefWidth="590.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.travelagency.views.DefineTripController">
+<AnchorPane prefHeight="726.0" prefWidth="590.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.travelagency.views.DefineTripViewController">
    <children>
       <TextField fx:id="TripNameTextField" layoutX="1.0" prefHeight="25.0" prefWidth="513.0" promptText="Write here the title you want to give to your trip !" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0" />
       <AnchorPane layoutY="26.0" prefHeight="64.0" prefWidth="590.0" style="-fx-border-color: AFAEAE;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="26.0">

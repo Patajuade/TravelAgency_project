@@ -1,5 +1,5 @@
 package com.example.travelagency.views;
-import com.example.travelagency.models.CityController;
+import com.example.travelagency.models.ManagementCity;
 import com.example.travelagency.models.CityModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,7 +13,7 @@ public class ChooseDestinationViewController    {
 
 
     private ArrayList<CityModel> cities;
-    private DefineTripController defineTripController;
+    private DefineTripViewController defineTripController;
 
     @FXML
     private TextField ChooseDestinationTextField;
@@ -30,9 +30,9 @@ public class ChooseDestinationViewController    {
         void selectedDestination();
     }
 
-    private CityController cityController;
+    private ManagementCity cityController;
 
-    public void setCityController(CityController cityController) {
+    public void setCityController(ManagementCity cityController) {
         this.cityController = cityController;
     }
 
