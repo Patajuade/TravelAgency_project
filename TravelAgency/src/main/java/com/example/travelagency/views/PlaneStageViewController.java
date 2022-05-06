@@ -5,11 +5,7 @@ import com.example.travelagency.models.PlaneStage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Spinner;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 
@@ -43,6 +39,8 @@ public class PlaneStageViewController {
 
     private Listener listener;
 
+    SpinnerValueFactory spinnerValueFactoryWaitingTime = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,1000);
+
     public Spinner<Integer> getWaitingTimeSpinner() {
         return WaitingTimeSpinner;
     }
@@ -50,6 +48,8 @@ public class PlaneStageViewController {
     public PlaneStage getPlaneStage() {
         return planeStage;
     }
+
+    public SpinnerValueFactory getSpinnerValueFactoryWaitingTime() { return spinnerValueFactoryWaitingTime; }
 
     public void setPlaneStage(PlaneStage planeStage) {
         this.planeStage = planeStage;
@@ -82,11 +82,16 @@ public class PlaneStageViewController {
         }
     }
 
+    public void calculateDuration(){
+        planeStage.durationCompute();
+    }
+
     public interface Listener {
         void onChooseButtonClick() throws IOException;
         void onRadioButton700Click();
         void onRadioButton900Click();
         void onUpperWaitingTimeSpinner();
+//        void onKeyReleasedWaitingTimeSpinner();
         void onMenuItem0025Click();
         void onMenuItem00507Click();
         void onMenuItem00758Click();
@@ -94,6 +99,15 @@ public class PlaneStageViewController {
         void onMenuItem02Click();
         void onCloseButtonClick();
     }
+
+    @FXML
+    private void handleWaitingTimeSpinner(){
+        getWaitingTimeSpinner().setValueFactory(getSpinnerValueFactoryWaitingTime());
+        listener.onUpperWaitingTimeSpinner();
+        //TODO : régler le souci : OnKeyReleased fonctionne pas
+//        listener.onKeyReleasedWaitingTimeSpinner();
+    }
+
     @FXML
     private void handleChooseButtonClick(ActionEvent event) throws IOException {
         listener.onChooseButtonClick();
@@ -142,11 +156,6 @@ public class PlaneStageViewController {
     void handleMenuItem02(ActionEvent event) {
         listener.onMenuItem02Click();
         PricePerKmMenuButton.setText("0.2");
-    }
-
-    @FXML
-    private void handleWaitingTimeSpinner(ActionEvent event){
-        listener.onUpperWaitingTimeSpinner();
     }
 
     @FXML
