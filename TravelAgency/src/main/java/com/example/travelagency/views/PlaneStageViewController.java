@@ -57,7 +57,11 @@ public class PlaneStageViewController {
 
     public void setListener(Listener listener) {
         this.listener = listener;
+        WaitingTimeSpinner.valueProperty().addListener((observer, oldvalue, newvalue)->{
+            handleWaitingTimeSpinner();
+        });
     }
+
 
     public void changeButtonText() {
         ChooseButton.setText(planeStage.getDestination().getCityName()+ "(" + planeStage.getDestination().getCountryName() + ")");
@@ -91,7 +95,6 @@ public class PlaneStageViewController {
         void onRadioButton700Click();
         void onRadioButton900Click();
         void onUpperWaitingTimeSpinner();
-//        void onKeyReleasedWaitingTimeSpinner();
         void onMenuItem0025Click();
         void onMenuItem00507Click();
         void onMenuItem00758Click();

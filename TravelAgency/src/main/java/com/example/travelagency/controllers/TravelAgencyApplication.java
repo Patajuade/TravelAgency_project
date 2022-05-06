@@ -133,16 +133,6 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                 planeStageController.updateLabels();
                             }
 
-//                            @Override
-//                            public void onKeyReleasedWaitingTimeSpinner() {
-//                                //TODO : régler le souci : OnKeyReleased fonctionne pas
-//                                int waitingTime = planeStageController.getWaitingTimeSpinner().getValue();
-//                                planeStageController.getPlaneStage().setWaitingTime(waitingTime);
-//                                planeStageController.calculateDuration();
-//                                planeStageController.updateLabels();
-//                             }
-
-
                             @Override
                             public void onMenuItem0025Click() {
                                 planeStage.setPricePerKm(0.025);
@@ -213,21 +203,6 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                 hotelStageController.calculatePricePerNight();
                                 hotelStageController.updateLabels();
                             }
-
-//                            @Override
-//                            public void onKeyReleasedNumberOfNightsSpinner() {
-//                                int numberOfNights = hotelStageController.getNumberOfNightsSpinner().getValue();
-//                                hotelStageController.getHotelStage().setNumberOfNights(numberOfNights);
-//                                hotelStageController.calculatePricePerNight();
-//                                hotelStageController.updateLabels();
-//                            }
-//
-//                            @Override
-//                            public void onKeyReleasedPricePerNightsSpinner() {
-//                                int pricePerNight = hotelStageController.getPricePerNightSpinner().getValue();
-//                                hotelStageController.getHotelStage().setPricePerNight(pricePerNight);
-//                                hotelStageController.calculatePricePerNight();
-//                                hotelStageController.updateLabels();}
 
                             @Override
                             public void onCloseButtonClick() {
