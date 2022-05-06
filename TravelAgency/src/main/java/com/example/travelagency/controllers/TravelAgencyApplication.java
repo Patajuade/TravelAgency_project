@@ -127,8 +127,21 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
 
                             @Override
                             public void onUpperWaitingTimeSpinner() {
-
+                                int waitingTime = planeStageController.getWaitingTimeSpinner().getValue();
+                                planeStageController.getPlaneStage().setWaitingTime(waitingTime);
+                                planeStageController.calculateDuration();
+                                planeStageController.updateLabels();
                             }
+
+//                            @Override
+//                            public void onKeyReleasedWaitingTimeSpinner() {
+//                                //TODO : régler le souci : OnKeyReleased fonctionne pas
+//                                int waitingTime = planeStageController.getWaitingTimeSpinner().getValue();
+//                                planeStageController.getPlaneStage().setWaitingTime(waitingTime);
+//                                planeStageController.calculateDuration();
+//                                planeStageController.updateLabels();
+//                             }
+
 
                             @Override
                             public void onMenuItem0025Click() {
@@ -205,6 +218,7 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
 //                            public void onKeyReleasedNumberOfNightsSpinner() {
 //                                int numberOfNights = hotelStageController.getNumberOfNightsSpinner().getValue();
 //                                hotelStageController.getHotelStage().setNumberOfNights(numberOfNights);
+//                                hotelStageController.calculatePricePerNight();
 //                                hotelStageController.updateLabels();
 //                            }
 //
