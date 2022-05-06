@@ -5,11 +5,14 @@ import com.example.travelagency.models.PlaneStage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class PlaneStageViewController {
+public class PlaneStageViewController implements Initializable {
     @FXML
     private Label BottomInformationLabel;
 
@@ -39,17 +42,17 @@ public class PlaneStageViewController {
 
     private Listener listener;
 
-    SpinnerValueFactory spinnerValueFactoryWaitingTime = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,1000);
-
-    public Spinner<Integer> getWaitingTimeSpinner() {
-        return WaitingTimeSpinner;
+    public int getWaitingTime() {
+        try {
+            return Math.min(1000, Math.max(0, Integer.parseInt(WaitingTimeSpinner.getEditor().getText())));
+        } catch (NumberFormatException e) {
+            return 0;
+        }
     }
 
-    public PlaneStage getPlaneStage() {
+        public PlaneStage getPlaneStage() {
         return planeStage;
     }
-
-    public SpinnerValueFactory getSpinnerValueFactoryWaitingTime() { return spinnerValueFactoryWaitingTime; }
 
     public void setPlaneStage(PlaneStage planeStage) {
         this.planeStage = planeStage;
@@ -96,6 +99,15 @@ public class PlaneStageViewController {
         planeStage.durationCompute();
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        WaitingTimeSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,1000));
+        WaitingTimeSpinner.valueProperty().addListener(((observable, oldValue, newValue) -> {
+            this.handleWaitingTimeSpinner();
+        }));
+    }
+
+
     public interface Listener {
         void onChooseButtonClick() throws IOException;
         void onRadioButton700Click();
@@ -111,10 +123,7 @@ public class PlaneStageViewController {
 
     @FXML
     private void handleWaitingTimeSpinner(){
-        getWaitingTimeSpinner().setValueFactory(getSpinnerValueFactoryWaitingTime());
         listener.onUpperWaitingTimeSpinner();
-        //TODO : régler le souci : OnKeyReleased fonctionne pas
-//        listener.onKeyReleasedWaitingTimeSpinner();
     }
 
     @FXML

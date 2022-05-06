@@ -128,7 +128,7 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
 
                             @Override
                             public void onUpperWaitingTimeSpinner() {
-                                int waitingTime = planeStageController.getWaitingTimeSpinner().getValue();
+                                int waitingTime = planeStageController.getWaitingTime();
                                 planeStageController.getPlaneStage().setWaitingTime(waitingTime);
                                 planeStageController.calculateDuration();
                                 planeStageController.updateLabels();
