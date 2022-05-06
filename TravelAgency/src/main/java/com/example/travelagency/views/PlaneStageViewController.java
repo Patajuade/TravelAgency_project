@@ -34,15 +34,23 @@ public class PlaneStageViewController {
     private Label TopInformationLabel;
 
     @FXML
-    private Spinner<?> WaitingTimeSpinner;
+    private Spinner<Integer> WaitingTimeSpinner;
 
     PlaneStage planeStage;
+
+    private Listener listener;
+
+    public Spinner<Integer> getWaitingTimeSpinner() {
+        return WaitingTimeSpinner;
+    }
+
+    public PlaneStage getPlaneStage() {
+        return planeStage;
+    }
 
     public void setPlaneStage(PlaneStage planeStage) {
         this.planeStage = planeStage;
     }
-
-    private Listener listener;
 
     public void setListener(Listener listener) {
         this.listener = listener;

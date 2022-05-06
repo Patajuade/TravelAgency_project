@@ -127,7 +127,8 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
 
                             @Override
                             public void onUpperWaitingTimeSpinner() {
-
+                                int waitingTime = planeStageController.getWaitingTimeSpinner().getValue();
+                                planeStageController.getPlaneStage().setWaitingTime(waitingTime);
                             }
 
                             @Override
@@ -205,6 +206,7 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
 //                            public void onKeyReleasedNumberOfNightsSpinner() {
 //                                int numberOfNights = hotelStageController.getNumberOfNightsSpinner().getValue();
 //                                hotelStageController.getHotelStage().setNumberOfNights(numberOfNights);
+//                                hotelStageController.calculatePricePerNight();
 //                                hotelStageController.updateLabels();
 //                            }
 //
