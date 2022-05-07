@@ -8,6 +8,7 @@ import java.io.IOException;
 public class PlaneStage extends TripStage {
 
     int flyingSpeed;
+
     int waitingTime;
 
     double pricePerKm;

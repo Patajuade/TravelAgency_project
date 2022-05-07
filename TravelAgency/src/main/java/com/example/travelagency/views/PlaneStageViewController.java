@@ -1,17 +1,18 @@
 package com.example.travelagency.views;
 
+import com.example.travelagency.models.HotelStage;
 import com.example.travelagency.models.PlaneStage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Spinner;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class PlaneStageViewController {
+public class PlaneStageViewController implements Initializable {
     @FXML
     private Label BottomInformationLabel;
 
@@ -34,15 +35,28 @@ public class PlaneStageViewController {
     private Label TopInformationLabel;
 
     @FXML
-    private Spinner<?> WaitingTimeSpinner;
+    private Spinner<Integer> WaitingTimeSpinner;
 
-    PlaneStage planeStage;
+    //PlaneStage planeStage;
+    PlaneStage planeStage = new PlaneStage(new FXMLLoader());
+
+    private Listener listener;
+
+    public int getWaitingTime() {
+        try {
+            return Math.min(1000, Math.max(0, Integer.parseInt(WaitingTimeSpinner.getEditor().getText())));
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+
+        public PlaneStage getPlaneStage() {
+        return planeStage;
+    }
 
     public void setPlaneStage(PlaneStage planeStage) {
         this.planeStage = planeStage;
     }
-
-    private Listener listener;
 
     public void setListener(Listener listener) {
         this.listener = listener;
@@ -63,13 +77,32 @@ public class PlaneStageViewController {
                     + planeStage.getDistance() + "km," + planeStage.getDuration() + "heures,"
                     + planeStage.getPrice() +"euros)");
         }
+        else{
+            TopInformationLabel.setText("Voyage en avion ( Aucune , 0km, 0heures, 0euros )");
+        }
     }
 
     private void updateBottomLabel() {
         if(planeStage.getDestination() != null && planeStage.getSource() != null) {
             BottomInformationLabel.setText(planeStage.getDistance() + "km," + planeStage.getDuration() + "heures," + planeStage.getPrice() + "euros");
         }
+        else{
+            BottomInformationLabel.setText("Voyage en avion ( Aucune , 0km, 0heures, 0euros )");
+        }
     }
+
+    public void calculateDuration(){
+        planeStage.durationCompute();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        WaitingTimeSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,1000));
+        WaitingTimeSpinner.valueProperty().addListener(((observable, oldValue, newValue) -> {
+            this.handleWaitingTimeSpinner();
+        }));
+    }
+
 
     public interface Listener {
         void onChooseButtonClick() throws IOException;
@@ -83,6 +116,12 @@ public class PlaneStageViewController {
         void onMenuItem02Click();
         void onCloseButtonClick();
     }
+
+    @FXML
+    private void handleWaitingTimeSpinner(){
+        listener.onUpperWaitingTimeSpinner();
+    }
+
     @FXML
     private void handleChooseButtonClick(ActionEvent event) throws IOException {
         listener.onChooseButtonClick();
@@ -131,11 +170,6 @@ public class PlaneStageViewController {
     void handleMenuItem02(ActionEvent event) {
         listener.onMenuItem02Click();
         PricePerKmMenuButton.setText("0.2");
-    }
-
-    @FXML
-    private void handleWaitingTimeSpinner(ActionEvent event){
-        listener.onUpperWaitingTimeSpinner();
     }
 
     @FXML

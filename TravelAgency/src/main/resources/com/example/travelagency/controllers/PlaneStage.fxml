@@ -36,7 +36,7 @@
                         <MenuItem fx:id="menuItem02" mnemonicParsing="false" onAction="#handleMenuItem02" text="0.2" />
                     </items>
                   </MenuButton>
-                  <Spinner fx:id="WaitingTimeSpinner" layoutX="495.0" layoutY="10.0" onDragDetected="#handleWaitingTimeSpinner" prefHeight="25.0" prefWidth="99.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="10.0" />
+                  <Spinner fx:id="WaitingTimeSpinner" editable="true" layoutX="495.0" layoutY="10.0" onKeyReleased="#handleWaitingTimeSpinner" onMouseClicked="#handleWaitingTimeSpinner" prefHeight="25.0" prefWidth="99.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="10.0" />
                   <Group layoutX="134.0" layoutY="56.0">
                      <children>
                         <RadioButton fx:id="RadioButton700" mnemonicParsing="false" onAction="#handleRadioButton700Click" prefHeight="17.0" prefWidth="72.0" selected="true" text="700km/h">

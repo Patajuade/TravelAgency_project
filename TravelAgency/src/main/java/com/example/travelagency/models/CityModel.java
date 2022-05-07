@@ -42,19 +42,22 @@ public class CityModel {
 
     public double distanceCompute(CityModel source) {
         final int R = 6371; // Radius of the earth
-        double latDistance = Math.toRadians(this.getLatitudeDouble() - source.getLatitudeDouble());
-        double lonDistance = Math.toRadians(this.getLongitudeDouble() - source.getLongitudeDouble());
-        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
-                + Math.cos(Math.toRadians(source.getLatitudeDouble())) *
-                Math.cos(Math.toRadians(this.getLatitudeDouble()))
-                * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        double distanceLocal = R * c * 1000; // convert to meters
-        distanceLocal = Math.pow(distanceLocal, 2);
-        double distance = Math.sqrt(distanceLocal)/1000;
-        //Pour n'afficher que 2 décimales sans prise de tête
-        distance = (double) Math.round(distance * 100) / 100;
-        return distance;
+        if (source != null){
+            double latDistance = Math.toRadians(this.getLatitudeDouble() - source.getLatitudeDouble());
+            double lonDistance = Math.toRadians(this.getLongitudeDouble() - source.getLongitudeDouble());
+            double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+                    + Math.cos(Math.toRadians(source.getLatitudeDouble())) *
+                    Math.cos(Math.toRadians(this.getLatitudeDouble()))
+                    * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+            double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            double distanceLocal = R * c * 1000; // convert to meters
+            distanceLocal = Math.pow(distanceLocal, 2);
+            double distance = Math.sqrt(distanceLocal)/1000;
+            //Pour n'afficher que 2 décimales sans prise de tête
+            distance = (double) Math.round(distance * 100) / 100;
+            return distance;
+        }
+        return 0;
     }
     @Override
     public String toString(){

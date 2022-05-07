@@ -2,16 +2,16 @@ package com.example.travelagency.views;
 import com.example.travelagency.models.HotelStage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 
-public class HotelStageViewController {
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    SpinnerValueFactory spinnerValueFactoryNumberNights = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,100);
-    SpinnerValueFactory spinnerValueFactoryPriceNights = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,5000);
-
+public class HotelStageViewController implements Initializable {
 
     public HotelStage getHotelStage() {
         return hotelStage;
@@ -27,16 +27,37 @@ public class HotelStageViewController {
     public interface Listener {
         void onUpperNumberOfNightsSpinner();
         void onUpperPricePerNightsSpinner();
-        void onKeyReleasedNumberOfNightsSpinner();
-        void onKeyReleasedPricePerNightsSpinner();
         void onCloseButtonClick();
+    }
+    public int getNumberOfNights(){
+        try {
+            return Math.min(1000, Math.max(0, Integer.parseInt(numberOfNightsSpinner.getEditor().getText())));
+        }catch(NumberFormatException e) {
+            return 0;
+        }
+    }
+    public int getPricePerNights(){
+        try {
+            return Math.min(1000, Math.max(0, Integer.parseInt(pricePerNightSpinner.getEditor().getText())));
+        }catch(NumberFormatException e) {
+            return 0;
+        }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        numberOfNightsSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,1000));
+        numberOfNightsSpinner.valueProperty().addListener(((observable, oldValue, newValue) -> {
+            this.handleNumberOfNightsSpinner();
+        }));
+        pricePerNightSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,1000));
+        pricePerNightSpinner.valueProperty().addListener(((observable, oldValue, newValue) -> {
+            this.handleNumberOfNightsSpinner();
+        }));
     }
 
     @FXML
     private Label bottomInfoLabel;
-
-    @FXML
-    private Button closeButton;
 
     @FXML
     private Spinner<Integer> numberOfNightsSpinner;
@@ -49,30 +70,13 @@ public class HotelStageViewController {
 
     @FXML
     private void handleNumberOfNightsSpinner(){
-        getNumberOfNightsSpinner().setValueFactory(getSpinnerValueFactoryNumberNights());
         listener.onUpperNumberOfNightsSpinner();
-        listener.onKeyReleasedNumberOfNightsSpinner();
     }
 
     @FXML
     private void handlePricePerNightsSpinner(){
-        getPricePerNightSpinner().setValueFactory(getSpinnerValueFactoryPriceNights());
         listener.onUpperPricePerNightsSpinner();
-        listener.onKeyReleasedPricePerNightsSpinner();
     }
-
-//    @FXML
-//    void handleNumberOfNightsSpinnerOnKey(KeyEvent event) {
-//        getNumberOfNightsSpinner().setValueFactory(getSpinnerValueFactoryNumberNights());
-//        listener.onKeyReleasedNumberOfNightsSpinner();
-//    }
-//
-//    @FXML
-//    void handlePricePerNightSpinnerOnKey(){
-//        getPricePerNightSpinner().setValueFactory(getSpinnerValueFactoryPriceNights());
-//        listener.onKeyReleasedPricePerNightsSpinner();
-//    }
-
 
     @FXML
     private void handleClose(){
@@ -87,24 +91,8 @@ public class HotelStageViewController {
         hotelStage.priceCompute();
     }
 
-    public void updatePrice(){
+    public void updateLabels(){
         updateLabel(bottomInfoLabel);
         updateLabel(topInformationLabel);
-    }
-
-    public SpinnerValueFactory getSpinnerValueFactoryNumberNights() {
-        return spinnerValueFactoryNumberNights;
-    }
-
-    public SpinnerValueFactory getSpinnerValueFactoryPriceNights() {
-        return spinnerValueFactoryPriceNights;
-    }
-
-    public Spinner<Integer> getNumberOfNightsSpinner() {
-        return numberOfNightsSpinner;
-    }
-
-    public Spinner<Integer> getPricePerNightSpinner() {
-        return pricePerNightSpinner;
     }
 }
