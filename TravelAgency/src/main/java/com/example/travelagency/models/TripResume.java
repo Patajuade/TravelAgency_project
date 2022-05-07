@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class TripResume {
+
     ArrayList<TripStage> stages;
     private FXMLLoader fxmlLoader;
     public FXMLLoader getFxml() {
@@ -14,6 +15,10 @@ public class TripResume {
     }
 
     CityModel Source;
+
+    public ArrayList<TripStage> getStages() {
+        return stages;
+    }
 
     public TripResume(FXMLLoader fxmlLoader) {
         this.fxmlLoader = fxmlLoader;
@@ -44,6 +49,7 @@ public class TripResume {
     public CityModel getSource() {
         return Source;
     }
+
 
 }
 

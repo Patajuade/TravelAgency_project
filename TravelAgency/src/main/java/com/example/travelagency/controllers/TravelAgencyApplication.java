@@ -64,10 +64,22 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                             @Override
                             public void selectedDestination() {
                                 stage.close();
-                                //TODO : Remplacer la variable par le voyage.setCitySource
                                 tripResume.setSource(chooseDestinationViewController.getCurrentCity());
                                 defineTripController.changeStartCity(tripResume.getSource());
-                                //TODO : mettre à jour les étapes avion à chaque fois qu'on modifie le chooseDestination
+                                //TODO : ajouter le forEach dans un controller
+                                tripResume.getStages().forEach(
+                                        s -> {
+                                            if(s instanceof PlaneStage){
+                                                s.setSource(tripResume.getSource());
+                                                ((PlaneStage)s).setDistance(s.getDestination().distanceCompute(tripResume.getSource())); //comme la liste est polymorphique, on doit faire un cast de s en planestage
+                                                s.durationCompute();
+                                                s.priceCompute();
+                                                PlaneStageViewController planeStageController = s.getFxml().getController();
+                                                planeStageController.updateLabels();
+                                            }
+                                        }
+                                );
+
                             }
                         });
                         chooseDestinationViewController.setCityController(cityController);
@@ -192,7 +204,6 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                             @Override
                             public void onUpperNumberOfNightsSpinner() {
                                 int numberOfNights = hotelStageController.getNumberOfNights();
-                                //int waitingTime = planeStageController.getWaitingTime();
                                 hotelStageController.getHotelStage().setNumberOfNights(numberOfNights);
                                 hotelStageController.calculatePricePerNight();
                                 hotelStageController.updateLabels();
