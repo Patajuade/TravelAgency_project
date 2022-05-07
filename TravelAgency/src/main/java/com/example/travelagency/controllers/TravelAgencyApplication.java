@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class TravelAgencyApplication extends Application implements TripsResumeViewController.Listener{
 
@@ -66,20 +67,7 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                 stage.close();
                                 tripResume.setSource(chooseDestinationViewController.getCurrentCity());
                                 defineTripController.changeStartCity(tripResume.getSource());
-                                //TODO : ajouter le forEach dans un controller
-                                tripResume.getStages().forEach(
-                                        s -> {
-                                            if(s instanceof PlaneStage){
-                                                s.setSource(tripResume.getSource());
-                                                ((PlaneStage)s).setDistance(s.getDestination().distanceCompute(tripResume.getSource())); //comme la liste est polymorphique, on doit faire un cast de s en planestage
-                                                s.durationCompute();
-                                                s.priceCompute();
-                                                PlaneStageViewController planeStageController = s.getFxml().getController();
-                                                planeStageController.updateLabels();
-                                            }
-                                        }
-                                );
-
+                                updateTripSteps(tripResume);
                             }
                         });
                         chooseDestinationViewController.setCityController(cityController);
@@ -110,11 +98,8 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                     public void selectedDestination() {
                                         stage.close();
                                         planeStage.setDestination(chooseDestinationViewController.getCurrentCity());
-                                        planeStage.setDistance(planeStage.getDestination().distanceCompute(tripResume.getSource()));
-                                        planeStage.durationCompute();
-                                        planeStage.priceCompute();
                                         planeStageController.changeButtonText();
-                                        planeStageController.updateLabels();
+                                        updateTripSteps(tripResume);
                                     }
                                 });
                                 chooseDestinationViewController.setCityController(ManagementCity.getInstance());
@@ -235,5 +220,22 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                 stage.show();
             }
         });
+    }
+
+    public void updateTripSteps(TripResume tripResume){
+        AtomicReference<CityModel> source = new AtomicReference<>(tripResume.getSource());
+        tripResume.getStages().forEach(
+                s -> {
+                    if(s instanceof PlaneStage){
+                        s.setSource(source.get());
+                        source.set(s.getDestination());
+                        ((PlaneStage)s).setDistance(s.getDestination().distanceCompute(s.getSource())); //comme la liste est polymorphique, on doit faire un cast de s en planestage
+                        s.durationCompute();
+                        s.priceCompute();
+                        PlaneStageViewController planeStageController = s.getFxml().getController();
+                        planeStageController.updateLabels();
+                    }
+                }
+        );
     }
 }
