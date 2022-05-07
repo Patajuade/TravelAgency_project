@@ -9,6 +9,7 @@ public class HotelStage extends TripStage {
 
     public HotelStage(FXMLLoader loader) {
         super(loader);
+        distance = 0;
     }
 
     @Override

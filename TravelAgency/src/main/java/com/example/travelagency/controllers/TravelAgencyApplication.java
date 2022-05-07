@@ -27,7 +27,6 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
         launch();
     }
 
-
     @Override
     public void onClickCreateTripButton() throws IOException {
         TripResume tripResume = new TripResume(new FXMLLoader(TravelAgencyApplication.class.getResource("TripResume.fxml")));
@@ -52,6 +51,18 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                 FXMLLoader fxmlLoader = new FXMLLoader(TravelAgencyApplication.class.getResource("DefineTrip.fxml"));
                 Scene DefineTripScene = new Scene(fxmlLoader.load());
                 DefineTripViewController defineTripController = fxmlLoader.getController();
+                Stage stage = new Stage();
+                stage.setTitle("Définir son voyage");
+                stage.setScene(DefineTripScene);
+                stage.show();
+                stage.setOnCloseRequest(windowEvent -> {
+                            tripResume.calculateAll();
+                            tripResumeViewController.UpdateLabelData(tripResume.getTotalDistance(),tripResume.getTotalDistance(),tripResume.getTotalPrice());
+                            tripResumeViewController.UpdateLabelFromDate(tripResume.getSource(), defineTripController.getDate());
+                            tripResumeViewController.UpdateNameTripLabel(defineTripController.getNameTrip());
+                            tripResumeViewController.UpdateCrossedCities(tripResume.getStages());
+                        }
+                );
                 defineTripController.setListener(new DefineTripViewController.Listener() {
                     @Override
                     public void onClickChooseDestinationButton() throws IOException {
@@ -74,6 +85,7 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                         stage.setTitle("Choisir une destination");
                         stage.setScene(scene);
                         stage.show();
+                        tripResume.calculateAll();
                     }
 
                     @Override
@@ -109,6 +121,8 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                 stage.setTitle("Choisir une destination");
                                 stage.setScene(scene);
                                 stage.show();
+                                tripResume.calculateAll();
+                                defineTripController.UpdateLabel(tripResume.getTotalDistance(),tripResume.getTotalTime(),tripResume.getTotalPrice());
                             }
 
                             @Override
@@ -116,6 +130,8 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                 planeStage.setFlyingSpeed(700);
                                 planeStage.durationCompute();
                                 planeStageController.updateLabels();
+                                tripResume.calculateAll();
+                                defineTripController.UpdateLabel(tripResume.getTotalDistance(),tripResume.getTotalTime(),tripResume.getTotalPrice());
                             }
 
                             @Override
@@ -123,6 +139,8 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                 planeStage.setFlyingSpeed(900);
                                 planeStage.durationCompute();
                                 planeStageController.updateLabels();
+                                tripResume.calculateAll();
+                                defineTripController.UpdateLabel(tripResume.getTotalDistance(),tripResume.getTotalTime(),tripResume.getTotalPrice());
                             }
 
                             @Override
@@ -135,6 +153,7 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                 planeStage.setPricePerKm(0.025);
                                 planeStage.priceCompute();
                                 planeStageController.updateLabels();
+                                tripResume.calculateAll();
                             }
 
                             @Override
@@ -142,6 +161,7 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                 planeStage.setPricePerKm(0.0507);
                                 planeStage.priceCompute();
                                 planeStageController.updateLabels();
+                                tripResume.calculateAll();
                             }
 
                             @Override
@@ -149,6 +169,7 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                 planeStage.setPricePerKm(0.0758);
                                 planeStage.priceCompute();
                                 planeStageController.updateLabels();
+                                tripResume.calculateAll();
                             }
 
                             @Override
@@ -156,6 +177,7 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                 planeStage.setPricePerKm(0.1005);
                                 planeStage.priceCompute();
                                 planeStageController.updateLabels();
+                                tripResume.calculateAll();
                             }
 
                             @Override
@@ -163,6 +185,7 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                 planeStage.setPricePerKm(0.2);
                                 planeStage.priceCompute();
                                 planeStageController.updateLabels();
+                                tripResume.calculateAll();
                             }
 
                             @Override
@@ -190,7 +213,12 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                 int numberOfNights = hotelStageController.getNumberOfNightsSpinner().getValue();
                                 hotelStageController.getHotelStage().setNumberOfNights(numberOfNights);
                                 hotelStageController.calculatePricePerNight();
+<<<<<<< Updated upstream
                                 hotelStageController.updatePrice();
+=======
+                                hotelStageController.updateLabels();
+                                tripResume.calculateAll();
+>>>>>>> Stashed changes
                             }
 
                             @Override
@@ -198,7 +226,12 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                 int pricePerNight = hotelStageController.getPricePerNightSpinner().getValue();
                                 hotelStageController.getHotelStage().setPricePerNight(pricePerNight);
                                 hotelStageController.calculatePricePerNight();
+<<<<<<< Updated upstream
                                 hotelStageController.updatePrice();
+=======
+                                hotelStageController.updateLabels();
+                                tripResume.calculateAll();
+>>>>>>> Stashed changes
                             }
 
                             @Override
@@ -227,10 +260,6 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                         });
                     }
                 });
-                Stage stage = new Stage();
-                stage.setTitle("Définir son voyage");
-                stage.setScene(DefineTripScene);
-                stage.show();
             }
         });
     }

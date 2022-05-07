@@ -8,6 +8,7 @@ import java.io.IOException;
 public abstract class TripStage {
     protected double price;
     protected double duration;
+    protected double distance;
 
     public CityModel getSource() {
         return source;

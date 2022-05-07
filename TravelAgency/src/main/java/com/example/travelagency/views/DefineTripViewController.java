@@ -10,6 +10,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class DefineTripViewController {
 
@@ -18,17 +20,13 @@ public class DefineTripViewController {
     @FXML
     private Button ChooseButton;
     @FXML
-    private DatePicker DateField;
+    private DatePicker DatePicker;
     @FXML
     private Button AddPlaneStageButton;
     @FXML
     private Button AddHotelStageButton;
     @FXML
-    private Label KmLabel;
-    @FXML
-    private Label HoursLabel;
-    @FXML
-    private Label EurosLabel;
+    private Label dataLabel;
     @FXML
     private VBox StageVbox;
 
@@ -71,4 +69,17 @@ public class DefineTripViewController {
         StageVbox.getChildren().remove(tripStage.getAnchorPane());
     }
 
+    public void UpdateLabel(double totalDistance, double totalTime,double totalPrice){
+        dataLabel.setText(totalDistance + " km " + totalTime + " h " + totalPrice + " euros");
+    }
+
+    public String getNameTrip(){
+        return TripNameTextField.getText();
+    }
+
+    public String getDate(){
+        LocalDate chosenDate = DatePicker.getValue();
+        String chosenDateAsString = chosenDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        return chosenDateAsString;
+    }
 }

@@ -7,13 +7,44 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class TripResume {
-    ArrayList<TripStage> stages;
+
     private FXMLLoader fxmlLoader;
     public FXMLLoader getFxml() {
         return fxmlLoader;
     }
 
+    ArrayList<TripStage> stages;
     CityModel Source;
+
+    public double getTotalDistance() {
+        return totalDistance;
+    }
+
+    public double getTotalTime() {
+        return totalTime;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    double totalDistance;
+    double totalTime;
+    double totalPrice;
+
+    public void calculateAll(){
+        totalTime = 0;
+        totalDistance = 0;
+        totalPrice = 0;
+        for(TripStage tripStage :stages){
+            if(tripStage.getDestination() != null && tripStage.getSource() != null){
+                totalDistance += tripStage.getDestination().distanceCompute(tripStage.getSource());
+            }
+            totalTime += tripStage.getDuration();
+            totalPrice += tripStage.getPrice();
+        }
+    }
+
 
     public TripResume(FXMLLoader fxmlLoader) {
         this.fxmlLoader = fxmlLoader;
@@ -45,6 +76,9 @@ public class TripResume {
         return Source;
     }
 
+    public ArrayList<TripStage> getStages() {
+        return stages;
+    }
 }
 
 
