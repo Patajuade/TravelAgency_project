@@ -213,12 +213,8 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                 int numberOfNights = hotelStageController.getNumberOfNightsSpinner().getValue();
                                 hotelStageController.getHotelStage().setNumberOfNights(numberOfNights);
                                 hotelStageController.calculatePricePerNight();
-<<<<<<< Updated upstream
                                 hotelStageController.updatePrice();
-=======
-                                hotelStageController.updateLabels();
                                 tripResume.calculateAll();
->>>>>>> Stashed changes
                             }
 
                             @Override
@@ -226,12 +222,8 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                 int pricePerNight = hotelStageController.getPricePerNightSpinner().getValue();
                                 hotelStageController.getHotelStage().setPricePerNight(pricePerNight);
                                 hotelStageController.calculatePricePerNight();
-<<<<<<< Updated upstream
                                 hotelStageController.updatePrice();
-=======
-                                hotelStageController.updateLabels();
                                 tripResume.calculateAll();
->>>>>>> Stashed changes
                             }
 
                             @Override
