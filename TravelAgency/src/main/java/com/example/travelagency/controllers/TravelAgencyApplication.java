@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class TravelAgencyApplication extends Application implements TripsResumeViewController.Listener{
 
@@ -26,6 +27,7 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
     public static void main(String[] args) {
         launch();
     }
+
 
     @Override
     public void onClickCreateTripButton() throws IOException {
@@ -57,7 +59,7 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                 stage.show();
                 stage.setOnCloseRequest(windowEvent -> {
                             tripResume.calculateAll();
-                            tripResumeViewController.UpdateLabelData(tripResume.getTotalDistance(),tripResume.getTotalDistance(),tripResume.getTotalPrice());
+                            tripResumeViewController.UpdateLabelData(tripResume.getTotalDistance(),tripResume.getTotalTime(),tripResume.getTotalPrice());
                             tripResumeViewController.UpdateLabelFromDate(tripResume.getSource(), defineTripController.getDate());
                             tripResumeViewController.UpdateNameTripLabel(defineTripController.getNameTrip());
                             tripResumeViewController.UpdateCrossedCities(tripResume.getStages());
@@ -75,9 +77,9 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                             @Override
                             public void selectedDestination() {
                                 stage.close();
-                                //TODO : Remplacer la variable par le voyage.setCitySource
                                 tripResume.setSource(chooseDestinationViewController.getCurrentCity());
                                 defineTripController.changeStartCity(tripResume.getSource());
+                                updateTripSteps(tripResume);
                             }
                         });
                         chooseDestinationViewController.setCityController(cityController);
@@ -85,7 +87,6 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                         stage.setTitle("Choisir une destination");
                         stage.setScene(scene);
                         stage.show();
-                        tripResume.calculateAll();
                     }
 
                     @Override
@@ -109,11 +110,8 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                     public void selectedDestination() {
                                         stage.close();
                                         planeStage.setDestination(chooseDestinationViewController.getCurrentCity());
-                                        planeStage.setDistance(planeStage.getDestination().distanceCompute(tripResume.getSource()));
-                                        planeStage.durationCompute();
-                                        planeStage.priceCompute();
                                         planeStageController.changeButtonText();
-                                        planeStageController.updateLabels();
+                                        updateTripSteps(tripResume);
                                     }
                                 });
                                 chooseDestinationViewController.setCityController(ManagementCity.getInstance());
@@ -121,8 +119,6 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                 stage.setTitle("Choisir une destination");
                                 stage.setScene(scene);
                                 stage.show();
-                                tripResume.calculateAll();
-                                defineTripController.UpdateLabel(tripResume.getTotalDistance(),tripResume.getTotalTime(),tripResume.getTotalPrice());
                             }
 
                             @Override
@@ -130,8 +126,6 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                 planeStage.setFlyingSpeed(700);
                                 planeStage.durationCompute();
                                 planeStageController.updateLabels();
-                                tripResume.calculateAll();
-                                defineTripController.UpdateLabel(tripResume.getTotalDistance(),tripResume.getTotalTime(),tripResume.getTotalPrice());
                             }
 
                             @Override
@@ -139,13 +133,14 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                 planeStage.setFlyingSpeed(900);
                                 planeStage.durationCompute();
                                 planeStageController.updateLabels();
-                                tripResume.calculateAll();
-                                defineTripController.UpdateLabel(tripResume.getTotalDistance(),tripResume.getTotalTime(),tripResume.getTotalPrice());
                             }
 
                             @Override
                             public void onUpperWaitingTimeSpinner() {
-
+                                int waitingTime = planeStageController.getWaitingTime();
+                                planeStageController.getPlaneStage().setWaitingTime(waitingTime);
+                                planeStageController.calculateDuration();
+                                planeStageController.updateLabels();
                             }
 
                             @Override
@@ -153,7 +148,6 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                 planeStage.setPricePerKm(0.025);
                                 planeStage.priceCompute();
                                 planeStageController.updateLabels();
-                                tripResume.calculateAll();
                             }
 
                             @Override
@@ -161,7 +155,6 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                 planeStage.setPricePerKm(0.0507);
                                 planeStage.priceCompute();
                                 planeStageController.updateLabels();
-                                tripResume.calculateAll();
                             }
 
                             @Override
@@ -169,7 +162,6 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                 planeStage.setPricePerKm(0.0758);
                                 planeStage.priceCompute();
                                 planeStageController.updateLabels();
-                                tripResume.calculateAll();
                             }
 
                             @Override
@@ -177,7 +169,6 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                 planeStage.setPricePerKm(0.1005);
                                 planeStage.priceCompute();
                                 planeStageController.updateLabels();
-                                tripResume.calculateAll();
                             }
 
                             @Override
@@ -185,7 +176,6 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                                 planeStage.setPricePerKm(0.2);
                                 planeStage.priceCompute();
                                 planeStageController.updateLabels();
-                                tripResume.calculateAll();
                             }
 
                             @Override
@@ -210,35 +200,19 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                         hotelStageController.setListener(new HotelStageViewController.Listener() {
                             @Override
                             public void onUpperNumberOfNightsSpinner() {
-                                int numberOfNights = hotelStageController.getNumberOfNightsSpinner().getValue();
+                                int numberOfNights = hotelStageController.getNumberOfNights();
                                 hotelStageController.getHotelStage().setNumberOfNights(numberOfNights);
                                 hotelStageController.calculatePricePerNight();
-                                hotelStageController.updatePrice();
-                                tripResume.calculateAll();
+                                hotelStageController.updateLabels();
                             }
 
                             @Override
                             public void onUpperPricePerNightsSpinner() {
-                                int pricePerNight = hotelStageController.getPricePerNightSpinner().getValue();
+                                int pricePerNight = hotelStageController.getPricePerNights();
                                 hotelStageController.getHotelStage().setPricePerNight(pricePerNight);
                                 hotelStageController.calculatePricePerNight();
-                                hotelStageController.updatePrice();
-                                tripResume.calculateAll();
+                                hotelStageController.updateLabels();
                             }
-
-                            @Override
-                            public void onKeyReleasedNumberOfNightsSpinner() {
-                                int numberOfNights = hotelStageController.getNumberOfNightsSpinner().getValue();
-                                hotelStageController.getHotelStage().setNumberOfNights(numberOfNights);
-                                hotelStageController.updatePrice();
-                            }
-
-                            @Override
-                            public void onKeyReleasedPricePerNightsSpinner() {
-                                int pricePerNight = hotelStageController.getPricePerNightSpinner().getValue();
-                                hotelStageController.getHotelStage().setPricePerNight(pricePerNight);
-                                hotelStageController.calculatePricePerNight();
-                                hotelStageController.updatePrice();}
 
                             @Override
                             public void onCloseButtonClick() {
@@ -254,5 +228,22 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                 });
             }
         });
+    }
+
+    public void updateTripSteps(TripResume tripResume){
+        AtomicReference<CityModel> source = new AtomicReference<>(tripResume.getSource());
+        tripResume.getStages().forEach(
+                s -> {
+                    if(s instanceof PlaneStage){
+                        s.setSource(source.get());
+                        source.set(s.getDestination());
+                        ((PlaneStage)s).setDistance(s.getDestination().distanceCompute(s.getSource())); //comme la liste est polymorphique, on doit faire un cast de s en planestage
+                        s.durationCompute();
+                        s.priceCompute();
+                        PlaneStageViewController planeStageController = s.getFxml().getController();
+                        planeStageController.updateLabels();
+                    }
+                }
+        );
     }
 }

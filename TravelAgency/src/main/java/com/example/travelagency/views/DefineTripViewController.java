@@ -78,8 +78,11 @@ public class DefineTripViewController {
     }
 
     public String getDate(){
-        LocalDate chosenDate = DatePicker.getValue();
-        String chosenDateAsString = chosenDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        String chosenDateAsString = "";
+        if(DatePicker.getValue() != null){
+            LocalDate chosenDate = DatePicker.getValue();
+            chosenDateAsString = chosenDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        }
         return chosenDateAsString;
     }
 }

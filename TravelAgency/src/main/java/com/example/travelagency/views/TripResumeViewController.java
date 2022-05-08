@@ -1,6 +1,7 @@
 package com.example.travelagency.views;
 
 import com.example.travelagency.models.CityModel;
+import com.example.travelagency.models.PlaneStage;
 import com.example.travelagency.models.TripResume;
 import com.example.travelagency.models.TripStage;
 import javafx.event.ActionEvent;
@@ -58,13 +59,25 @@ public class TripResumeViewController {
     }
 
     public void UpdateLabelFromDate(CityModel source, String Date) {
-        fromAndDateLabel.setText("Depuis " + source.getCityName() + "(" + source.getCountryName() + "), " + Date);
+        String toShow = "" ;
+        if(source != null){
+            toShow += "Depuis " + source.getCityName() + "(" + source.getCountryName() + "), ";
+        }
+        else if(Date != ""){
+            toShow += Date;
+        }
+        fromAndDateLabel.setText(toShow);
     }
 
     public void UpdateCrossedCities(ArrayList<TripStage> stages){
-        String toShow = "Villes traversées : " + tripResume.getSource().getCityName() + " (" + tripResume.getSource().getCountryName() + ")";
+        String toShow = "";
+        if(tripResume.getSource() != null){
+            toShow = "Villes traversées : " + tripResume.getSource().getCityName() + " (" + tripResume.getSource().getCountryName() + ")";
+        }
         for(TripStage stage : stages){
-            toShow += ", " + stage.getDestination().getCityName() + " (" + stage.getDestination().getCountryName() + ")";
+            if(stage instanceof PlaneStage && stage.getDestination() != null){
+                toShow += ", " + stage.getDestination().getCityName() + " (" + stage.getDestination().getCountryName() + ")";
+            }
         }
         crossedCitiesLabel.setText(toShow);
     }
