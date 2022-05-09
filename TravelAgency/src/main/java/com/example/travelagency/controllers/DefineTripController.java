@@ -5,17 +5,23 @@ import com.example.travelagency.views.ChooseDestinationViewController;
 import com.example.travelagency.views.DefineTripViewController;
 import com.example.travelagency.views.HotelStageViewController;
 import com.example.travelagency.views.PlaneStageViewController;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 
 public class DefineTripController implements DefineTripViewController.Listener{
     DefineTripViewController defineTripViewController;
-    Stage defineTripStage;
+    TripResume tripResume;
+    FXMLLoader fxmlLoader;
 
-    ChooseDestinationController chooseDestinationController;
+    public DefineTripController(TripResume tripResume) {
+        this.tripResume = tripResume;
+        fxmlLoader = new FXMLLoader(TravelAgencyApplication.class.getResource("DefineTrip.fxml"));
+    }
 
     private Listener listener;
 
@@ -32,31 +38,50 @@ public class DefineTripController implements DefineTripViewController.Listener{
     }
 
     public void show() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TravelAgencyApplication.class.getResource("DefineTrip.fxml"));
         Scene DefineTripScene = new Scene(fxmlLoader.load());
-        DefineTripViewController defineTripViewController = fxmlLoader.getController();
+        defineTripViewController = fxmlLoader.getController();
+        defineTripViewController.setListener(this);
         Stage stage = new Stage();
         stage.setTitle("Définir son voyage");
         stage.setScene(DefineTripScene);
         stage.show();
-        //stage.setOnCloseRequest();
-    }
-    public void onClose() {
-        listener.isClosed();
-        defineTripStage.close();
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                listener.isClosed();
+            }
+        });
     }
 
     public interface Listener{
         void isClosed();
     }
+
     @Override
-    public CityModel onClickChooseDestinationButton() throws IOException {
-        chooseDestinationController.show();
-        return chooseDestinationController.selectedDestination();
+    public void onClickChooseDestinationButton() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(TravelAgencyApplication.class.getResource("ChooseDestination.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Stage stage = new Stage();
+        ChooseDestinationViewController chooseDestinationViewController = fxmlLoader.getController();
+        chooseDestinationViewController.setListener( new ChooseDestinationViewController.Listener() {
+            @Override
+            public void selectedDestination() {
+                stage.close();
+                tripResume.setSource(chooseDestinationViewController.getCurrentCity());
+                defineTripViewController.changeStartCity(chooseDestinationViewController.getCurrentCity());
+                //TODO : Foutre update trip step dans trip resume
+                //updateTripSteps(tripResume);
+            }
+        });
+        chooseDestinationViewController.setCityController(ManagementCity.getInstance());
+        chooseDestinationViewController.showCities();
+        stage.setTitle("Choisir une destination");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @Override
-    public void onClickAddPlaneButton(TripResume tripResume) throws IOException {
+    public void onClickAddPlaneButton() throws IOException {
         PlaneStage planeStage = new PlaneStage();
         planeStage.setSource(tripResume.getSource());
         tripResume.addStage(planeStage);
@@ -73,13 +98,12 @@ public class DefineTripController implements DefineTripViewController.Listener{
                 ChooseDestinationViewController chooseDestinationViewController = fxmlLoader.getController();
                 chooseDestinationViewController.setListener( new ChooseDestinationViewController.Listener() {
                     @Override
-                    public CityModel selectedDestination() {
+                    public void selectedDestination() {
                         stage.close();
                         planeStage.setDestination(chooseDestinationViewController.getCurrentCity());
                         planeStageViewController.changeButtonText();
                         //TODO : Foutre update trip step dans trip resume
                         //updateTripSteps(tripResume);
-                        return null;
                     }
                 });
                 chooseDestinationViewController.setCityController(ManagementCity.getInstance());
@@ -159,7 +183,7 @@ public class DefineTripController implements DefineTripViewController.Listener{
     }
 
     @Override
-    public void onClickAddHotelButton(TripResume tripResume) throws IOException {
+    public void onClickAddHotelButton() throws IOException {
         {
             FXMLLoader fxmlHotelStage = new FXMLLoader(TravelAgencyApplication.class.getResource("HotelStage.fxml"));
             TripStage hotelStage = new HotelStage();

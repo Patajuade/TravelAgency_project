@@ -27,7 +27,7 @@ public class ChooseDestinationViewController    {
     }
 
     public interface Listener {
-        CityModel selectedDestination();
+        void selectedDestination();
     }
 
     private ManagementCity cityController;

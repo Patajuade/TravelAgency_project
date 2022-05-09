@@ -55,14 +55,14 @@ public class TripResumeViewController {
         this.listener = listener;
     }
 
-    public void UpdateLabelData(double totalDistance, double totalTime, double totalPrice) {
-        priceWaitingTimeDistanceLabel.setText(totalDistance + " km " + totalTime + " h " + totalPrice + " euros");
+    public void UpdateLabelData() {
+        priceWaitingTimeDistanceLabel.setText(tripResume.getTotalDistance() + " km " + tripResume.getTotalTime() + " h " + tripResume.getTotalPrice() + " euros");
     }
 
-    public void UpdateLabelFromDate(CityModel source, String Date) {
+    public void UpdateLabelFromDate(String Date) {
         String toShow = "" ;
-        if(source != null){
-            toShow += "Depuis " + source.getCityName() + "(" + source.getCountryName() + "), ";
+        if(tripResume.getSource() != null){
+            toShow += "Depuis " + tripResume.getSource().getCityName() + "(" + tripResume.getSource().getCountryName() + "), ";
         }
         else if(Date != ""){
             toShow += Date;
@@ -70,12 +70,12 @@ public class TripResumeViewController {
         fromAndDateLabel.setText(toShow);
     }
 
-    public void UpdateCrossedCities(ArrayList<TripStage> stages){
+    public void UpdateCrossedCities(){
         String toShow = "";
         if(tripResume.getSource() != null){
             toShow = "Villes traversées : " + tripResume.getSource().getCityName() + " (" + tripResume.getSource().getCountryName() + ")";
         }
-        for(TripStage stage : stages){
+        for(TripStage stage : tripResume.getStages()){
             if(stage instanceof PlaneStage && stage.getDestination() != null){
                 toShow += ", " + stage.getDestination().getCityName() + " (" + stage.getDestination().getCountryName() + ")";
             }

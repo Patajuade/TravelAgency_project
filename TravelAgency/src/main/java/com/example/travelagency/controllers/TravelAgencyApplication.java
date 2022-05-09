@@ -11,11 +11,9 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class TravelAgencyApplication extends Application implements TripsResumeViewController.Listener{
 
-    private TripResume editingTripResume;
     TripsResume trips = new TripsResume();
     TripsResumeViewController tripsResumeViewController;
     DefineTripController defineTripController;
-    ChooseDestinationController chooseDestinationController;
 
     @Override
     public void start(Stage stage)  throws IOException {
@@ -36,7 +34,8 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
     public void onClickCreateTripButton() throws IOException {
         TripResume tripResume = new TripResume();
         trips.addTripResume(tripResume);
-        defineTripController = new DefineTripController();
+        defineTripController = new DefineTripController(tripResume);
+        defineTripController.show();
         defineTripController.setListener(new DefineTripController.Listener() {
             @Override
             public void isClosed() {
@@ -52,7 +51,8 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                     @Override
                     public void onClickShowTripButton() throws IOException {
                         //TODO : Gérer la récupération d'un trip resume en fonction de sa fenêtre
-                        tripResumeViewController.getTripResume();
+                        defineTripController = new DefineTripController(tripResumeViewController.getTripResume());
+                        defineTripController.show();
                     }
                     @Override
                     public void onClickDeleteTripButton() {
@@ -66,13 +66,13 @@ public class TravelAgencyApplication extends Application implements TripsResumeV
                     }
                 });
                 tripResume.calculateAll();
-                tripResumeViewController.UpdateLabelData(tripResume.getTotalDistance(),tripResume.getTotalTime(),tripResume.getTotalPrice());
-                tripResumeViewController.UpdateLabelFromDate(tripResume.getSource(), defineTripController.getDate());
+                tripResumeViewController.UpdateLabelData();
+                tripResumeViewController.UpdateLabelFromDate(defineTripController.getDate());
                 tripResumeViewController.UpdateNameTripLabel(defineTripController.getNameTrip());
-                tripResumeViewController.UpdateCrossedCities(tripResume.getStages());
+                tripResumeViewController.UpdateCrossedCities();
             }
         });
-        defineTripController.show();
+
 
     }
 
