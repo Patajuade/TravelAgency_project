@@ -5,6 +5,7 @@ import com.example.travelagency.models.TripStage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -32,11 +33,11 @@ public class TripsResumeViewController {
         void onClickCreateTripButton() throws IOException;
     }
 
-    public void addTripResumeToTripVbox(TripResume tripResume) throws IOException {
-        tripVbox.getChildren().add(tripResume.getAnchorPane());
+    public void addTripResumeToTripVbox(AnchorPane anchorPane) throws IOException {
+        tripVbox.getChildren().add(anchorPane);
     }
 
-    public void removeTripResumeToTripVbox(TripResume tripResume) throws IOException {
-        tripVbox.getChildren().remove(tripResume.getAnchorPane());
+    public void removeTripResumeToTripVbox(AnchorPane anchorPane) throws IOException {
+        tripVbox.getChildren().remove(anchorPane);
     }
 }

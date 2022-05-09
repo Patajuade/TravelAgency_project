@@ -17,8 +17,7 @@ public class PlaneStage extends TripStage {
         this.distance = distance;
     }
 
-    public PlaneStage(FXMLLoader loader) {
-        super(loader);
+    public PlaneStage() {
         flyingSpeed = 700;
         waitingTime = 0;
         pricePerKm = 0.025;

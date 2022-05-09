@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -61,12 +62,12 @@ public class DefineTripViewController {
         listener.onClickAddHotelButton();
     }
 
-    public void addStageToStageVBOX(TripStage tripStage) throws IOException {
-        StageVbox.getChildren().add(tripStage.getAnchorPane());
+    public void addStageToStageVBOX(AnchorPane anchorPane) throws IOException {
+        StageVbox.getChildren().add(anchorPane);
     }
 
-    public void deleteStageOfStageVBOX(TripStage tripStage) throws IOException {
-        StageVbox.getChildren().remove(tripStage.getAnchorPane());
+    public void deleteStageOfStageVBOX(AnchorPane anchorPane) throws IOException {
+        StageVbox.getChildren().remove(anchorPane);
     }
 
     public void UpdateLabel(double totalDistance, double totalTime,double totalPrice){

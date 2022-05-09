@@ -20,17 +20,6 @@ public abstract class TripStage {
 
     protected CityModel source;
     protected CityModel destination;
-    public FXMLLoader getFxml() {
-        return fxmlLoader;
-    }
-
-    private FXMLLoader fxmlLoader;
-
-    private AnchorPane anchorPane;
-
-    public TripStage(FXMLLoader loader) {
-        this.fxmlLoader = loader;
-    }
 
     public abstract void priceCompute();
     public abstract void durationCompute();
@@ -50,11 +39,4 @@ public abstract class TripStage {
         this.source = source;
     }
 
-    public void setAnchorPane() throws IOException {
-        anchorPane = fxmlLoader.load();
-    }
-
-    public AnchorPane getAnchorPane() throws IOException {
-        return anchorPane;
-    }
 }

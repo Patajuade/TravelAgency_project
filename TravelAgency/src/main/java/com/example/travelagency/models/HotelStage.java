@@ -7,8 +7,7 @@ public class HotelStage extends TripStage {
     int numberOfNights;
     int pricePerNight;
 
-    public HotelStage(FXMLLoader loader) {
-        super(loader);
+    public HotelStage() {
         distance = 0;
     }
 

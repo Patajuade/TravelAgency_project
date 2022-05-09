@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -84,6 +85,10 @@ public class TripResumeViewController {
 
     public void UpdateNameTripLabel(String nameTrip){
         nameTripLabel.setText("Voyage " +  nameTrip);
+    }
+
+    public TripResume getTripResume() {
+        return tripResume;
     }
 
     public interface Listener{

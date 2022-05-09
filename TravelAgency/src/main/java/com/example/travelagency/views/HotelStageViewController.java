@@ -17,7 +17,7 @@ public class HotelStageViewController implements Initializable {
         return hotelStage;
     }
 
-    HotelStage hotelStage = new HotelStage(new FXMLLoader());
+    HotelStage hotelStage = new HotelStage();
     Listener listener;
 
     public void setListener(Listener listener) {

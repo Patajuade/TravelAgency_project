@@ -8,10 +8,6 @@ import java.util.ArrayList;
 
 public class TripResume {
 
-    private FXMLLoader fxmlLoader;
-    public FXMLLoader getFxml() {
-        return fxmlLoader;
-    }
 
     ArrayList<TripStage> stages;
     CityModel Source;
@@ -46,19 +42,18 @@ public class TripResume {
     }
 
 
-    public TripResume(FXMLLoader fxmlLoader) {
-        this.fxmlLoader = fxmlLoader;
+    public TripResume() {
         this.stages = new ArrayList<>();
     }
 
-    private AnchorPane anchorPane;
-    public void setAnchorPane() throws IOException {
-        anchorPane = fxmlLoader.load();
-    }
-
-    public AnchorPane getAnchorPane() throws IOException {
-        return anchorPane;
-    }
+//    private AnchorPane anchorPane;
+//    public void setAnchorPane() throws IOException {
+//        anchorPane = fxmlLoader.load();
+//    }
+//
+//    public AnchorPane getAnchorPane() throws IOException {
+//        return anchorPane;
+//    }
 
     public void addStage(TripStage tripStage){
         stages.add(tripStage);
