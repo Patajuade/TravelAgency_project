@@ -40,7 +40,7 @@ public class TripResumeViewController {
     }
 
     @FXML
-    void deleteTripButtonClick(ActionEvent event) {
+    void deleteTripButtonClick(ActionEvent event) throws IOException {
         listener.onClickDeleteTripButton();
     }
 
@@ -91,8 +91,15 @@ public class TripResumeViewController {
         return tripResume;
     }
 
+    public void UpdateDatas(String date,String name) {
+        UpdateLabelData();
+        UpdateLabelFromDate(date);
+        UpdateNameTripLabel(name);
+        UpdateCrossedCities();
+    }
+
     public interface Listener{
-        void onClickDeleteTripButton();
+        void onClickDeleteTripButton() throws IOException;
         void onClickShowTripButton() throws IOException;
     }
 }

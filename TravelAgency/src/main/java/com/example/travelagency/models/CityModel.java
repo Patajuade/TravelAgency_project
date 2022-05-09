@@ -20,14 +20,6 @@ public class CityModel {
         return cityName;
     }
 
-    public String getLatitude() {
-        return latitude;
-    }
-
-    public String getLongitude() {
-        return longitude;
-    }
-
     public double getLatitudeDouble(){
         return Double.parseDouble(latitude);
     }

@@ -4,13 +4,23 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class TripResume {
 
-
+    String name;
+    LocalDate date;
     ArrayList<TripStage> stages;
     CityModel Source;
+
+    public String getName() {
+        return name;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
 
     public double getTotalDistance() {
         return totalDistance;
@@ -46,14 +56,6 @@ public class TripResume {
         this.stages = new ArrayList<>();
     }
 
-//    private AnchorPane anchorPane;
-//    public void setAnchorPane() throws IOException {
-//        anchorPane = fxmlLoader.load();
-//    }
-//
-//    public AnchorPane getAnchorPane() throws IOException {
-//        return anchorPane;
-//    }
 
     public void addStage(TripStage tripStage){
         stages.add(tripStage);
@@ -73,6 +75,14 @@ public class TripResume {
 
     public ArrayList<TripStage> getStages() {
         return stages;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public void setName(String nameTrip) {
+        this.name = nameTrip;
     }
 }
 

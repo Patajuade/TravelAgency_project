@@ -31,12 +31,25 @@ public class DefineTripViewController {
     @FXML
     private VBox StageVbox;
 
-    TripResume tripResume;
     public void setListener(Listener listener) {
         this.listener = listener;
     }
 
     private Listener listener;
+
+    public void setTripResume(TripResume tripResume) {
+        this.tripResume = tripResume;
+    }
+
+    TripResume tripResume;
+
+    public void setName(String name) {
+        TripNameTextField.setText(name);
+    }
+
+    public LocalDate getDate() {
+        return DatePicker.getValue();
+    }
 
     public interface Listener {
         void onClickChooseDestinationButton() throws IOException;
@@ -50,7 +63,9 @@ public class DefineTripViewController {
     }
 
     public void changeStartCity(CityModel city){
-        ChooseButton.setText(city.getCityName()+ "(" + city.getCountryName() + ")");
+        if (city != null) {
+            ChooseButton.setText(city.getCityName()+ "(" + city.getCountryName() + ")");
+        }
     }
 
     @FXML
@@ -79,12 +94,21 @@ public class DefineTripViewController {
         return TripNameTextField.getText();
     }
 
-    public String getDate(){
+    public String getDateAsString(){
         String chosenDateAsString = "";
         if(DatePicker.getValue() != null){
             LocalDate chosenDate = DatePicker.getValue();
             chosenDateAsString = chosenDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         }
         return chosenDateAsString;
+    }
+    public void updateDatas(){
+        setName(tripResume.getName());
+        setDate(tripResume.getDate());
+        changeStartCity(tripResume.getSource());
+    }
+
+    private void setDate(LocalDate date) {
+        DatePicker.setValue(date);
     }
 }

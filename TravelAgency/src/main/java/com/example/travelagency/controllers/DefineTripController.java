@@ -8,20 +8,23 @@ import com.example.travelagency.views.PlaneStageViewController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class DefineTripController implements DefineTripViewController.Listener{
     DefineTripViewController defineTripViewController;
+
+    public void setTripResume(TripResume tripResume) throws IOException {
+        this.tripResume = tripResume;
+    }
+
+    Stage stage;
     TripResume tripResume;
     FXMLLoader fxmlLoader;
-
-    public DefineTripController(TripResume tripResume) {
-        this.tripResume = tripResume;
-        fxmlLoader = new FXMLLoader(TravelAgencyApplication.class.getResource("DefineTrip.fxml"));
-    }
 
     private Listener listener;
 
@@ -29,32 +32,64 @@ public class DefineTripController implements DefineTripViewController.Listener{
         this.listener = listener;
     }
 
-    public String getDate() {
-        return defineTripViewController.getDate();
+    public String  getDateAsString() {
+        return defineTripViewController.getDateAsString();
     }
 
     public String getNameTrip() {
         return  defineTripViewController.getNameTrip();
     }
 
+
     public void show() throws IOException {
+        createDefineTripFxml();
+        updateDatas();
+        updateStages();
+    }
+
+    private void updateDatas() {
+        defineTripViewController.setTripResume(tripResume);
+        defineTripViewController.updateDatas();
+    }
+
+    private void updateStages() throws IOException {
+        for(TripStage tripStage : tripResume.getStages()){
+            if(tripStage instanceof PlaneStage){
+                //TODO:AFFICHER ETAPE AVION Potentiellement un controleur en plus ...
+            }
+            else if(tripStage instanceof HotelStage){
+                //TODO:AFFICHER ETAPE HOTEL
+            }
+        }
+    }
+
+    private void createDefineTripFxml() throws IOException {
+        stage = new Stage();
+        fxmlLoader = new FXMLLoader(TravelAgencyApplication.class.getResource("DefineTrip.fxml"));
         Scene DefineTripScene = new Scene(fxmlLoader.load());
         defineTripViewController = fxmlLoader.getController();
         defineTripViewController.setListener(this);
-        Stage stage = new Stage();
         stage.setTitle("Définir son voyage");
         stage.setScene(DefineTripScene);
         stage.show();
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent windowEvent) {
-                listener.isClosed();
+                try {
+                    listener.isClosed();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
 
+    public LocalDate getDate() {
+        return defineTripViewController.getDate();
+    }
+
     public interface Listener{
-        void isClosed();
+        void isClosed() throws IOException;
     }
 
     @Override
@@ -86,7 +121,8 @@ public class DefineTripController implements DefineTripViewController.Listener{
         planeStage.setSource(tripResume.getSource());
         tripResume.addStage(planeStage);
         FXMLLoader fxmlPlaneStage = new FXMLLoader(TravelAgencyApplication.class.getResource("PlaneStage.fxml"));
-        defineTripViewController.addStageToStageVBOX(fxmlPlaneStage.load());
+        AnchorPane anchorPane = fxmlPlaneStage.load();
+        defineTripViewController.addStageToStageVBOX(anchorPane);
         PlaneStageViewController planeStageViewController = fxmlPlaneStage.getController();
         planeStageViewController.setPlaneStage(planeStage);
         planeStageViewController.setListener(new PlaneStageViewController.Listener() {
@@ -173,7 +209,7 @@ public class DefineTripController implements DefineTripViewController.Listener{
             @Override
             public void onCloseButtonClick() {
                 try {
-                    defineTripViewController.deleteStageOfStageVBOX(fxmlPlaneStage.load());
+                    defineTripViewController.deleteStageOfStageVBOX(anchorPane);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -188,7 +224,8 @@ public class DefineTripController implements DefineTripViewController.Listener{
             FXMLLoader fxmlHotelStage = new FXMLLoader(TravelAgencyApplication.class.getResource("HotelStage.fxml"));
             TripStage hotelStage = new HotelStage();
             tripResume.addStage(hotelStage);
-            defineTripViewController.addStageToStageVBOX(fxmlHotelStage.load());
+            AnchorPane anchorPane = fxmlHotelStage.load();
+            defineTripViewController.addStageToStageVBOX(anchorPane);
             HotelStageViewController hotelStageController = fxmlHotelStage.getController();
             hotelStageController.setListener(new HotelStageViewController.Listener() {
                 @Override
@@ -210,7 +247,7 @@ public class DefineTripController implements DefineTripViewController.Listener{
                 @Override
                 public void onCloseButtonClick() {
                     try {
-                        defineTripViewController.deleteStageOfStageVBOX(fxmlHotelStage.load());
+                        defineTripViewController.deleteStageOfStageVBOX(anchorPane);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
