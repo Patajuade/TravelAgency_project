@@ -31,6 +31,7 @@ public class DefineTripViewController {
     @FXML
     private VBox StageVbox;
 
+    TripResume tripResume;
     public void setListener(Listener listener) {
         this.listener = listener;
     }
@@ -38,9 +39,9 @@ public class DefineTripViewController {
     private Listener listener;
 
     public interface Listener {
-        void onClickChooseDestinationButton() throws IOException;
-        void onClickAddPlaneButton() throws IOException;
-        void onClickAddHotelButton() throws IOException;
+        CityModel onClickChooseDestinationButton() throws IOException;
+        void onClickAddPlaneButton(TripResume tripResume) throws IOException;
+        void onClickAddHotelButton(TripResume tripResume) throws IOException;
     }
 
     @FXML
@@ -54,12 +55,12 @@ public class DefineTripViewController {
 
     @FXML
     private void handleAddPlaneStageButtonClick(ActionEvent event) throws IOException {
-        listener.onClickAddPlaneButton();
+        listener.onClickAddPlaneButton(tripResume);
     }
 
     @FXML
     private void handleAddHotelStageButtonClick(ActionEvent event) throws IOException {
-        listener.onClickAddHotelButton();
+        listener.onClickAddHotelButton(tripResume);
     }
 
     public void addStageToStageVBOX(AnchorPane anchorPane) throws IOException {
