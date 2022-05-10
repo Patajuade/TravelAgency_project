@@ -13,6 +13,8 @@ import java.util.concurrent.atomic.AtomicReference;
 public class TravelAgencyApplication extends Application {
 
     TripsResumeController tripsResumeController;
+    TripResume editingTripResume;
+    TripResumeViewController tripResumeViewController;
 
     @Override
     public void start(Stage stage)  throws IOException {

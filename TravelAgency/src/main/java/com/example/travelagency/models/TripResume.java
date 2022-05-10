@@ -1,11 +1,14 @@
 package com.example.travelagency.models;
 
+import com.example.travelagency.controllers.TravelAgencyApplication;
+import com.example.travelagency.views.PlaneStageViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class TripResume {
 
@@ -84,6 +87,16 @@ public class TripResume {
     public void setName(String nameTrip) {
         this.name = nameTrip;
     }
+
+    public void updateTripStep(){
+        AtomicReference<CityModel> source = new AtomicReference<>(getSource());
+        for(TripStage tripStage : getStages()){
+            if(tripStage instanceof PlaneStage){
+                tripStage.setSource(source.get());
+                source.set(tripStage.getDestination());
+                tripStage.durationCompute();
+                tripStage.priceCompute();
+            }
+        }
+    }
 }
-
-

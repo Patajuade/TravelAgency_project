@@ -64,7 +64,7 @@ public class TripResumeViewController {
         if(tripResume.getSource() != null){
             toShow += "Depuis " + tripResume.getSource().getCityName() + "(" + tripResume.getSource().getCountryName() + "), ";
         }
-        else if(Date != ""){
+        if(Date != ""){
             toShow += Date;
         }
         fromAndDateLabel.setText(toShow);

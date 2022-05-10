@@ -11,22 +11,22 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class TripsResumeController implements TripsResumeViewController.Listener {
+public class TripsResumeController implements TripsResumeViewController.Listener{
     TripsResumeViewController tripsResumeViewController;
     Stage stage;
     TripsResume trips = new TripsResume();
-    DefineTripController defineTripController = new DefineTripController();
-
+    AnchorPane anchorPane;
+    TripResume editingTripResume;
     @Override
     public void onClickCreateTripButton() throws IOException {
         stage.close();
         TripResume tripResume = new TripResume();
-        System.out.println(tripResume);
         trips.addTripResume(tripResume);
+        DefineTripController defineTripController = new DefineTripController();
         defineTripController.setTripResume(tripResume);
         defineTripController.show();
         FXMLLoader fxmlTripResume =  new FXMLLoader(TravelAgencyApplication.class.getResource("TripResume.fxml"));
-        AnchorPane anchorPane = fxmlTripResume.load();
+        anchorPane = fxmlTripResume.load();
         tripsResumeViewController.addTripResumeToTripVbox(anchorPane);
         TripResumeViewController tripResumeViewController = fxmlTripResume.getController();
         tripResumeViewController.setTripResume(tripResume);
@@ -34,19 +34,18 @@ public class TripsResumeController implements TripsResumeViewController.Listener
             @Override
             public void isClosed() throws IOException {
                 stage.show();
-                System.out.println(tripResumeViewController.getTripResume());
-                tripResume.calculateAll();
-                tripResume.setDate(defineTripController.getDate());
-                tripResume.setName(defineTripController.getNameTrip());
+                editingTripResume = defineTripController.getTripResume();
+                editingTripResume.calculateAll();
+                editingTripResume.setDate(defineTripController.getDate());
+                editingTripResume.setName(defineTripController.getNameTrip());
                 tripResumeViewController.UpdateDatas(defineTripController.getDateAsString(),defineTripController.getNameTrip());
             }
         });
+        //Corriger problème ici
         tripResumeViewController.setListener(new TripResumeViewController.Listener() {
             @Override
             public void onClickShowTripButton() throws IOException {
                 stage.close();
-                defineTripController.setTripResume(tripResumeViewController.getTripResume());
-                System.out.println(tripResumeViewController.getTripResume());
                 defineTripController.show();
             }
             @Override

@@ -23,6 +23,11 @@ public class DefineTripController implements DefineTripViewController.Listener{
     }
 
     Stage stage;
+
+    public TripResume getTripResume() {
+        return tripResume;
+    }
+
     TripResume tripResume;
     FXMLLoader fxmlLoader;
 
@@ -49,16 +54,24 @@ public class DefineTripController implements DefineTripViewController.Listener{
 
     private void updateDatas() {
         defineTripViewController.setTripResume(tripResume);
+        defineTripViewController.UpdateLabel(tripResume.getTotalDistance(),tripResume.getTotalTime(),tripResume.getTotalPrice());
         defineTripViewController.updateDatas();
     }
 
     private void updateStages() throws IOException {
+        tripResume.updateTripStep();
         for(TripStage tripStage : tripResume.getStages()){
             if(tripStage instanceof PlaneStage){
                 //TODO:AFFICHER ETAPE AVION Potentiellement un controleur en plus ...
+                FXMLLoader fxmlPlaneStage = new FXMLLoader(TravelAgencyApplication.class.getResource("PlaneStage.fxml"));
+                AnchorPane anchorPane = fxmlPlaneStage.load();
+                defineTripViewController.addStageToStageVBOX(anchorPane);
             }
             else if(tripStage instanceof HotelStage){
                 //TODO:AFFICHER ETAPE HOTEL
+                FXMLLoader fxmlHotelStage = new FXMLLoader(TravelAgencyApplication.class.getResource("HotelStage.fxml"));
+                AnchorPane anchorPane = fxmlHotelStage.load();
+                defineTripViewController.addStageToStageVBOX(anchorPane);
             }
         }
     }
@@ -102,10 +115,10 @@ public class DefineTripController implements DefineTripViewController.Listener{
             @Override
             public void selectedDestination() {
                 stage.close();
+                //TODO : Foutre update trip step dans trip resume
+                tripResume.updateTripStep();
                 tripResume.setSource(chooseDestinationViewController.getCurrentCity());
                 defineTripViewController.changeStartCity(chooseDestinationViewController.getCurrentCity());
-                //TODO : Foutre update trip step dans trip resume
-                //updateTripSteps(tripResume);
             }
         });
         chooseDestinationViewController.setCityController(ManagementCity.getInstance());
@@ -139,7 +152,8 @@ public class DefineTripController implements DefineTripViewController.Listener{
                         planeStage.setDestination(chooseDestinationViewController.getCurrentCity());
                         planeStageViewController.changeButtonText();
                         //TODO : Foutre update trip step dans trip resume
-                        //updateTripSteps(tripResume);
+                        tripResume.updateTripStep();
+                        planeStageViewController.updateLabels();
                     }
                 });
                 chooseDestinationViewController.setCityController(ManagementCity.getInstance());
@@ -221,9 +235,9 @@ public class DefineTripController implements DefineTripViewController.Listener{
     @Override
     public void onClickAddHotelButton() throws IOException {
         {
-            FXMLLoader fxmlHotelStage = new FXMLLoader(TravelAgencyApplication.class.getResource("HotelStage.fxml"));
             TripStage hotelStage = new HotelStage();
             tripResume.addStage(hotelStage);
+            FXMLLoader fxmlHotelStage = new FXMLLoader(TravelAgencyApplication.class.getResource("HotelStage.fxml"));
             AnchorPane anchorPane = fxmlHotelStage.load();
             defineTripViewController.addStageToStageVBOX(anchorPane);
             HotelStageViewController hotelStageController = fxmlHotelStage.getController();

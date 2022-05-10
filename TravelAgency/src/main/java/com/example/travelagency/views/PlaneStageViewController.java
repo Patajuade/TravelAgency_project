@@ -37,7 +37,6 @@ public class PlaneStageViewController implements Initializable {
     @FXML
     private Spinner<Integer> WaitingTimeSpinner;
 
-    //PlaneStage planeStage;
     PlaneStage planeStage = new PlaneStage();
 
     private Listener listener;
@@ -50,7 +49,7 @@ public class PlaneStageViewController implements Initializable {
         }
     }
 
-        public PlaneStage getPlaneStage() {
+    public PlaneStage getPlaneStage() {
         return planeStage;
     }
 
