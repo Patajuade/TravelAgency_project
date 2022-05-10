@@ -151,8 +151,10 @@ public class DefineTripController implements DefineTripViewController.Listener{
                         stage.close();
                         planeStage.setDestination(chooseDestinationViewController.getCurrentCity());
                         planeStageViewController.changeButtonText();
-                        //TODO : Foutre update trip step dans trip resume
+                        //TODO : Faire le calcul des villes en dessous c'est pourri c'est pour du test
+                        //planeStage.setDistance(planeStage.getDestination().distanceCompute(tripResume.getSource()));
                         tripResume.updateTripStep();
+
                         planeStageViewController.updateLabels();
                     }
                 });
