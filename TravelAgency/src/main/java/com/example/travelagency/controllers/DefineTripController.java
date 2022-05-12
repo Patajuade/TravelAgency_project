@@ -80,6 +80,8 @@ public class DefineTripController implements DefineTripViewController.Listener{
         stage = new Stage();
         fxmlLoader = new FXMLLoader(TravelAgencyApplication.class.getResource("DefineTrip.fxml"));
         Scene DefineTripScene = new Scene(fxmlLoader.load());
+        stage.setMinHeight(800);
+        stage.setMinWidth(650);
         defineTripViewController = fxmlLoader.getController();
         defineTripViewController.setListener(this);
         stage.setTitle("Définir son voyage");
@@ -142,7 +144,7 @@ public class DefineTripController implements DefineTripViewController.Listener{
         defineTripViewController.addStageToStageVBOX(anchorPane);
         PlaneStageViewController planeStageViewController = fxmlPlaneStage.getController();
         planeStageViewController.setPlaneStage(planeStage);
-        planeStageViewController.updateLabels();
+        planeStageViewController.updateBottomLabel();
         planeStageViewController.setListener(new PlaneStageViewController.Listener() {
             @Override
             public void onChooseButtonClick() throws IOException {

@@ -88,16 +88,16 @@ public class PlaneStageViewController implements Initializable {
                     + planeStage.getPrice() +"euros)");
         }
         else{
-            TopInformationLabel.setText("Voyage en avion ( Aucune , 0km, 0heures, 0euros )");
+            TopInformationLabel.setText("Voyage en avion ");
         }
     }
 
-    private void updateBottomLabel() {
+    public void updateBottomLabel() {
         if(planeStage.getDestination() != null && planeStage.getSource() != null) {
             BottomInformationLabel.setText(planeStage.getDistance() + "km," + planeStage.getDuration() + "heures," + planeStage.getPrice() + "euros");
         }
         else{
-            BottomInformationLabel.setText("Voyage en avion ( Aucune , 0km, 0heures, 0euros )");
+            BottomInformationLabel.setText("0km, 0heures, 0euros ");
         }
     }
 

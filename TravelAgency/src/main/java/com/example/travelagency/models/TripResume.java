@@ -101,6 +101,9 @@ public class TripResume {
                 else{
                     tripStage.setSource(previousTripStage.getDestination());
                 }
+                if(tripStage.getSource() == null){
+                    break;
+                }
                 ((PlaneStage) tripStage).setDistance(tripStage.getDestination().distanceCompute(tripStage.getSource()));
                 tripStage.durationCompute();
                 tripStage.priceCompute();

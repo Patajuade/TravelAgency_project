@@ -44,7 +44,6 @@ public class TripsResumeController implements TripsResumeViewController.Listener
                 tripResumeViewController.UpdateDatas(defineTripController.getDateAsString(), defineTripController.getNameTrip());
             }
         });
-        //Corriger problème ici
         tripResumeViewController.setListener(new TripResumeViewController.Listener() {
             @Override
             public void onClickShowTripButton() throws IOException {
@@ -61,6 +60,8 @@ public class TripsResumeController implements TripsResumeViewController.Listener
 
     public void show() throws IOException{
         stage = new Stage();
+        stage.setMinWidth(650);
+        stage.setMinHeight(600);
         FXMLLoader fxmlTripsResume = new FXMLLoader(TravelAgencyApplication.class.getResource("TripsResume.fxml"));
         Scene TripsResumeScene = new Scene(fxmlTripsResume.load());
         tripsResumeViewController = fxmlTripsResume.getController();
