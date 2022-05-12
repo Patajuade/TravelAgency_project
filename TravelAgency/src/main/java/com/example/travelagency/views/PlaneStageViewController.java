@@ -2,6 +2,8 @@ package com.example.travelagency.views;
 
 import com.example.travelagency.models.HotelStage;
 import com.example.travelagency.models.PlaneStage;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,9 +25,6 @@ public class PlaneStageViewController implements Initializable {
     private Button CloseButton;
 
     @FXML
-    private MenuButton PricePerKmMenuButton;
-
-    @FXML
     private RadioButton RadioButton700;
 
     @FXML
@@ -37,7 +36,19 @@ public class PlaneStageViewController implements Initializable {
     @FXML
     private Spinner<Integer> WaitingTimeSpinner;
 
+    @FXML
+    private ComboBox<Double> pricePerKmComboBox;
+
     PlaneStage planeStage = new PlaneStage();
+    ObservableList<Double> optionsList =
+            FXCollections.observableArrayList(
+                    0.025,
+                    0.0507,
+                    0.0758,
+                    0.1005,
+                    0.2
+            );
+
 
     private Listener listener;
 
@@ -100,20 +111,16 @@ public class PlaneStageViewController implements Initializable {
         WaitingTimeSpinner.valueProperty().addListener(((observable, oldValue, newValue) -> {
             this.handleWaitingTimeSpinner();
         }));
+        pricePerKmComboBox.setItems(optionsList);
     }
-
 
     public interface Listener {
         void onChooseButtonClick() throws IOException;
         void onRadioButton700Click();
         void onRadioButton900Click();
         void onUpperWaitingTimeSpinner();
-        void onMenuItem0025Click();
-        void onMenuItem00507Click();
-        void onMenuItem00758Click();
-        void onMenuItem01005Click();
-        void onMenuItem02Click();
         void onCloseButtonClick();
+        void onPricePerKmChange(Double value);
     }
 
     @FXML
@@ -137,38 +144,8 @@ public class PlaneStageViewController implements Initializable {
     }
 
     @FXML
-    private void handleChooseMenuButton(ActionEvent event){
-
-    }
-
-    @FXML
-    void handleMenuItem0025(ActionEvent event) {
-        listener.onMenuItem0025Click();
-        PricePerKmMenuButton.setText("0.025");
-    }
-
-    @FXML
-    void handleMenuItem00507(ActionEvent event) {
-        listener.onMenuItem00507Click();
-        PricePerKmMenuButton.setText("0.0507");
-    }
-
-    @FXML
-    void handleMenuItem00758(ActionEvent event) {
-        listener.onMenuItem00758Click();
-        PricePerKmMenuButton.setText("0.0758");
-    }
-
-    @FXML
-    void handleMenuItem01005(ActionEvent event) {
-        listener.onMenuItem01005Click();
-        PricePerKmMenuButton.setText("0.1005");
-    }
-
-    @FXML
-    void handleMenuItem02(ActionEvent event) {
-        listener.onMenuItem02Click();
-        PricePerKmMenuButton.setText("0.2");
+    void setOnActionComboBox(ActionEvent event) {
+        listener.onPricePerKmChange(pricePerKmComboBox.getValue());
     }
 
     @FXML

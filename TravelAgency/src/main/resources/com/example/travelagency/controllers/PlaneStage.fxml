@@ -2,9 +2,8 @@
 
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -27,15 +26,6 @@
                   <Label layoutX="341.0" layoutY="14.0" text="Temps d'attente (minutes) : " AnchorPane.rightAnchor="119.0" AnchorPane.topAnchor="14.0" />
                   <Label layoutX="341.0" layoutY="58.0" text="Prix par kilomètre parcouru :" AnchorPane.rightAnchor="117.0" AnchorPane.topAnchor="55.0" />
                   <Button fx:id="ChooseButton" layoutX="133.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleChooseButtonClick" text="Choisir ..." AnchorPane.leftAnchor="133.0" AnchorPane.topAnchor="10.0" />
-                  <MenuButton fx:id="PricePerKmMenuButton" layoutX="495.0" layoutY="52.0" mnemonicParsing="false" onAction="#handleChooseMenuButton" text="0.025" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="52.0">
-                    <items>
-                      <MenuItem fx:id="menuItem0025" mnemonicParsing="false" onAction="#handleMenuItem0025" text="0.025" />
-                      <MenuItem fx:id="menuItem00507" mnemonicParsing="false" onAction="#handleMenuItem00507" text="0.0507" />
-                        <MenuItem fx:id="menuItem00758" mnemonicParsing="false" onAction="#handleMenuItem00758" text="0.0758" />
-                        <MenuItem fx:id="menuItem01005" mnemonicParsing="false" onAction="#handleMenuItem01005" text="0.1005" />
-                        <MenuItem fx:id="menuItem02" mnemonicParsing="false" onAction="#handleMenuItem02" text="0.2" />
-                    </items>
-                  </MenuButton>
                   <Spinner fx:id="WaitingTimeSpinner" editable="true" layoutX="495.0" layoutY="10.0" onKeyReleased="#handleWaitingTimeSpinner" onMouseClicked="#handleWaitingTimeSpinner" prefHeight="25.0" prefWidth="99.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="10.0" />
                   <Group layoutX="134.0" layoutY="56.0">
                      <children>
@@ -46,6 +36,7 @@
                      </children>
                   </Group>
                   <RadioButton fx:id="RadioButton900" layoutX="225.0" layoutY="56.0" mnemonicParsing="false" onAction="#handleRadioButton900Click" prefHeight="17.0" prefWidth="72.0" text="900km/h" toggleGroup="$Speed" />
+                  <ComboBox fx:id="pricePerKmComboBox" layoutX="506.0" layoutY="53.0" onAction="#setOnActionComboBox" prefHeight="25.0" prefWidth="88.0" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="49.0" prefWidth="625.0">

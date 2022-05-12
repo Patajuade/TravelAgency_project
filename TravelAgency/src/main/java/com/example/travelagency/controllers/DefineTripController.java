@@ -115,10 +115,10 @@ public class DefineTripController implements DefineTripViewController.Listener{
             @Override
             public void selectedDestination() {
                 stage.close();
-                //TODO : Foutre update trip step dans trip resume
-                tripResume.updateTripStep();
                 tripResume.setSource(chooseDestinationViewController.getCurrentCity());
                 defineTripViewController.changeStartCity(chooseDestinationViewController.getCurrentCity());
+                tripResume.updateTripStep();
+                tripResume.calculateAll();
                 updateTotalLabel();
             }
         });
@@ -194,46 +194,6 @@ public class DefineTripController implements DefineTripViewController.Listener{
             }
 
             @Override
-            public void onMenuItem0025Click() {
-                planeStage.setPricePerKm(0.025);
-                planeStage.priceCompute();
-                planeStageViewController.updateLabels();
-                updateTotalLabel();
-            }
-
-            @Override
-            public void onMenuItem00507Click() {
-                planeStage.setPricePerKm(0.0507);
-                planeStage.priceCompute();
-                planeStageViewController.updateLabels();
-                updateTotalLabel();
-            }
-
-            @Override
-            public void onMenuItem00758Click() {
-                planeStage.setPricePerKm(0.0758);
-                planeStage.priceCompute();
-                planeStageViewController.updateLabels();
-                updateTotalLabel();
-            }
-
-            @Override
-            public void onMenuItem01005Click() {
-                planeStage.setPricePerKm(0.1005);
-                planeStage.priceCompute();
-                planeStageViewController.updateLabels();
-                updateTotalLabel();
-            }
-
-            @Override
-            public void onMenuItem02Click() {
-                planeStage.setPricePerKm(0.2);
-                planeStage.priceCompute();
-                planeStageViewController.updateLabels();
-                updateTotalLabel();
-            }
-
-            @Override
             public void onCloseButtonClick() {
                 try {
                     defineTripViewController.deleteStageOfStageVBOX(anchorPane);
@@ -245,6 +205,14 @@ public class DefineTripController implements DefineTripViewController.Listener{
                     e.printStackTrace();
                 }
                 planeStageViewController.updateLabels();
+            }
+
+            @Override
+            public void onPricePerKmChange(Double value) {
+                planeStage.setPricePerKm(value);
+                planeStage.priceCompute();
+                planeStageViewController.updateLabels();
+                updateTotalLabel();
             }
         });
     }
