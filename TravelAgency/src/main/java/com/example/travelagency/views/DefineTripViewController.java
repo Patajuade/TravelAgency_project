@@ -86,7 +86,7 @@ public class DefineTripViewController {
         StageVbox.getChildren().remove(anchorPane);
     }
 
-    public void UpdateLabel(double totalDistance, double totalTime,double totalPrice){
+    public void updateLabel(double totalDistance, double totalTime, double totalPrice){
         dataLabel.setText(totalDistance + " km " + totalTime + " h " + totalPrice + " euros");
     }
 

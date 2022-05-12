@@ -15,7 +15,6 @@ public class TripsResumeController implements TripsResumeViewController.Listener
     TripsResumeViewController tripsResumeViewController;
     Stage stage;
     TripsResume trips = new TripsResume();
-    AnchorPane anchorPane;
     TripResume editingTripResume;
     @Override
     public void onClickCreateTripButton() throws IOException {
@@ -25,8 +24,12 @@ public class TripsResumeController implements TripsResumeViewController.Listener
         DefineTripController defineTripController = new DefineTripController();
         defineTripController.setTripResume(tripResume);
         defineTripController.show();
+        managementTripResumeFxml(tripResume, defineTripController);
+    }
+
+    private void managementTripResumeFxml(TripResume tripResume, DefineTripController defineTripController) throws IOException {
         FXMLLoader fxmlTripResume =  new FXMLLoader(TravelAgencyApplication.class.getResource("TripResume.fxml"));
-        anchorPane = fxmlTripResume.load();
+        AnchorPane anchorPane = fxmlTripResume.load();
         tripsResumeViewController.addTripResumeToTripVbox(anchorPane);
         TripResumeViewController tripResumeViewController = fxmlTripResume.getController();
         tripResumeViewController.setTripResume(tripResume);
@@ -38,7 +41,7 @@ public class TripsResumeController implements TripsResumeViewController.Listener
                 editingTripResume.calculateAll();
                 editingTripResume.setDate(defineTripController.getDate());
                 editingTripResume.setName(defineTripController.getNameTrip());
-                tripResumeViewController.UpdateDatas(defineTripController.getDateAsString(),defineTripController.getNameTrip());
+                tripResumeViewController.UpdateDatas(defineTripController.getDateAsString(), defineTripController.getNameTrip());
             }
         });
         //Corriger problème ici

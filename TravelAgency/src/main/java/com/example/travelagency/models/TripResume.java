@@ -89,13 +89,22 @@ public class TripResume {
     }
 
     public void updateTripStep(){
-        AtomicReference<CityModel> source = new AtomicReference<>(getSource());
+        TripStage previousTripStage = null;
         for(TripStage tripStage : getStages()){
-            if(tripStage instanceof PlaneStage){
-                tripStage.setSource(source.get());
-                source.set(tripStage.getDestination());
+            if(tripStage instanceof HotelStage){
+                //Rien c'est pour éviter qui si on commence par un hôtel(bizarre déjà) il y ai un problème de distance
+            }
+            else if(tripStage instanceof PlaneStage){
+                if(previousTripStage == null){
+                    tripStage.setSource(this.getSource());
+                }
+                else{
+                    tripStage.setSource(previousTripStage.getDestination());
+                }
+                ((PlaneStage) tripStage).setDistance(tripStage.getDestination().distanceCompute(tripStage.getSource()));
                 tripStage.durationCompute();
                 tripStage.priceCompute();
+                previousTripStage = tripStage;
             }
         }
     }

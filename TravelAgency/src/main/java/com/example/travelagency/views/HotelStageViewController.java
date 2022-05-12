@@ -91,6 +91,11 @@ public class HotelStageViewController implements Initializable {
         hotelStage.priceCompute();
     }
 
+    public void calculateDuration(int numberOfNights){
+        hotelStage.setNumberOfNights(numberOfNights);
+        hotelStage.durationCompute();
+    }
+
     public void updateLabels(){
         updateLabel(bottomInfoLabel);
         updateLabel(topInformationLabel);
