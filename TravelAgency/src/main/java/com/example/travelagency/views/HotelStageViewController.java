@@ -14,12 +14,12 @@ import java.util.ResourceBundle;
 
 public class HotelStageViewController implements Initializable, IViewController {
 
-    public HotelStage getHotelStage() {
-        return hotelStage;
-    }
-
-    HotelStage hotelStage = new HotelStage();
+    HotelStage hotelStage;
     Listener listener;
+
+    public void setHotelStage(HotelStage hotelStage) {
+        this.hotelStage = hotelStage;
+    }
 
     public void setListener(Listener listener) {
         this.listener = listener;
