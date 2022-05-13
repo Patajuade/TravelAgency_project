@@ -1,10 +1,5 @@
 package com.example.travelagency.models;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.AnchorPane;
-
-import java.io.IOException;
-
 public abstract class TripStage {
     protected double price;
     protected double duration;
@@ -39,4 +34,8 @@ public abstract class TripStage {
         this.source = source;
     }
 
+    public void updateDatas() {
+        priceCompute();
+        durationCompute();
+    }
 }

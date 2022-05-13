@@ -31,4 +31,8 @@ public class HotelStage extends TripStage {
     public void setPricePerNight(int pricePerNight) {
         this.pricePerNight = pricePerNight;
     }
+
+    public int getPricePerNight() {
+        return pricePerNight;
+    }
 }

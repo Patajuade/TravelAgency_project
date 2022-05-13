@@ -1,10 +1,5 @@
 package com.example.travelagency.models;
 
-import javafx.fxml.FXMLLoader;
-import javafx.stage.Stage;
-
-import java.io.IOException;
-
 public class PlaneStage extends TripStage {
 
     int flyingSpeed;
@@ -39,6 +34,12 @@ public class PlaneStage extends TripStage {
         duration = (double) Math.round(duration * 100) / 100;
     }
 
+    @Override
+    public void updateDatas() {
+        distance = destination.distanceCompute(source);
+        super.updateDatas();
+    }
+
     public void setFlyingSpeed(int flyingSpeed) {
         this.flyingSpeed = flyingSpeed;
     }
@@ -52,4 +53,15 @@ public class PlaneStage extends TripStage {
     }
 
 
+    public double getPricePerKm() {
+        return pricePerKm;
+    }
+
+    public int getSpeed() {
+        return flyingSpeed;
+    }
+
+    public int getWaitingTime() {
+        return waitingTime;
+    }
 }

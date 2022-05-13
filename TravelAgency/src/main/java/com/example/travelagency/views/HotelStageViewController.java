@@ -1,5 +1,6 @@
 package com.example.travelagency.views;
 import com.example.travelagency.models.HotelStage;
+import com.example.travelagency.models.IViewController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,7 +12,7 @@ import javafx.scene.control.SpinnerValueFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class HotelStageViewController implements Initializable {
+public class HotelStageViewController implements Initializable, IViewController {
 
     public HotelStage getHotelStage() {
         return hotelStage;
@@ -22,6 +23,17 @@ public class HotelStageViewController implements Initializable {
 
     public void setListener(Listener listener) {
         this.listener = listener;
+    }
+
+    @Override
+    public void update() {
+        updateLabels();
+        updateComponent();
+    }
+
+    private void updateComponent() {
+        numberOfNightsSpinner.getEditor().setText(String.valueOf(hotelStage.getNumberOfNights()));
+        pricePerNightSpinner.getEditor().setText(String.valueOf(hotelStage.getPricePerNight()));
     }
 
     public interface Listener {

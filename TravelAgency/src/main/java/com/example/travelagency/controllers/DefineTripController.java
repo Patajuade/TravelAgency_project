@@ -14,12 +14,21 @@ import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DefineTripController implements DefineTripViewController.Listener{
     DefineTripViewController defineTripViewController;
+    List<IViewController> listViewController = new ArrayList<>();
 
     public void setTripResume(TripResume tripResume) throws IOException {
         this.tripResume = tripResume;
+    }
+
+    public void updateAllStep(){
+        for (IViewController iViewController : listViewController) {
+            iViewController.update();
+        }
     }
 
     Stage stage;
@@ -122,6 +131,7 @@ public class DefineTripController implements DefineTripViewController.Listener{
                 tripResume.updateTripStep();
                 tripResume.calculateAll();
                 updateTotalLabel();
+                updateAllStep();
             }
         });
         chooseDestinationViewController.setCityController(ManagementCity.getInstance());
@@ -143,8 +153,9 @@ public class DefineTripController implements DefineTripViewController.Listener{
         AnchorPane anchorPane = fxmlPlaneStage.load();
         defineTripViewController.addStageToStageVBOX(anchorPane);
         PlaneStageViewController planeStageViewController = fxmlPlaneStage.getController();
+        listViewController.add(planeStageViewController);
         planeStageViewController.setPlaneStage(planeStage);
-        planeStageViewController.updateBottomLabel();
+        planeStageViewController.update();
         planeStageViewController.setListener(new PlaneStageViewController.Listener() {
             @Override
             public void onChooseButtonClick() throws IOException {
@@ -161,6 +172,7 @@ public class DefineTripController implements DefineTripViewController.Listener{
                         tripResume.updateTripStep();
                         planeStageViewController.updateLabels();
                         updateTotalLabel();
+                        updateAllStep();
                     }
                 });
                 chooseDestinationViewController.setCityController(ManagementCity.getInstance());
@@ -203,6 +215,7 @@ public class DefineTripController implements DefineTripViewController.Listener{
                     tripResume.updateTripStep();
                     planeStageViewController.updateLabels();
                     updateTotalLabel();
+                    updateAllStep();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -233,7 +246,8 @@ public class DefineTripController implements DefineTripViewController.Listener{
         AnchorPane anchorPane = fxmlHotelStage.load();
         defineTripViewController.addStageToStageVBOX(anchorPane);
         HotelStageViewController hotelStageViewController = fxmlHotelStage.getController();
-        hotelStageViewController.updateLabels();
+        listViewController.add(hotelStageViewController);
+        hotelStageViewController.update();
         hotelStageViewController.setListener(new HotelStageViewController.Listener() {
             @Override
             public void onUpperNumberOfNightsSpinner() {

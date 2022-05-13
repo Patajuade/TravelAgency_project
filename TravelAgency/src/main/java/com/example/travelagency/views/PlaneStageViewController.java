@@ -1,6 +1,7 @@
 package com.example.travelagency.views;
 
 import com.example.travelagency.models.HotelStage;
+import com.example.travelagency.models.IViewController;
 import com.example.travelagency.models.PlaneStage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,7 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PlaneStageViewController implements Initializable {
+public class PlaneStageViewController implements Initializable, IViewController {
     @FXML
     private Label BottomInformationLabel;
 
@@ -66,6 +67,7 @@ public class PlaneStageViewController implements Initializable {
 
     public void setPlaneStage(PlaneStage planeStage) {
         this.planeStage = planeStage;
+        // TODO : update les labels des sous fenêtres
     }
 
     public void setListener(Listener listener) {
@@ -112,6 +114,26 @@ public class PlaneStageViewController implements Initializable {
             this.handleWaitingTimeSpinner();
         }));
         pricePerKmComboBox.setItems(optionsList);
+    }
+
+    @Override
+    public void update() {
+        updateLabels();
+        updateComponents();
+    }
+
+    private void updateComponents() {
+        if(planeStage.getDestination() !=null){
+            changeButtonText();
+            pricePerKmComboBox.setValue(planeStage.getPricePerKm());
+            if(planeStage.getSpeed() == 700){
+                RadioButton700.setSelected(true);
+            }
+            else{
+                RadioButton900.setSelected(true);
+            }
+            WaitingTimeSpinner.getEditor().setText(String.valueOf(planeStage.getWaitingTime()));
+        }
     }
 
     public interface Listener {

@@ -1,14 +1,7 @@
 package com.example.travelagency.models;
 
-import com.example.travelagency.controllers.TravelAgencyApplication;
-import com.example.travelagency.views.PlaneStageViewController;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.AnchorPane;
-
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class TripResume {
 
@@ -104,9 +97,7 @@ public class TripResume {
                 if(tripStage.getSource() == null){
                     break;
                 }
-                ((PlaneStage) tripStage).setDistance(tripStage.getDestination().distanceCompute(tripStage.getSource()));
-                tripStage.durationCompute();
-                tripStage.priceCompute();
+                tripStage.updateDatas();
                 previousTripStage = tripStage;
             }
         }
