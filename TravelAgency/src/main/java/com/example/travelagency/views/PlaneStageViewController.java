@@ -39,7 +39,7 @@ public class PlaneStageViewController implements Initializable {
     @FXML
     private ComboBox<Double> pricePerKmComboBox;
 
-    PlaneStage planeStage = new PlaneStage();
+    PlaneStage planeStage;
     ObservableList<Double> optionsList =
             FXCollections.observableArrayList(
                     0.025,
@@ -58,10 +58,6 @@ public class PlaneStageViewController implements Initializable {
         } catch (NumberFormatException e) {
             return 0;
         }
-    }
-
-    public PlaneStage getPlaneStage() {
-        return planeStage;
     }
 
     public void setPlaneStage(PlaneStage planeStage) {

@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 public class HotelStage extends TripStage {
 
     int numberOfNights;
+
     int pricePerNight;
 
     public HotelStage() {
@@ -23,6 +24,8 @@ public class HotelStage extends TripStage {
     public int getNumberOfNights() {
         return numberOfNights;
     }
+
+    public int getPricePerNight() { return pricePerNight; }
 
     public void setNumberOfNights(int numberOfNights) {
         this.numberOfNights = numberOfNights;
