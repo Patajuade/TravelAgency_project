@@ -17,11 +17,15 @@ public class HotelStageViewController implements Initializable {
         return hotelStage;
     }
 
-    HotelStage hotelStage = new HotelStage();
+    HotelStage hotelStage;
     Listener listener;
 
     public void setListener(Listener listener) {
         this.listener = listener;
+    }
+
+    public void setHotelStage(HotelStage hotelStage) {
+        this.hotelStage = hotelStage;
     }
 
     public interface Listener {
