@@ -84,7 +84,9 @@ public class TripResumeViewController {
     }
 
     public void UpdateNameTripLabel(String nameTrip){
-        nameTripLabel.setText("Voyage " +  nameTrip);
+        if(nameTrip !=null){
+            nameTripLabel.setText(nameTrip);
+        }
     }
 
     public TripResume getTripResume() {
