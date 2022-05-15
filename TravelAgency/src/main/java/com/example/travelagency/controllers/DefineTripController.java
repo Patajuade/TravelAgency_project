@@ -1,5 +1,6 @@
 package com.example.travelagency.controllers;
 
+import com.example.travelagency.interfaces.IViewController;
 import com.example.travelagency.models.*;
 import com.example.travelagency.views.ChooseDestinationViewController;
 import com.example.travelagency.views.DefineTripViewController;

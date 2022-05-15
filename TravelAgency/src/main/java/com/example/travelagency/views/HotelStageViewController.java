@@ -1,10 +1,8 @@
 package com.example.travelagency.views;
 import com.example.travelagency.models.HotelStage;
-import com.example.travelagency.models.IViewController;
+import com.example.travelagency.interfaces.IViewController;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;

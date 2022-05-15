@@ -1,13 +1,11 @@
 package com.example.travelagency.views;
 
-import com.example.travelagency.models.HotelStage;
-import com.example.travelagency.models.IViewController;
+import com.example.travelagency.interfaces.IViewController;
 import com.example.travelagency.models.PlaneStage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 

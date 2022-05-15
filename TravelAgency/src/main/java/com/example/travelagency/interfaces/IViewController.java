@@ -1,4 +1,4 @@
-package com.example.travelagency.models;
+package com.example.travelagency.interfaces;
 
 public interface IViewController {
     void update();
