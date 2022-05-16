@@ -1,5 +1,7 @@
 package com.example.travelagency;
 import com.example.travelagency.models.CityModel;
+import com.example.travelagency.models.HotelStage;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,8 +13,6 @@ public class CityModelTest {
         assertEquals(city.getCityName(),"test");
         assertNotEquals(city.getCityName(),"0");
     }
-    //TODO : pour distanceCompute
-    //tester pour 2 villes identiques (même latitude et même longitude)
 
     @Test
     public void distanceCompute_WhenCitiesAreTheSamePosition(){
