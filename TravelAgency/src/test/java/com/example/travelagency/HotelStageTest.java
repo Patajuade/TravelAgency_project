@@ -1,6 +1,7 @@
 package com.example.travelagency;
 import com.example.travelagency.models.CityModel;
 import com.example.travelagency.models.HotelStage;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,19 +18,27 @@ public class HotelStageTest {
 
     @Test
     public void priceCompute(){
+        //arrange
         hotelStage.setNumberOfNights(2);
         hotelStage.setPricePerNight(10);
-        int pricePerNight = hotelStage.getPricePerNight();
-        int numberOfNights = hotelStage.getNumberOfNights();
+        //act
         hotelStage.priceCompute();
-        assertEquals(20,pricePerNight*numberOfNights);
+        //assert
+        assertEquals(20,hotelStage.getPricePerNight()*hotelStage.getNumberOfNights());
     }
 
     @Test
     public void durationCompute(){
+        //arrange
         hotelStage.setNumberOfNights(2);
-        int numberOfNights = hotelStage.getNumberOfNights();
+        //act
         hotelStage.durationCompute();
-        assertEquals(48,numberOfNights*24);
+        //assert
+        assertEquals(48,hotelStage.getNumberOfNights()*24);
+    }
+
+    @AfterEach
+    public void undefPlaneStage(){
+        hotelStage = null;
     }
 }

@@ -28,7 +28,6 @@ public class CityModelTest {
         CityModel city1 = new CityModel("city1","100","100","test");
         CityModel city2 = new CityModel("city2","0","0","test");
         double distance = city1.distanceCompute(city2);
-        System.out.println(distance);
         assertEquals(distance,9815.41);
         assertEquals(city2.distanceCompute(city1),distance);
     }
