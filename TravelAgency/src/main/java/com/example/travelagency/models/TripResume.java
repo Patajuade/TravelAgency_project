@@ -47,11 +47,9 @@ public class TripResume {
         }
     }
 
-
     public TripResume() {
         this.stages = new ArrayList<>();
     }
-
 
     public void addStage(TripStage tripStage){
         stages.add(tripStage);

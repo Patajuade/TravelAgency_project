@@ -38,7 +38,7 @@ public class HotelStageTest {
     }
 
     @AfterEach
-    public void undefPlaneStage(){
+    public void undefHotelStage(){
         hotelStage = null;
     }
 }
