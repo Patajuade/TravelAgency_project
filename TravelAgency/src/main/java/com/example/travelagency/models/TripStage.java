@@ -34,6 +34,18 @@ public abstract class TripStage {
         this.source = source;
     }
 
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setDuration(double duration) {
+        this.duration = duration;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
     public void updateDatas() {
         priceCompute();
         durationCompute();

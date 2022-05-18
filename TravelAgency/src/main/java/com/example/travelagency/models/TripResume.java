@@ -47,11 +47,9 @@ public class TripResume {
         }
     }
 
-
     public TripResume() {
         this.stages = new ArrayList<>();
     }
-
 
     public void addStage(TripStage tripStage){
         stages.add(tripStage);
@@ -84,21 +82,17 @@ public class TripResume {
     public void updateTripStep(){
         TripStage previousTripStage = null;
         for(TripStage tripStage : getStages()){
-            if(tripStage instanceof HotelStage){
-                //Rien c'est pour éviter qui si on commence par un hôtel(bizarre déjà) il y ai un problème de distance
-            }
-            else if(tripStage instanceof PlaneStage){
+            if(tripStage instanceof PlaneStage){
                 if(previousTripStage == null){
                     tripStage.setSource(this.getSource());
                 }
                 else{
                     tripStage.setSource(previousTripStage.getDestination());
                 }
-                if(tripStage.getSource() == null){
-                    break;
+                if(tripStage.getSource() != null){
+                    tripStage.updateDatas();
+                    previousTripStage = tripStage;
                 }
-                tripStage.updateDatas();
-                previousTripStage = tripStage;
             }
         }
     }
