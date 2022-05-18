@@ -1,6 +1,5 @@
 package com.example.travelagency;
 
 public class TripStageTest {
-
-    //TODO : ?
+    //On ne teste pas car classe abstraite
 }
