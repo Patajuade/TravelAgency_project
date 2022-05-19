@@ -36,7 +36,7 @@ public class PlaneStage extends TripStage {
 
     @Override
     public void updateDatas() {
-        if(destination!= null){
+        if(destination != null){
             distance = destination.distanceCompute(source);
         }
         super.updateDatas();

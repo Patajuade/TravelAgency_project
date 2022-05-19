@@ -25,7 +25,7 @@
         }
 
         //make the constructor private so that this class cannot be instantiated
-        private ManagementCity() {
+        public ManagementCity() {
             this.model = new CityModel();
         }
 
