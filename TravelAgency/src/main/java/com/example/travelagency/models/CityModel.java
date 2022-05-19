@@ -1,13 +1,28 @@
 package com.example.travelagency.models;
 
+
+/**
+ * <p>Model for city objects</p>
+ *
+ */
 public class CityModel {
     String cityName;
     String latitude;
     String longitude;
     String countryName;
 
+    /**
+     * <p>Default constructor</p>
+     */
     public CityModel(){}
 
+    /**
+     * <p>constructor</p>
+     * @param cityName city name
+     * @param latitude city latitude value
+     * @param longitude city longitude value
+     * @param countryName city country name
+     */
     public CityModel(String cityName, String latitude, String longitude, String countryName) {
         this.cityName = cityName;
         this.latitude = latitude;
@@ -15,23 +30,45 @@ public class CityModel {
         this.countryName = countryName;
     }
 
+    /**
+     * <p>City name getter, to use its name outside this class </p>
+     * @return city name
+     */
     //getters
     public String getCityName() {
         return cityName;
     }
 
+    /**
+     * <p>City latitude getter, to use its latitude outside this class </p>
+     * @return latitude value as a double
+     */
     public double getLatitudeDouble(){
         return Double.parseDouble(latitude);
     }
 
+    /**
+     * <p>City longitude getter, to use its longitude outside this class </p>
+     * @return longitude value as a double
+     */
     public double getLongitudeDouble(){
         return Double.parseDouble(longitude);
     }
 
+    /**
+     * <p>City country getter, to use its longitude outside this class </p>
+     * @return city's countru
+     */
     public String getCountryName() {
         return countryName;
     }
 
+    /**
+     * <p>Calculate distance between two points in latitude and longitude
+     * Uses Haversine method as its base</p>
+     * @param source whole city object taken as the starting point of the calculation
+     * @return distance in meters if there is a source, or 0 if there is no source.
+     */
     public double distanceCompute(CityModel source) {
         final int R = 6371; // Radius of the earth
         if (source != null){
@@ -51,6 +88,11 @@ public class CityModel {
         }
         return 0;
     }
+
+    /**
+     * <p>Overrides original ToString method with a custom one</p>
+     * @return formated string for city and country name
+     */
     @Override
     public String toString(){
         return this.getCityName()+" (" + this.getCountryName()+")";
