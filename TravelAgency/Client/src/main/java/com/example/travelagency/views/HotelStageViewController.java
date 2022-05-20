@@ -1,11 +1,6 @@
 package com.example.travelagency.views;
-<<<<<<< Updated upstream:TravelAgency/src/main/java/com/example/travelagency/views/HotelStageViewController.java
-import com.example.travelagency.models.HotelStage;
-import com.example.travelagency.interfaces.IViewController;
-=======
 import be.helha.common.models.HotelStage;
 import be.helha.common.interfaces.IViewController;
->>>>>>> Stashed changes:TravelAgency/Client/src/main/java/com/example/travelagency/views/HotelStageViewController.java
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;

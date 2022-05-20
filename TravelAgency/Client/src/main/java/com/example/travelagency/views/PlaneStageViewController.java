@@ -1,12 +1,7 @@
 package com.example.travelagency.views;
 
-<<<<<<< Updated upstream:TravelAgency/src/main/java/com/example/travelagency/views/PlaneStageViewController.java
-import com.example.travelagency.interfaces.IViewController;
-import com.example.travelagency.models.PlaneStage;
-=======
 import be.helha.common.interfaces.IViewController;
 import be.helha.common.models.PlaneStage;
->>>>>>> Stashed changes:TravelAgency/Client/src/main/java/com/example/travelagency/views/PlaneStageViewController.java
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

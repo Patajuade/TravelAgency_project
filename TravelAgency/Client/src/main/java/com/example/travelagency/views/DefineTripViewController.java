@@ -88,7 +88,7 @@ public class DefineTripViewController {
     }
 
     public void updateLabel(double totalDistance, double totalTime, double totalPrice){
-        dataLabel.setText(totalDistance + " km " + totalTime + " h " + totalPrice + " euros");
+        dataLabel.setText(String.format("%.2f",totalDistance) + " km " + String.format("%.2f",totalTime)+ " h " + String.format("%.2f",totalPrice) + " euros");
     }
 
     public String getNameTrip(){

@@ -53,7 +53,7 @@ public class TripResumeViewController {
     }
 
     public void UpdateLabelData() {
-        priceWaitingTimeDistanceLabel.setText(tripResume.getTotalDistance() + " km " + tripResume.getTotalTime() + " h " + tripResume.getTotalPrice() + " euros");
+        priceWaitingTimeDistanceLabel.setText( String.format("%.2f",tripResume.getTotalDistance())+ " km " +  String.format("%.2f",tripResume.getTotalTime())+ " h " + String.format("%.2f",tripResume.getTotalPrice()) + " euros");
     }
 
     public void UpdateLabelFromDate(String Date) {

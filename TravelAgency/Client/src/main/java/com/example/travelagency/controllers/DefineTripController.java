@@ -1,12 +1,7 @@
 package com.example.travelagency.controllers;
 
-<<<<<<< Updated upstream:TravelAgency/src/main/java/com/example/travelagency/controllers/DefineTripController.java
-import com.example.travelagency.interfaces.IViewController;
-import com.example.travelagency.models.*;
-=======
 import be.helha.common.interfaces.IViewController;
 import be.helha.common.models.*;
->>>>>>> Stashed changes:TravelAgency/Client/src/main/java/com/example/travelagency/controllers/DefineTripController.java
 import com.example.travelagency.views.ChooseDestinationViewController;
 import com.example.travelagency.views.DefineTripViewController;
 import com.example.travelagency.views.HotelStageViewController;
