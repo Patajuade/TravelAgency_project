@@ -12,7 +12,6 @@ public class PlaneStage extends TripStage {
 
     double pricePerKm;
 
-
     /**
      * Default constructor
      */

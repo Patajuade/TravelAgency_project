@@ -2,6 +2,7 @@ package com.example.travelagency.models;
 import java.util.ArrayList;
 
 /**
+ * Model for TripsResume
  * Class to make a list of TripResume, which are complete single trips, each trip containing multiple HotelStages and PlaneStages.
  */
 public class TripsResume {

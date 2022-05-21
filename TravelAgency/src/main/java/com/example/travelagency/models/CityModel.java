@@ -2,7 +2,7 @@ package com.example.travelagency.models;
 
 
 /**
- * Model for city objects</p>
+ * Model for city objects
  *
  */
 public class CityModel {
@@ -12,12 +12,12 @@ public class CityModel {
     String countryName;
 
     /**
-     * Default constructor</p>
+     * Default constructor
      */
     public CityModel(){}
 
     /**
-     * constructor</p>
+     * constructor
      * @param cityName city name
      * @param latitude city latitude value
      * @param longitude city longitude value
@@ -31,7 +31,7 @@ public class CityModel {
     }
 
     /**
-     * City name getter, to use its name outside this class </p>
+     * City name getter, to use its name outside this class
      * @return city name
      */
     //getters
@@ -40,7 +40,7 @@ public class CityModel {
     }
 
     /**
-     * City latitude getter, to use its latitude outside this class </p>
+     * City latitude getter, to use its latitude outside this class
      * @return latitude value as a double
      */
     public double getLatitudeDouble(){
@@ -48,7 +48,7 @@ public class CityModel {
     }
 
     /**
-     * City longitude getter, to use its longitude outside this class </p>
+     * City longitude getter, to use its longitude outside this class
      * @return longitude value as a double
      */
     public double getLongitudeDouble(){
@@ -56,7 +56,7 @@ public class CityModel {
     }
 
     /**
-     * City country getter, to use its longitude outside this class </p>
+     * City country getter, to use its longitude outside this class
      * @return city's countru
      */
     public String getCountryName() {
@@ -65,7 +65,7 @@ public class CityModel {
 
     /**
      * Calculate distance between two points in latitude and longitude
-     * Uses Haversine method as its base</p>
+     * Uses Haversine method as its base
      * @param source whole city object taken as the starting point of the calculation
      * @return distance in meters if there is a source, or 0 if there is no source.
      */
@@ -90,7 +90,7 @@ public class CityModel {
     }
 
     /**
-     * Overrides original ToString method with a custom one</p>
+     * Overrides original ToString method with a custom one
      * @return formated string for city and country name
      */
     @Override
