@@ -1,7 +1,7 @@
 package com.example.travelagency.models;
 
 /**
- * <p> Model for plane objects</>
+ * Model for plane objects
  * inherits of TripStage class
  */
 public class PlaneStage extends TripStage {
@@ -14,7 +14,7 @@ public class PlaneStage extends TripStage {
 
 
     /**
-     * <p>Default constructor </>
+     * Default constructor
      */
     public PlaneStage() {
         flyingSpeed = 700;
@@ -23,7 +23,7 @@ public class PlaneStage extends TripStage {
     }
 
     /**
-     * <p>Calculates the fight price, using distance and pricePerKm </p>
+     * Calculates the fight price, using distance and pricePerKm
      * Overrides method in the mother class.
      */
     @Override
@@ -33,7 +33,7 @@ public class PlaneStage extends TripStage {
     }
 
     /**
-     * <p>Calculates the fight duration, using distance, waitingTime, flyingSpeed and duration</p>
+     * Calculates the fight duration, using distance, waitingTime, flyingSpeed and duration
      * Overrides method in the mother class.
      */
     @Override
@@ -43,7 +43,7 @@ public class PlaneStage extends TripStage {
     }
 
     /**
-     * <p>Updates the distance and the price when informations are changed</p>
+     * Updates the distance and the price when informations are changed
      */
     @Override
     public void updateDatas() {
@@ -54,7 +54,7 @@ public class PlaneStage extends TripStage {
     }
 
     /**
-     * <p>Setter allowing to set a new value for distance. </>
+     * Setter allowing to set a new value for distance.
      * @param distance distance between airports
      */
     public void setDistance(double distance) {
@@ -62,7 +62,7 @@ public class PlaneStage extends TripStage {
     }
 
     /**
-     *  <p>Setter allowing to set a new value for flying speed. </p>
+     *  Setter allowing to set a new value for flying speed.
      * @param flyingSpeed speed at which the plane flies
      */
     public void setFlyingSpeed(int flyingSpeed) {
@@ -70,7 +70,7 @@ public class PlaneStage extends TripStage {
     }
 
     /**
-     *  <p>Setter allowing to set a new value for waiting time. </p>
+     *  Setter allowing to set a new value for waiting time.
      * @param waitingTime is the duration of an eventual stopover
      */
     public void setWaitingTime(int waitingTime) {
@@ -78,7 +78,7 @@ public class PlaneStage extends TripStage {
     }
 
     /**
-     *  <p>Setter allowing to set a new value for price per km. </p>
+     *  Setter allowing to set a new value for price per km.
      * @param pricePerKm is the price per km traveled in the plane
      */
     public void setPricePerKm(double pricePerKm) {
@@ -87,7 +87,7 @@ public class PlaneStage extends TripStage {
 
 
     /**
-     * <p>Getter allowing to use distance outside of this class. </>
+     * Getter allowing to use distance outside this class.
      * @return distance between the two airports
      */
     public double getDistance() {
@@ -95,7 +95,7 @@ public class PlaneStage extends TripStage {
     }
 
     /**
-     * <p>Getter allowing to use pricePerKm outside of this class. </>
+     * Getter allowing to use pricePerKm outside this class.
      * @return price per km traveled in the plane
      */
     public double getPricePerKm() {
@@ -103,7 +103,7 @@ public class PlaneStage extends TripStage {
     }
 
     /**
-     * <p>Getter allowing to use flyingSpeed outside of this class. </>
+     * Getter allowing to use flyingSpeed outside this class.
      * @return speed at which the plan is flying
      */
     public int getSpeed() {
@@ -111,7 +111,7 @@ public class PlaneStage extends TripStage {
     }
 
     /**
-     * <p>Getter allowing to use waiting time outside of this class. </>
+     * Getter allowing to use waiting time outside this class.
      * @return durattion of an eventual stopover
      */
     public int getWaitingTime() {

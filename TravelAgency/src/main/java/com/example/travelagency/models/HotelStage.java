@@ -1,7 +1,7 @@
 package com.example.travelagency.models;
 
 /**
- * <p>Model for hotel objects</p>
+ * Model for hotel objects
  * inherits of TripStage class
  */
 public class HotelStage extends TripStage {
@@ -9,14 +9,14 @@ public class HotelStage extends TripStage {
     int pricePerNight;
 
     /**
-     * <p>default constructor</p>
+     * default constructor
      */
     public HotelStage() {
         distance = 0;
     }
 
     /**
-     * <p>Calculates the stay price by multiplying the price per night and the number of nights.</p>
+     * Calculates the stay price by multiplying the price per night and the number of nights.
      *Overrides method in the mother class.
      */
     @Override
@@ -25,7 +25,7 @@ public class HotelStage extends TripStage {
     }
 
     /**
-     * <p>Calculates the number of days for the hotel stay, by multiplying the number of nights by 24.</p>
+     * Calculates the number of days for the hotel stay, by multiplying the number of nights by 24.
      * Overrides method in the mother class.
      */
     @Override
@@ -34,7 +34,7 @@ public class HotelStage extends TripStage {
     }
 
     /**
-     * <p>Getter allowing to use numberOfNihts outside of this class.</p>
+     * Getter allowing to use numberOfNihts outside this class.
      * @return number of nights spent at the hotel
      */
     public int getNumberOfNights() {
@@ -42,13 +42,13 @@ public class HotelStage extends TripStage {
     }
 
     /**
-     * <p>Getter allowing to use pricePerNights outside of this class.</p>
+     * Getter allowing to use pricePerNights outside this class.
      * @return price that a night at the hotel costs
      */
     public int getPricePerNight() { return pricePerNight; }
 
     /**
-     * <p>Setter allowing to set a new value for numberOfNights.</p>
+     * Setter allowing to set a new value for numberOfNights.
      * @param numberOfNights is the number of nights.
      */
     public void setNumberOfNights(int numberOfNights) {
@@ -56,7 +56,7 @@ public class HotelStage extends TripStage {
     }
 
     /**
-     * <p>Setter allowing to set a new value for pricePerNight.</p>
+     * Setter allowing to set a new value for pricePerNight.
      * @param pricePerNight is the price per night.
      */
     public void setPricePerNight(int pricePerNight) {
