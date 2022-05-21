@@ -1,9 +1,10 @@
 package be.helha.common.models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class TripResume {
+public class TripResume implements Serializable {
 
     String name;
     LocalDate date;

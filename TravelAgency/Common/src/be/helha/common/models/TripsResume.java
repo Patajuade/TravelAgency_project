@@ -1,8 +1,13 @@
 package be.helha.common.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class TripsResume {
+public class TripsResume implements Serializable {
+    public ArrayList<TripResume> getTrips() {
+        return trips;
+    }
+
     ArrayList<TripResume> trips;
 
     public TripsResume() {

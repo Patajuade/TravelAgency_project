@@ -88,7 +88,7 @@ public class DefineTripController implements DefineTripViewController.Listener{
 
     private void createDefineTripFxml() throws IOException {
         stage = new Stage();
-        fxmlLoader = new FXMLLoader(TravelAgencyApplication.class.getResource("DefineTrip.fxml"));
+        fxmlLoader = new FXMLLoader(DefineTripViewController.class.getResource("DefineTrip.fxml"));
         Scene DefineTripScene = new Scene(fxmlLoader.load());
         stage.setMinHeight(800);
         stage.setMinWidth(650);
@@ -119,7 +119,7 @@ public class DefineTripController implements DefineTripViewController.Listener{
 
     @Override
     public void onClickChooseDestinationButton() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TravelAgencyApplication.class.getResource("ChooseDestination.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ChooseDestinationViewController.class.getResource("ChooseDestination.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         Stage stage = new Stage();
         ChooseDestinationViewController chooseDestinationViewController = fxmlLoader.getController();
@@ -150,7 +150,7 @@ public class DefineTripController implements DefineTripViewController.Listener{
     }
 
     private void managementPlaneStageFxml(PlaneStage planeStage) throws IOException {
-        FXMLLoader fxmlPlaneStage = new FXMLLoader(TravelAgencyApplication.class.getResource("PlaneStage.fxml"));
+        FXMLLoader fxmlPlaneStage = new FXMLLoader(PlaneStageViewController.class.getResource("PlaneStage.fxml"));
         AnchorPane anchorPane = fxmlPlaneStage.load();
         defineTripViewController.addStageToStageVBOX(anchorPane);
         PlaneStageViewController planeStageViewController = fxmlPlaneStage.getController();
@@ -160,7 +160,7 @@ public class DefineTripController implements DefineTripViewController.Listener{
         planeStageViewController.setListener(new PlaneStageViewController.Listener() {
             @Override
             public void onChooseButtonClick() throws IOException {
-                FXMLLoader fxmlLoader = new FXMLLoader(TravelAgencyApplication.class.getResource("ChooseDestination.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(ChooseDestinationViewController.class.getResource("ChooseDestination.fxml"));
                 Scene scene = new Scene(fxmlLoader.load(), 320, 240);
                 Stage stage = new Stage();
                 ChooseDestinationViewController chooseDestinationViewController = fxmlLoader.getController();
@@ -243,7 +243,7 @@ public class DefineTripController implements DefineTripViewController.Listener{
     }
 
     private void managementHotelStageFxml(HotelStage hotelStage) throws IOException {
-        FXMLLoader fxmlHotelStage = new FXMLLoader(TravelAgencyApplication.class.getResource("HotelStage.fxml"));
+        FXMLLoader fxmlHotelStage = new FXMLLoader(HotelStageViewController.class.getResource("HotelStage.fxml"));
         AnchorPane anchorPane = fxmlHotelStage.load();
         defineTripViewController.addStageToStageVBOX(anchorPane);
         HotelStageViewController hotelStageViewController = fxmlHotelStage.getController();

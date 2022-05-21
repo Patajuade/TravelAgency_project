@@ -1,5 +1,7 @@
 package com.example.travelagency.views;
 
+import be.helha.common.models.TripResume;
+import be.helha.common.models.TripsResume;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -38,4 +40,5 @@ public class TripsResumeViewController {
     public void removeTripResumeToTripVbox(AnchorPane anchorPane) throws IOException {
         tripVbox.getChildren().remove(anchorPane);
     }
+
 }

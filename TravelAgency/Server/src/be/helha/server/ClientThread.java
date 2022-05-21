@@ -18,10 +18,10 @@ public class ClientThread extends Thread {
     @Override
     public void run() {
         try {
-            TripsResume tripsResume = objectSocket.read();
-            System.out.println("Nouvelle instance de connecté");
+            objectSocket.write(server.readTripsResumeFromRom());
             while (true){
-
+                TripsResume tripsResume = objectSocket.read();
+                server.writeTripsResumeOnRom(tripsResume.getTrips());
             }
         } catch (Exception e) {
             e.printStackTrace();

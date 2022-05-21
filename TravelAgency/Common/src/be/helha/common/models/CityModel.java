@@ -1,6 +1,8 @@
 package be.helha.common.models;
 
-public class CityModel {
+import java.io.Serializable;
+
+public class CityModel implements Serializable {
     String cityName;
     String latitude;
     String longitude;

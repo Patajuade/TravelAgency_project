@@ -1,6 +1,8 @@
 package be.helha.common.models;
 
-public abstract class TripStage {
+import java.io.Serializable;
+
+public abstract class TripStage implements Serializable {
     protected double price;
     protected double duration;
     protected double distance;
