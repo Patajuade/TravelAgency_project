@@ -17,7 +17,15 @@ public class ClientThread extends Thread {
 
     @Override
     public void run() {
+        try {
+            TripsResume tripsResume = objectSocket.read();
+            System.out.println("Nouvelle instance de connecté");
+            while (true){
 
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void write(Object object) throws IOException {
