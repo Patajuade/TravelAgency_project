@@ -1,7 +1,7 @@
 package com.example.travelagency.models;
 
 /**
- *<p>Model for hotel objects</p>
+ * <p>Model for hotel objects</p>
  * inherits of TripStage class
  */
 public class HotelStage extends TripStage {
@@ -9,14 +9,14 @@ public class HotelStage extends TripStage {
     int pricePerNight;
 
     /**
-     *<p>default constructor</p>
+     * <p>default constructor</p>
      */
     public HotelStage() {
         distance = 0;
     }
 
     /**
-     *<p>Calculates the stay price by multiplying the price per night and the number of nights.</p>
+     * <p>Calculates the stay price by multiplying the price per night and the number of nights.</p>
      *Overrides method in the mother class.
      */
     @Override
@@ -25,7 +25,7 @@ public class HotelStage extends TripStage {
     }
 
     /**
-     *<p>Calculates the number of days for the hotel stay, by multiplying the number of nights by 24.</p>
+     * <p>Calculates the number of days for the hotel stay, by multiplying the number of nights by 24.</p>
      * Overrides method in the mother class.
      */
     @Override
@@ -56,7 +56,7 @@ public class HotelStage extends TripStage {
     }
 
     /**
-     * <p></p>
+     * <p>Setter allowing to set a new value for pricePerNight.</p>
      * @param pricePerNight is the price per night.
      */
     public void setPricePerNight(int pricePerNight) {
