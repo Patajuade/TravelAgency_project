@@ -11,39 +11,28 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * View controller for DefineTripController window
+ */
 public class DefineTripController implements DefineTripViewController.Listener{
     DefineTripViewController defineTripViewController;
     List<IViewController> listViewController = new ArrayList<>();
-
-    public void setTripResume(TripResume tripResume) throws IOException {
-        this.tripResume = tripResume;
-    }
-
-    public void updateAllStep(){
-        for (IViewController iViewController : listViewController) {
-            iViewController.update();
-        }
-    }
-
     Stage stage;
-
-    public TripResume getTripResume() {
-        return tripResume;
-    }
-
     TripResume tripResume;
     FXMLLoader fxmlLoader;
-
     private Listener listener;
 
     public void setListener(Listener listener) {
         this.listener = listener;
+    }
+
+    public void setTripResume(TripResume tripResume) throws IOException {
+        this.tripResume = tripResume;
     }
 
     public String  getDateAsString() {
@@ -54,6 +43,19 @@ public class DefineTripController implements DefineTripViewController.Listener{
         return  defineTripViewController.getNameTrip();
     }
 
+    public TripResume getTripResume() {
+        return tripResume;
+    }
+
+    public LocalDate getDate() {
+        return defineTripViewController.getDate();
+    }
+
+    public void updateAllStep(){
+        for (IViewController iViewController : listViewController) {
+            iViewController.update();
+        }
+    }
 
     public void show() throws IOException {
         createDefineTripFxml();
@@ -106,10 +108,6 @@ public class DefineTripController implements DefineTripViewController.Listener{
                 }
             }
         });
-    }
-
-    public LocalDate getDate() {
-        return defineTripViewController.getDate();
     }
 
     public interface Listener{
