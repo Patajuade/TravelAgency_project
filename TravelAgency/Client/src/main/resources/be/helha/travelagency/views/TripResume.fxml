@@ -5,8 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="164.0" prefWidth="563.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.helha.travelagency.views.TripResumeViewController">
+<AnchorPane minHeight="164.0" minWidth="563.0" prefHeight="164.0" prefWidth="563.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.helha.travelagency.views.TripResumeViewController">
    <children>
       <Label fx:id="nameTripLabel" layoutX="28.0" layoutY="17.0" text="Voyage" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="17.0">
          <font>
