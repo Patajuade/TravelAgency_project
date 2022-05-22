@@ -40,7 +40,6 @@ public class TripsResume implements Serializable {
 
     /**
      * Getter allowing to use trips outside this class.
-     * @return a list of trips
      */
     public void setTrips(ArrayList<TripResume> tripsList) {
         trips = tripsList;

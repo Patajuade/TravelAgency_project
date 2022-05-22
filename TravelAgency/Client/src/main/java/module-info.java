@@ -1,4 +1,4 @@
-module com.example.travelagency {
+module Client {
     requires javafx.controls;
     requires javafx.fxml;
 
