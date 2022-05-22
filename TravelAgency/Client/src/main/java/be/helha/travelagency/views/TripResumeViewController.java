@@ -5,19 +5,18 @@ import be.helha.common.models.TripResume;
 import be.helha.common.models.TripStage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * View controller for TripResume anchor pane
+ */
 public class TripResumeViewController {
 
     @FXML
     private Label crossedCitiesLabel;
-
-    @FXML
-    private Button deleteButton;
 
     @FXML
     private Label fromAndDateLabel;
@@ -28,35 +27,48 @@ public class TripResumeViewController {
     @FXML
     private Label priceWaitingTimeDistanceLabel;
 
-    @FXML
-    private Button showButton;
-
     TripResume tripResume;
-
-    public void setTripResume(TripResume tripResume) {
-        this.tripResume = tripResume;
-    }
-
-    @FXML
-    void deleteTripButtonClick(ActionEvent event) throws IOException {
-        listener.onClickDeleteTripButton();
-    }
-
-    @FXML
-    void showTripButtonClick(ActionEvent event) throws IOException {
-        listener.onClickShowTripButton();
-    }
 
     private Listener listener;
 
-    public void setListener(Listener listener) {
-        this.listener = listener;
+    /**
+     * Listener interface
+     */
+    public interface Listener{
+        void onClickDeleteTripButton() throws IOException;
+        void onClickShowTripButton() throws IOException;
     }
 
+    /**
+     * Listener of the deleteButton
+     * this function is used by Scene Builder in the OnAction button event
+     * @throws IOException management of input/output exceptions.
+     */
+    @FXML
+    void deleteTripButtonClick() throws IOException {
+        listener.onClickDeleteTripButton();
+    }
+
+    /**
+     * Listener of the showButton
+     * this function is used by Scene Builder in the OnAction button event
+     * @throws IOException management of input/output exceptions.
+     */
+    @FXML
+    void showTripButtonClick() throws IOException {
+        listener.onClickShowTripButton();
+    }
+
+    /**
+     * Updates the text of the total distance, total price and total time labels
+     */
     public void UpdateLabelData() {
         priceWaitingTimeDistanceLabel.setText( String.format("%.2f",tripResume.getTotalDistance())+ " km " +  String.format("%.2f",tripResume.getTotalTime())+ " h " + String.format("%.2f",tripResume.getTotalPrice()) + " euros");
     }
 
+    /**
+     * Updates fromAndDateLabel text
+     */
     public void UpdateLabelFromDate() {
         String toShow = "" ;
         if(tripResume.getSource() != null){
@@ -68,6 +80,9 @@ public class TripResumeViewController {
         fromAndDateLabel.setText(toShow);
     }
 
+    /**
+     * Updates crossed cities text
+     */
     public void UpdateCrossedCities(){
         String toShow = "";
         if(tripResume.getSource() != null){
@@ -81,16 +96,18 @@ public class TripResumeViewController {
         crossedCitiesLabel.setText(toShow);
     }
 
+    /**
+     * Updates the text of the TripName label
+     */
     public void UpdateNameTripLabel(){
         if(tripResume.getName() !=null){
             nameTripLabel.setText(tripResume.getName());
         }
     }
 
-    public TripResume getTripResume() {
-        return tripResume;
-    }
-
+    /**
+     * Updates Data, FromDate, TripLabel and crossed cities labels.
+     */
     public void UpdateDatas() {
         UpdateLabelData();
         UpdateLabelFromDate();
@@ -98,8 +115,15 @@ public class TripResumeViewController {
         UpdateCrossedCities();
     }
 
-    public interface Listener{
-        void onClickDeleteTripButton() throws IOException;
-        void onClickShowTripButton() throws IOException;
+    public TripResume getTripResume() {
+        return tripResume;
+    }
+
+    public void setTripResume(TripResume tripResume) {
+        this.tripResume = tripResume;
+    }
+
+    public void setListener(Listener listener) {
+        this.listener = listener;
     }
 }

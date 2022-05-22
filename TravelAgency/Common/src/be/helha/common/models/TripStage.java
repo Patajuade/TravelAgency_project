@@ -11,6 +11,19 @@ public abstract class TripStage implements Serializable {
     protected double duration;
     protected double distance;
 
+    protected CityModel source;
+    protected CityModel destination;
+
+    /**
+     * abstract method redefined in children classes
+     */
+    public abstract void priceCompute();
+
+    /**
+     * abstract method redefined in children classes
+     */
+    public abstract void durationCompute();
+
     /**
      * Getter allowing to use source outside this class.
      * @return a starting city
@@ -26,19 +39,6 @@ public abstract class TripStage implements Serializable {
     public CityModel getDestination() {
         return destination;
     }
-
-    protected CityModel source;
-    protected CityModel destination;
-
-    /**
-     * abstract method redefined in children classes
-     */
-    public abstract void priceCompute();
-
-    /**
-     * abstract method redefined in children classes
-     */
-    public abstract void durationCompute();
 
     /**
      * Getter allowing to use price outside this class.
