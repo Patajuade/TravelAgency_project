@@ -11,7 +11,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * View controller for HotelStage window
+ * View controller for HotelStage anchor pane
  * Implements Initializable and IViewController interfaces
  */
 public class HotelStageViewController implements Initializable, IViewController {
@@ -60,7 +60,7 @@ public class HotelStageViewController implements Initializable, IViewController 
 
     /**
      * Listener of the numberOfNights Spinner
-     * this function is used by Scene Builder in the OnAction and OnKeyReleased events on the spinner
+     * this function is used by Scene Builder in the OnMouseClicked and OnKeyReleased events on the spinner
      */
     @FXML
     private void handleNumberOfNightsSpinner(){
@@ -69,7 +69,7 @@ public class HotelStageViewController implements Initializable, IViewController 
 
     /**
      * Listener of the pricePerNights Spinner
-     * this function is used by Scene Builder in the OnAction and OnKeyReleased events on the spinner
+     * this function is used by Scene Builder in the OnMouseClicked and OnKeyReleased events on the spinner
      */
     @FXML
     private void handlePricePerNightsSpinner(){
@@ -78,6 +78,7 @@ public class HotelStageViewController implements Initializable, IViewController 
 
     /**
      * Handles the OnClose listener
+     * this function is used by Scene Builder in the OnMouseClicked event
      */
     @FXML
     private void handleClose(){
@@ -102,14 +103,15 @@ public class HotelStageViewController implements Initializable, IViewController 
     }
 
     /**
-     * @param label the label of the HotelStage anchor pane
+     * Sets the text of a label
+     * @param label a label of the HotelStage anchor pane
      */
     private void updateLabel(Label label){
         label.setText(hotelStage.getNumberOfNights() + " nuit(s) à l'hôtel pour " + hotelStage.getPrice() + " euros" );
     }
 
     /**
-     * Updates the top and bottom labels of HotelStage anchor pane
+     * Updates the top and bottom labels of HotelStage anchor pane using the UpdateLabel() method formatting
      */
     public void updateLabels(){
         updateLabel(bottomInfoLabel);

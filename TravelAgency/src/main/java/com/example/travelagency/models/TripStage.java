@@ -13,12 +13,12 @@ public abstract class TripStage {
     protected CityModel destination;
 
     /**
-     * abstract class redefined in children classes
+     * abstract method redefined in children classes
      */
     public abstract void priceCompute();
 
     /**
-     * abstract class redefined in children classes
+     * abstract method redefined in children classes
      */
     public abstract void durationCompute();
 
