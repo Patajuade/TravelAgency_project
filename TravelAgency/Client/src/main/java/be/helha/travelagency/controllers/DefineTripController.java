@@ -82,16 +82,7 @@ public class DefineTripController implements DefineTripViewController.Listener {
     }
 
     private void createDefineTripFxml() throws IOException {
-        stage = new Stage();
-        fxmlLoader = new FXMLLoader(DefineTripViewController.class.getResource("DefineTrip.fxml"));
-        Scene DefineTripScene = new Scene(fxmlLoader.load());
-        stage.setMinHeight(800);
-        stage.setMinWidth(650);
-        defineTripViewController = fxmlLoader.getController();
-        defineTripViewController.setListener(this);
-        stage.setTitle("Définir son voyage");
-        stage.setScene(DefineTripScene);
-        stage.show();
+        managementDefineTripFxml();
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent windowEvent) {
@@ -102,6 +93,19 @@ public class DefineTripController implements DefineTripViewController.Listener {
                 }
             }
         });
+    }
+
+    private void managementDefineTripFxml() throws IOException {
+        stage = new Stage();
+        fxmlLoader = new FXMLLoader(DefineTripViewController.class.getResource("DefineTrip.fxml"));
+        Scene DefineTripScene = new Scene(fxmlLoader.load());
+        stage.setMinHeight(800);
+        stage.setMinWidth(650);
+        defineTripViewController = fxmlLoader.getController();
+        defineTripViewController.setListener(this);
+        stage.setTitle("Définir son voyage");
+        stage.setScene(DefineTripScene);
+        stage.show();
     }
 
     public LocalDate getDate() {

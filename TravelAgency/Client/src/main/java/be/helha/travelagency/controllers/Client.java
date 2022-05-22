@@ -5,6 +5,7 @@ import be.helha.common.models.TripResume;
 import be.helha.common.models.TripsResume;
 import be.helha.common.networks.ObjectSocket;
 import be.helha.travelagency.networks.NetworkCommunicationThread;
+import be.helha.travelagency.views.ErrorServerViewController;
 import be.helha.travelagency.views.TripResumeViewController;
 import be.helha.travelagency.views.TripsResumeViewController;
 import javafx.application.Application;
@@ -27,14 +28,17 @@ public class Client extends Application implements TripsResumeViewController.Lis
     Stage currentStage;
     private ObjectSocket objectSocket;
     public static final int port = 1099;
+    boolean isConnected;
 
     @Override
     public void start(Stage stage) throws IOException {
         onTryToConnect();
-        tripsResumeViewController = showFMXL(stage,TripsResumeViewController.class.getResource("TripsResume.fxml"));
-        tripsResumeViewController.setListener(this);
-        stage.setTitle("Voyages");
-        currentStage = stage;
+        if(isConnected == true){
+            tripsResumeViewController = showFMXL(stage,TripsResumeViewController.class.getResource("TripsResume.fxml"));
+            tripsResumeViewController.setListener(this);
+            stage.setTitle("Voyages");
+            currentStage = stage;
+        }
     }
 
     public static void main(String[] args) {
@@ -44,6 +48,7 @@ public class Client extends Application implements TripsResumeViewController.Lis
     public void onTryToConnect(){
         try {
             this.objectSocket = new ObjectSocket(new Socket("localhost", port));
+            isConnected = true;
             NetworkCommunicationThread listeningThread = new NetworkCommunicationThread(objectSocket, new NetworkCommunicationThread.Listener() {
                 @Override
                 public void getTrips(ArrayList<TripResume> trips) {
@@ -71,7 +76,13 @@ public class Client extends Application implements TripsResumeViewController.Lis
             listeningThread.start();
         } catch (IOException e) {
             //TODO : Faire un truc fxml stylé et obliger à relancer tout
-            System.out.printf("Connection impossible");
+            try {
+                isConnected = false;
+                currentStage = new Stage();
+                showFMXL(currentStage,ErrorServerViewController.class.getResource("ErrorServer.fxml"));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
