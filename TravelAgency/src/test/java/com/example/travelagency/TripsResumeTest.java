@@ -2,6 +2,7 @@ package com.example.travelagency;
 
 import com.example.travelagency.models.TripResume;
 import com.example.travelagency.models.TripsResume;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -34,5 +35,11 @@ public class TripsResumeTest {
         tripsResume.removeTripResume(tripResume);
         ArrayList<TripResume> trips = tripsResume.getTrips();
         assertEquals(trips.size(),0);
+    }
+
+    @AfterEach
+    public void undefTripsResume(){
+        tripsResume = null;
+        tripResume = null;
     }
 }

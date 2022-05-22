@@ -38,7 +38,7 @@
         }
 
         /**
-         * Makes the constructor private so that this class cannot be instantiated
+         * default constructor
          */
         public ManagementCity() {
             this.model = new CityModel();
