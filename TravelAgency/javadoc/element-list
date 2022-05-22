@@ -1,0 +1,4 @@
+module:com.example.travelagency
+com.example.travelagency.controllers
+com.example.travelagency.models
+com.example.travelagency.views
