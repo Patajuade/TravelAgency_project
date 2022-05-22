@@ -11,16 +11,14 @@ import java.util.ArrayList;
 
 public class ChooseDestinationViewController    {
 
-
-    private ArrayList<CityModel> cities;
-    private DefineTripViewController defineTripController;
-
     @FXML
     private TextField ChooseDestinationTextField;
     @FXML
     private ListView ChooseDestinationListView;
-
+    private ArrayList<CityModel> cities;
+    private DefineTripViewController defineTripController;
     private Listener listener;
+    private ManagementCity cityController;
 
     public void setListener(Listener listener) {
         this.listener = listener;
@@ -28,12 +26,6 @@ public class ChooseDestinationViewController    {
 
     public interface Listener {
         void selectedDestination();
-    }
-
-    private ManagementCity cityController;
-
-    public void setCityController(ManagementCity cityController) {
-        this.cityController = cityController;
     }
 
     private String formatCityName(CityModel city){
@@ -45,19 +37,6 @@ public class ChooseDestinationViewController    {
         cityController.getCitiesList().sort((o1,o2)->{return o1.getCityName().compareTo(o2.getCityName());});
         this.cities = cityController.searchCityByName(getText());
         ChooseDestinationListView.getItems().setAll(this.cities);
-    }
-
-    public CityModel getCurrentCity(){
-        int selectedIndex = ChooseDestinationListView.getSelectionModel().getSelectedIndex();
-        if (selectedIndex >= 0) {
-            return this.cities.get(selectedIndex);
-        }
-        return null;
-    }
-
-    //On récupère le contenu du textField
-    public String getText(){
-        return ChooseDestinationTextField.getText();
     }
 
     //Gestion du bouton Choisir... MVC
@@ -75,8 +54,23 @@ public class ChooseDestinationViewController    {
     //Gestion de la recherche automatique quand on lache une touche du clavier
     @FXML
     void chooseDestinationOnKeyReleased(KeyEvent event) {
-        //this.cities = cityController.searchCityByName(getText());
         showCities();
-        //showCities(cityController.searchCityByName(getText()));
+    }
+
+    public CityModel getCurrentCity(){
+        int selectedIndex = ChooseDestinationListView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            return this.cities.get(selectedIndex);
+        }
+        return null;
+    }
+
+    //On récupère le contenu du textField
+    public String getText(){
+        return ChooseDestinationTextField.getText();
+    }
+
+    public void setCityController(ManagementCity cityController) {
+        this.cityController = cityController;
     }
 }

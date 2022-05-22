@@ -1,13 +1,10 @@
 package com.example.travelagency.views;
 
-import com.example.travelagency.models.TripResume;
-import com.example.travelagency.models.TripStage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-
 import java.io.IOException;
 
 public class TripsResumeViewController {
