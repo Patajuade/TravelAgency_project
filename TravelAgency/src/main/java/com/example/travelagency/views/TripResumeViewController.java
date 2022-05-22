@@ -106,8 +106,8 @@ public class TripResumeViewController {
 
     /**
      * Updates Data, FromDate, TripLabel and crossed cities labels.
-     * @param date
-     * @param name
+     * @param date is the date of the start of the trip
+     * @param name is the name of the trip
      */
     public void UpdateDatas(String date,String name) {
         UpdateLabelData();
