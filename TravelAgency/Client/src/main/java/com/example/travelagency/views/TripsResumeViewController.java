@@ -29,6 +29,10 @@ public class TripsResumeViewController {
         this.listener = listener;
     }
 
+    public void cleanVbox() {
+        tripVbox.getChildren().clear();
+    }
+
     public interface Listener{
         void onClickCreateTripButton() throws IOException;
     }

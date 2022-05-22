@@ -47,14 +47,9 @@ public class DefineTripController implements DefineTripViewController.Listener{
         this.listener = listener;
     }
 
-    public String  getDateAsString() {
-        return defineTripViewController.getDateAsString();
-    }
-
     public String getNameTrip() {
         return  defineTripViewController.getNameTrip();
     }
-
 
     public void show() throws IOException {
         createDefineTripFxml();

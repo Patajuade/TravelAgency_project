@@ -1,4 +1,8 @@
 package com.example.travelagency.controllers;
+import be.helha.common.messages.AbstractMessage;
+import be.helha.common.messages.AddTripMessage;
+import be.helha.common.messages.LoginMessage;
+import be.helha.common.messages.SaveTripsMessage;
 import be.helha.common.models.TripResume;
 import be.helha.common.models.TripsResume;
 import be.helha.common.networks.ObjectSocket;
@@ -15,12 +19,12 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
-import java.util.List;
+import java.util.ArrayList;
 
 public class Client extends Application implements TripsResumeViewController.Listener {
 
     TripsResumeViewController tripsResumeViewController;
-    TripsResume trips = new TripsResume();
+    TripsResume tripsResume = new TripsResume();
     TripResume editingTripResume;
     Stage currentStage;
     private ObjectSocket objectSocket;
@@ -29,7 +33,6 @@ public class Client extends Application implements TripsResumeViewController.Lis
     @Override
     public void start(Stage stage) throws IOException {
         onTryToConnect();
-        updateAllTrips();
         tripsResumeViewController = showFMXL(stage,TripsResumeViewController.class.getResource("TripsResume.fxml"));
         tripsResumeViewController.setListener(this);
         stage.setTitle("Voyages");
@@ -45,15 +48,27 @@ public class Client extends Application implements TripsResumeViewController.Lis
             this.objectSocket = new ObjectSocket(new Socket("localhost", port));
             NetworkCommunicationThread listeningThread = new NetworkCommunicationThread(objectSocket, new NetworkCommunicationThread.Listener() {
                 @Override
-                public void getTrips(List<TripResume> trips) {
-                    Platform.runLater(() -> {
+                public void getTrips(ArrayList<TripResume> trips) {
+                    Platform.runLater(()-> {
                         try {
-                            Client.this.updateAllTrips();
+                            getTripsFromServer(trips);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     });
                 }
+                @Override
+                public void setList(ArrayList<TripResume> trips) {
+                    Platform.runLater(()->{
+                        Client.this.tripsResume.setTrips(trips);
+                        try {
+                            updateTrips();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
+                }
+
             });
             listeningThread.start();
         } catch (IOException e) {
@@ -66,11 +81,17 @@ public class Client extends Application implements TripsResumeViewController.Lis
     public void onClickCreateTripButton() throws IOException {
         currentStage.close();
         TripResume tripResume = new TripResume();
-        trips.addTripResume(tripResume);
+        tripsResume.addTripResume(tripResume);
         DefineTripController defineTripController = new DefineTripController();
         defineTripController.setTripResume(tripResume);
         defineTripController.show();
         managementTripResumeFxml(tripResume, defineTripController);
+        AddTripOnServ();
+    }
+
+    private void AddTripOnServ() throws IOException {
+        objectSocket.write(new AddTripMessage(tripsResume.getTrips()));
+        updateTrips();
     }
 
     private void managementTripResumeFxml(TripResume tripResume, DefineTripController defineTripController) throws IOException {
@@ -79,6 +100,7 @@ public class Client extends Application implements TripsResumeViewController.Lis
         TripResumeViewController tripResumeViewController = fxmlTripResume.getController();
         tripsResumeViewController.addTripResumeToTripVbox(anchorPane);
         tripResumeViewController.setTripResume(tripResume);
+        tripResumeViewController.UpdateDatas();
         defineTripController.setListener(new DefineTripController.Listener() {
             @Override
             public void isClosed() throws IOException {
@@ -87,8 +109,8 @@ public class Client extends Application implements TripsResumeViewController.Lis
                 editingTripResume.calculateAll();
                 editingTripResume.setDate(defineTripController.getDate());
                 editingTripResume.setName(defineTripController.getNameTrip());
-                tripResumeViewController.UpdateDatas(defineTripController.getDateAsString(), defineTripController.getNameTrip());
-                objectSocket.write(trips);
+                tripResumeViewController.UpdateDatas();
+                SaveTripsOnServ();
             }
         });
         tripResumeViewController.setListener(new TripResumeViewController.Listener() {
@@ -100,16 +122,27 @@ public class Client extends Application implements TripsResumeViewController.Lis
             @Override
             public void onClickDeleteTripButton() throws IOException {
                 tripsResumeViewController.removeTripResumeToTripVbox(anchorPane);
-                trips.removeTripResume(tripResume);
+                tripsResume.removeTripResume(tripResume);
+                SaveTripsOnServ();
             }
         });
     }
 
-    public void updateAllTrips() throws IOException {
-        for(TripResume trip : trips.getTrips()){
+    private void SaveTripsOnServ() throws IOException {
+        objectSocket.write(new SaveTripsMessage(tripsResume.getTrips()));
+        updateTrips();
+    }
+
+    public void getTripsFromServer(ArrayList<TripResume> tripsList) throws IOException {
+        tripsResume.setTrips(tripsList);
+    }
+
+    public void updateTrips() throws IOException {
+        tripsResumeViewController.cleanVbox();
+        for (TripResume tripResume : tripsResume.getTrips()) {
             DefineTripController defineTripController = new DefineTripController();
-            defineTripController.setTripResume(trip);
-            managementTripResumeFxml(trip,defineTripController);
+            defineTripController.setTripResume(tripResume);
+            managementTripResumeFxml(tripResume, defineTripController);
         }
     }
 

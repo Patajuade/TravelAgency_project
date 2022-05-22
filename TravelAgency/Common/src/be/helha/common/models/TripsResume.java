@@ -2,6 +2,7 @@ package be.helha.common.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TripsResume implements Serializable {
     public ArrayList<TripResume> getTrips() {
@@ -20,5 +21,9 @@ public class TripsResume implements Serializable {
 
     public void removeTripResume(TripResume tripResume){
         trips.remove(tripResume);
+    }
+
+    public void setTrips(ArrayList<TripResume> tripsList) {
+        trips = tripsList;
     }
 }

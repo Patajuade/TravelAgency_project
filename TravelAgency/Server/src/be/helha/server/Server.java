@@ -62,12 +62,12 @@ public class Server {
        }
     }
 
-    public List<TripResume> getTrips(){
-        List<TripResume> trips = new ArrayList<>();
+    public ArrayList<TripResume> getTrips(){
+        ArrayList<TripResume> trips = new ArrayList<>();
         if(Files.exists(Path.of("travels.bin"))){
             try{
                 ObjectInputStream input = new ObjectInputStream(new FileInputStream("travels.bin"));
-                trips = (List<TripResume>) input.readObject();
+                trips = (ArrayList<TripResume>) input.readObject();
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {

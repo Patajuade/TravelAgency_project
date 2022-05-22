@@ -1,6 +1,6 @@
 package be.helha.server;
 
-import be.helha.common.models.*;
+import be.helha.common.messages.*;
 import be.helha.common.networks.ObjectSocket;
 
 import java.io.IOException;
@@ -18,11 +18,23 @@ public class ClientThread extends Thread {
     @Override
     public void run() {
         try {
-            server.getTrips();
             while (true){
-                TripsResume tripsResume = objectSocket.read();
-                server.saveTripsResume(tripsResume.getTrips());
-                server.butBroadcast(tripsResume.getTrips(),this);
+                AbstractMessage abstractMessage = objectSocket.read();
+                if(abstractMessage instanceof LoginMessage){
+                    objectSocket.write(new LoginMessage(server.getTrips()));
+                }
+                else if(abstractMessage instanceof SaveTripsMessage){
+                    server.saveTripsResume(((SaveTripsMessage) abstractMessage).getTrips());
+                    server.broadcast(new UpdateTripsMessage(server.getTrips()));
+                }
+                else if(abstractMessage instanceof UpdateTripsMessage){
+                    server.broadcast(new UpdateTripsMessage(server.getTrips()));
+                }
+                else if(abstractMessage instanceof AddTripMessage){
+                    server.saveTripsResume(((AddTripMessage) abstractMessage).getTrips());
+                    server.butBroadcast(new AddTripMessage(server.getTrips()),this);
+                }
+
             }
         } catch (Exception e) {
             e.printStackTrace();

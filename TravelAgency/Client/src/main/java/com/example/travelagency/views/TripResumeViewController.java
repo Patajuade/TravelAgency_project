@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 
 public class TripResumeViewController {
 
@@ -56,13 +57,13 @@ public class TripResumeViewController {
         priceWaitingTimeDistanceLabel.setText( String.format("%.2f",tripResume.getTotalDistance())+ " km " +  String.format("%.2f",tripResume.getTotalTime())+ " h " + String.format("%.2f",tripResume.getTotalPrice()) + " euros");
     }
 
-    public void UpdateLabelFromDate(String Date) {
+    public void UpdateLabelFromDate() {
         String toShow = "" ;
         if(tripResume.getSource() != null){
             toShow += "Depuis " + tripResume.getSource().getCityName() + "(" + tripResume.getSource().getCountryName() + "), ";
         }
-        if(Date != ""){
-            toShow += Date;
+        if(tripResume.getDate() != null){
+            toShow += tripResume.getDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         }
         fromAndDateLabel.setText(toShow);
     }
@@ -80,9 +81,9 @@ public class TripResumeViewController {
         crossedCitiesLabel.setText(toShow);
     }
 
-    public void UpdateNameTripLabel(String nameTrip){
-        if(nameTrip !=null){
-            nameTripLabel.setText(nameTrip);
+    public void UpdateNameTripLabel(){
+        if(tripResume.getName() !=null){
+            nameTripLabel.setText(tripResume.getName());
         }
     }
 
@@ -90,10 +91,10 @@ public class TripResumeViewController {
         return tripResume;
     }
 
-    public void UpdateDatas(String date,String name) {
+    public void UpdateDatas() {
         UpdateLabelData();
-        UpdateLabelFromDate(date);
-        UpdateNameTripLabel(name);
+        UpdateLabelFromDate();
+        UpdateNameTripLabel();
         UpdateCrossedCities();
     }
 

@@ -61,7 +61,6 @@ public class PlaneStageViewController implements Initializable, IViewController 
 
     public void setPlaneStage(PlaneStage planeStage) {
         this.planeStage = planeStage;
-        // TODO : update les labels des sous fenêtres
     }
 
     public void setListener(Listener listener) {

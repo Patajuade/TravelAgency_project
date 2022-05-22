@@ -95,14 +95,6 @@ public class DefineTripViewController {
         return TripNameTextField.getText();
     }
 
-    public String getDateAsString(){
-        String chosenDateAsString = "";
-        if(DatePicker.getValue() != null){
-            LocalDate chosenDate = DatePicker.getValue();
-            chosenDateAsString = chosenDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        }
-        return chosenDateAsString;
-    }
     public void updateDatas(){
         setName(tripResume.getName());
         setDate(tripResume.getDate());
