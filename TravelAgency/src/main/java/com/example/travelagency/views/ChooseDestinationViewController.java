@@ -1,14 +1,15 @@
 package com.example.travelagency.views;
 import com.example.travelagency.models.ManagementCity;
 import com.example.travelagency.models.CityModel;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import java.util.ArrayList;
 
+/**
+ * View controller for ChooseDestination window
+ */
 public class ChooseDestinationViewController    {
 
     @FXML
