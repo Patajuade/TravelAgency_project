@@ -30,4 +30,14 @@ public class TripsResume {
     public void removeTripResume(TripResume tripResume){
         trips.remove(tripResume);
     }
+
+
+    /**
+     * Getter allowing to use trips outside this class.
+     * @return a list of trips
+     */
+    public ArrayList<TripResume> getTrips() {
+        return trips;
+    }
+
 }
