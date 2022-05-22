@@ -76,7 +76,7 @@ public class TripsResumeController implements TripsResumeViewController.Listener
             }
 
             /**
-             *
+             * Deletes the TripResume anchor pane selected
              * @throws IOException management of input/output exceptions.
              */
             @Override
