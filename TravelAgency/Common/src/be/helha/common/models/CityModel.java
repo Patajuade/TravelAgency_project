@@ -2,14 +2,28 @@ package be.helha.common.models;
 
 import java.io.Serializable;
 
+/**
+ * Model for city objects
+ *
+ */
 public class CityModel implements Serializable {
     String cityName;
     String latitude;
     String longitude;
     String countryName;
 
+    /**
+     * Default constructor
+     */
     public CityModel(){}
 
+    /**
+     * constructor
+     * @param cityName city name
+     * @param latitude city latitude value
+     * @param longitude city longitude value
+     * @param countryName city country name
+     */
     public CityModel(String cityName, String latitude, String longitude, String countryName) {
         this.cityName = cityName;
         this.latitude = latitude;
@@ -17,11 +31,19 @@ public class CityModel implements Serializable {
         this.countryName = countryName;
     }
 
+    /**
+     * City name getter, to use its name outside this class
+     * @return city name
+     */
     //getters
     public String getCityName() {
         return cityName;
     }
 
+    /**
+     * City latitude getter, to use its latitude outside this class
+     * @return latitude value as a double
+     */
     public double getLatitudeDouble(){
         return Double.parseDouble(latitude);
     }
@@ -30,10 +52,20 @@ public class CityModel implements Serializable {
         return Double.parseDouble(longitude);
     }
 
+    /**
+     * City country getter, to use its longitude outside this class
+     * @return city's countru
+     */
     public String getCountryName() {
         return countryName;
     }
 
+    /**
+     * Calculate distance between two points in latitude and longitude
+     * Uses Haversine method as its base
+     * @param source whole city object taken as the starting point of the calculation
+     * @return distance in meters if there is a source, or 0 if there is no source.
+     */
     public double distanceCompute(CityModel source) {
         final int R = 6371; // Radius of the earth
         if (source != null){
@@ -53,6 +85,11 @@ public class CityModel implements Serializable {
         }
         return 0;
     }
+
+    /**
+     * Overrides original ToString method with a custom one
+     * @return formated string for city and country name
+     */
     @Override
     public String toString(){
         return this.getCityName()+" (" + this.getCountryName()+")";
