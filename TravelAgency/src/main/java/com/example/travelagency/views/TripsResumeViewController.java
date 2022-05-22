@@ -1,6 +1,5 @@
 package com.example.travelagency.views;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
@@ -8,7 +7,7 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 
 /**
- * View controller for TripsResume
+ * View controller for TripsResume window
  */
 public class TripsResumeViewController {
 
@@ -34,7 +33,7 @@ public class TripsResumeViewController {
     }
 
     /**
-     * Listener Interface
+     * Listener interface
      */
     public interface Listener{
         void onClickCreateTripButton() throws IOException;
@@ -42,6 +41,7 @@ public class TripsResumeViewController {
 
     /**
      * Adds an anchor pane to the main trip resume Vbox
+     * TripVbox is the vbox in which the TripResume anchor panes are going
      * @param anchorPane is the anchor pane added
      * @throws IOException management of input/output exceptions.
      */
@@ -51,6 +51,7 @@ public class TripsResumeViewController {
 
     /**
      * Removes an anchor pane from the main trip resume Vbox
+     * TripVbox is the vbox in which the TripResume anchor panes are going
      * @param anchorPane is the anchor pane removed
      * @throws IOException management of input/output exceptions.
      */

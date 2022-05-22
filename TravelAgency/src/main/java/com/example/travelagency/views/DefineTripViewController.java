@@ -14,6 +14,9 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * View controller for DefineTrip window
+ */
 public class DefineTripViewController {
 
     @FXML
@@ -31,63 +34,96 @@ public class DefineTripViewController {
     @FXML
     private VBox StageVbox;
 
-    public void setListener(Listener listener) {
-        this.listener = listener;
-    }
-
     private Listener listener;
-
-    public void setTripResume(TripResume tripResume) {
-        this.tripResume = tripResume;
-    }
 
     TripResume tripResume;
 
-    public void setName(String name) {
-        TripNameTextField.setText(name);
-    }
-
-    public LocalDate getDate() {
-        return DatePicker.getValue();
-    }
-
+    /**
+     * Listener interface
+     */
     public interface Listener {
         void onClickChooseDestinationButton() throws IOException;
         void onClickAddPlaneButton() throws IOException;
         void onClickAddHotelButton() throws IOException;
     }
 
+    /**
+     * listener of the ChooseButton
+     * @throws IOException management of input/output exceptions.
+     */
     @FXML
-    private void handleChooseButtonClick(ActionEvent event) throws IOException {
+    private void handleChooseButtonClick() throws IOException {
         listener.onClickChooseDestinationButton();
     }
 
+    /**
+     * listener of the AddPlaneStageButton
+     * @throws IOException management of input/output exceptions.
+     */
+    @FXML
+    private void handleAddPlaneStageButtonClick() throws IOException {
+        listener.onClickAddPlaneButton();
+    }
+
+    /**
+     * listener of the AddHotelStageButton
+     * @throws IOException management of input/output exceptions.
+     */
+    @FXML
+    private void handleAddHotelStageButtonClick() throws IOException {
+        listener.onClickAddHotelButton();
+    }
+
+    /**
+     * Changes the text on the choose button when a city is selected
+     * @param city name of the selected city
+     */
     public void changeStartCity(CityModel city){
         if (city != null) {
             ChooseButton.setText(city.getCityName()+ "(" + city.getCountryName() + ")");
         }
     }
 
-    @FXML
-    private void handleAddPlaneStageButtonClick(ActionEvent event) throws IOException {
-        listener.onClickAddPlaneButton();
-    }
-
-    @FXML
-    private void handleAddHotelStageButtonClick(ActionEvent event) throws IOException {
-        listener.onClickAddHotelButton();
-    }
-
-    public void addStageToStageVBOX(AnchorPane anchorPane) throws IOException {
+    /**
+     * Adds an anchor pane to the main stage Vbox
+     * StageVbox is the vbox in which the HotelStage and PlaneStage anchor panes are going
+     * @param anchorPane is the anchor pane added
+     */
+    public void addStageToStageVBOX(AnchorPane anchorPane){
         StageVbox.getChildren().add(anchorPane);
     }
 
+    /**
+     * Removes anchor pane from the main stage Vbox
+     * StageVbox is the vbox in which the HotelStage and PlaneStage anchor panes are going
+     * @param anchorPane is the anchor pane added
+     * @throws IOException management of input/output exceptions.
+     */
     public void deleteStageOfStageVBOX(AnchorPane anchorPane) throws IOException {
         StageVbox.getChildren().remove(anchorPane);
     }
 
+    /**
+     * Updates the total labels when a stage is added or removed
+     * @param totalDistance is the total km of the trip
+     * @param totalTime is the total time the trip will last
+     * @param totalPrice is the total cost of the trip
+     */
     public void updateLabel(double totalDistance, double totalTime, double totalPrice){
         dataLabel.setText(totalDistance + " km " + totalTime + " h " + totalPrice + " euros");
+    }
+
+    /**
+     * Updates the name, date and starting city of the trip
+     */
+    public void updateDatas(){
+        setName(tripResume.getName());
+        setDate(tripResume.getDate());
+        changeStartCity(tripResume.getSource());
+    }
+
+    public LocalDate getDate() {
+        return DatePicker.getValue();
     }
 
     public String getNameTrip(){
@@ -102,10 +138,17 @@ public class DefineTripViewController {
         }
         return chosenDateAsString;
     }
-    public void updateDatas(){
-        setName(tripResume.getName());
-        setDate(tripResume.getDate());
-        changeStartCity(tripResume.getSource());
+
+    public void setTripResume(TripResume tripResume) {
+        this.tripResume = tripResume;
+    }
+
+    public void setName(String name) {
+        TripNameTextField.setText(name);
+    }
+
+    public void setListener(Listener listener) {
+        this.listener = listener;
     }
 
     private void setDate(LocalDate date) {
