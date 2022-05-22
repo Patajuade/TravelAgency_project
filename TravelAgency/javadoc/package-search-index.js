@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.example.travelagency.models"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"com.example.travelagency","l":"com.example.travelagency.controllers"},{"m":"com.example.travelagency","l":"com.example.travelagency.models"},{"m":"com.example.travelagency","l":"com.example.travelagency.views"}];updateSearchResults();
