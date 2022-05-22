@@ -17,7 +17,6 @@ public class ChooseDestinationViewController    {
     @FXML
     private ListView ChooseDestinationListView;
     private ArrayList<CityModel> cities;
-    private DefineTripViewController defineTripController;
     private Listener listener;
     private ManagementCity cityController;
 

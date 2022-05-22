@@ -1,7 +1,6 @@
 package com.example.travelagency.views;
 
 import com.example.travelagency.models.*;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -9,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -25,10 +23,6 @@ public class DefineTripViewController {
     private Button ChooseButton;
     @FXML
     private DatePicker DatePicker;
-    @FXML
-    private Button AddPlaneStageButton;
-    @FXML
-    private Button AddHotelStageButton;
     @FXML
     private Label dataLabel;
     @FXML

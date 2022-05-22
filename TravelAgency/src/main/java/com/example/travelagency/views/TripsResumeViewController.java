@@ -1,7 +1,6 @@
 package com.example.travelagency.views;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import java.io.IOException;
@@ -10,9 +9,6 @@ import java.io.IOException;
  * View controller for TripsResume window
  */
 public class TripsResumeViewController {
-
-    @FXML
-    private Button createTripButton;
 
     @FXML
     private VBox tripVbox;
