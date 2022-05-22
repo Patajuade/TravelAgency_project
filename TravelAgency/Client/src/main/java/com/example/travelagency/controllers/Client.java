@@ -2,9 +2,11 @@ package com.example.travelagency.controllers;
 import be.helha.common.models.TripResume;
 import be.helha.common.models.TripsResume;
 import be.helha.common.networks.ObjectSocket;
+import com.example.travelagency.networks.NetworkCommunicationThread;
 import com.example.travelagency.views.TripResumeViewController;
 import com.example.travelagency.views.TripsResumeViewController;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -13,6 +15,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
+import java.util.List;
 
 public class Client extends Application implements TripsResumeViewController.Listener {
 
@@ -40,7 +43,21 @@ public class Client extends Application implements TripsResumeViewController.Lis
     public void onTryToConnect(){
         try {
             this.objectSocket = new ObjectSocket(new Socket("localhost", port));
+            NetworkCommunicationThread listeningThread = new NetworkCommunicationThread(objectSocket, new NetworkCommunicationThread.Listener() {
+                @Override
+                public void getTrips(List<TripResume> trips) {
+                    Platform.runLater(() -> {
+                        try {
+                            Client.this.updateAllTrips();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
+                }
+            });
+            listeningThread.start();
         } catch (IOException e) {
+            //TODO : Faire un truc fxml stylé et obliger à relancer tout
             System.out.printf("Connection impossible");
         }
     }

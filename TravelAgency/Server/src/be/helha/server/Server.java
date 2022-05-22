@@ -12,8 +12,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Server {
-    Scanner scanner = new Scanner(System.in);
-    File travels = new File("travels.bin");
     public static void main(String[] args) throws IOException {
         Server server = new Server();
         server.go();
@@ -40,10 +38,16 @@ public class Server {
     }
 
     public void broadcast(Object object) {
+        butBroadcast(object,null);
+    }
+
+    public void butBroadcast(Object object,ClientThread clientThread){
         synchronized (threads) {
             for (ClientThread thread : threads) {
                 try {
-                    thread.write(object);
+                    if(thread != clientThread){
+                        thread.write(object);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -51,14 +55,14 @@ public class Server {
         }
     }
 
-    public void writeTripsResumeOnRom(Object object) throws IOException {
+    public void saveTripsResume(Object object) throws IOException {
        try (ObjectOutputStream output = new ObjectOutputStream(
               new FileOutputStream("travels.bin"))) {
             output.writeObject(object);
        }
     }
 
-    public List<TripResume> readTripsResumeFromRom(){
+    public List<TripResume> getTrips(){
         List<TripResume> trips = new ArrayList<>();
         if(Files.exists(Path.of("travels.bin"))){
             try{
