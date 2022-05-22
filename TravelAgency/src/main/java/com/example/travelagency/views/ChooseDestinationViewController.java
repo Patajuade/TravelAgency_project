@@ -24,26 +24,35 @@ public class ChooseDestinationViewController    {
         this.listener = listener;
     }
 
+    /**
+     * Listener interface
+     */
     public interface Listener {
         void selectedDestination();
     }
 
-    private String formatCityName(CityModel city){
-    return city.getCityName()+" (" + city.getCountryName()+")";
-    }
-
-    //On affiche toutes les villes de la listes dans l'ordre alphabétique
+    /**
+     * Shows all the ciies in the list in alphabetical order
+     */
     public void showCities(){
         cityController.getCitiesList().sort((o1,o2)->{return o1.getCityName().compareTo(o2.getCityName());});
         this.cities = cityController.searchCityByName(getText());
         ChooseDestinationListView.getItems().setAll(this.cities);
     }
 
-    //Gestion du bouton Choisir... MVC
+    /**
+     * Listener of the "choisir..." button
+     * this function is used by Scene Builder in the OnAction button event
+     */
     @FXML
-    void selectedDestinationButton(ActionEvent event) {
+    void selectedDestinationButton() {
         listener.selectedDestination();
     }
+
+    /**
+     * handle the selectedDestination listener
+     * @param event waits for 2 clicks on an element of the list
+     */
     @FXML
     void selectedDestinationListView(MouseEvent event) {
         if(event.getClickCount()==2){
@@ -51,9 +60,12 @@ public class ChooseDestinationViewController    {
         }
     }
 
-    //Gestion de la recherche automatique quand on lache une touche du clavier
+    /**
+     * Seaches for a matching city when keyboard key is released
+     * this function is used in the OnKeyReleased event of the ChooseDestinationTextField textField
+     */
     @FXML
-    void chooseDestinationOnKeyReleased(KeyEvent event) {
+    void chooseDestinationOnKeyReleased() {
         showCities();
     }
 

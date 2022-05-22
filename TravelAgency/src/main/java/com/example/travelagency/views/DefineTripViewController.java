@@ -49,6 +49,7 @@ public class DefineTripViewController {
 
     /**
      * listener of the ChooseButton
+     * this function is used by Scene Builder in the OnAction button event
      * @throws IOException management of input/output exceptions.
      */
     @FXML
@@ -58,6 +59,7 @@ public class DefineTripViewController {
 
     /**
      * listener of the AddPlaneStageButton
+     * this function is used by Scene Builder in the OnAction button event
      * @throws IOException management of input/output exceptions.
      */
     @FXML
@@ -67,6 +69,7 @@ public class DefineTripViewController {
 
     /**
      * listener of the AddHotelStageButton
+     * this function is used by Scene Builder in the OnAction button event
      * @throws IOException management of input/output exceptions.
      */
     @FXML
