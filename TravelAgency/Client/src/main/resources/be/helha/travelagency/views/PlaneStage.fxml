@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane minHeight="164.0" minWidth="612.0" prefHeight="164.0" prefWidth="612.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.helha.travelagency.views.PlaneStageViewController">
+   <children>
+      <VBox prefHeight="162.0" prefWidth="633.0" style="-fx-border-color: AFAEAE;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="24.0" prefWidth="635.0" style="-fx-background-color: D4D4D4;">
+               <children>
+                  <Label fx:id="TopInformationLabel" layoutX="43.0" layoutY="4.0" text="Voyage en avion" AnchorPane.leftAnchor="43.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="86.0" prefWidth="624.0">
+               <children>
+                  <Label layoutX="56.0" layoutY="14.0" text="Destination" AnchorPane.leftAnchor="56.0" AnchorPane.topAnchor="14.0" />
+                  <Label layoutX="56.0" layoutY="58.0" text="Vitesse" AnchorPane.leftAnchor="56.0" AnchorPane.topAnchor="55.0" />
+                  <Label layoutX="341.0" layoutY="14.0" text="Temps d'attente (minutes) : " AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="14.0" />
+                  <Label layoutX="341.0" layoutY="58.0" text="Prix par kilomètre parcouru :" AnchorPane.leftAnchor="341.0" AnchorPane.topAnchor="55.0" />
+                  <Button fx:id="ChooseButton" layoutX="133.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleChooseButtonClick" text="Choisir ..." AnchorPane.leftAnchor="133.0" AnchorPane.topAnchor="10.0" />
+                  <Spinner fx:id="WaitingTimeSpinner" editable="true" layoutX="495.0" layoutY="10.0" onKeyReleased="#handleWaitingTimeSpinner" onMouseClicked="#handleWaitingTimeSpinner" prefHeight="25.0" prefWidth="99.0" AnchorPane.leftAnchor="495.0" AnchorPane.topAnchor="10.0" />
+                  <Group layoutX="134.0" layoutY="56.0">
+                     <children>
+                        <RadioButton fx:id="RadioButton700" mnemonicParsing="false" onAction="#handleRadioButton700Click" prefHeight="17.0" prefWidth="72.0" selected="true" text="700km/h">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="Speed" />
+                           </toggleGroup></RadioButton>
+                     </children>
+                  </Group>
+                  <RadioButton fx:id="RadioButton900" layoutX="225.0" layoutY="56.0" mnemonicParsing="false" onAction="#handleRadioButton900Click" prefHeight="17.0" prefWidth="72.0" text="900km/h" toggleGroup="$Speed" />
+                  <ComboBox fx:id="pricePerKmComboBox" layoutX="514.0" layoutY="53.0" onAction="#setOnActionComboBox" prefHeight="25.0" prefWidth="80.0" promptText="0.025" AnchorPane.leftAnchor="513.0" AnchorPane.topAnchor="53.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="49.0" minWidth="614.0" prefHeight="49.0" prefWidth="614.0">
+               <children>
+                  <Label fx:id="BottomInformationLabel" layoutX="207.0" layoutY="19.0" prefHeight="17.0" prefWidth="194.0" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="207.0" AnchorPane.rightAnchor="207.0" />
+                  <Button fx:id="CloseButton" layoutX="570.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleCloseButtonClick" text="X" AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="14.0" />
+                  <Separator layoutX="15.0" layoutY="-1.0" prefHeight="0.0" prefWidth="578.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="-1.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

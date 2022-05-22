@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="164.0" minWidth="563.0" prefHeight="164.0" prefWidth="563.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.helha.travelagency.views.TripResumeViewController">
+   <children>
+      <Label fx:id="nameTripLabel" layoutX="28.0" layoutY="17.0" text="Voyage" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="17.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="fromAndDateLabel" layoutX="36.0" layoutY="55.0" text="Label" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="55.0" />
+      <Label fx:id="priceWaitingTimeDistanceLabel" layoutX="36.0" layoutY="88.0" text="Label" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="88.0" />
+      <Label fx:id="crossedCitiesLabel" layoutX="36.0" layoutY="122.0" text="Label" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="122.0" />
+      <Button fx:id="showButton" layoutX="455.0" layoutY="30.0" mnemonicParsing="false" onAction="#showTripButtonClick" prefHeight="25.0" prefWidth="81.0" text="Voir" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="30.0" />
+      <Button fx:id="deleteButton" layoutX="455.0" layoutY="93.0" mnemonicParsing="false" onAction="#deleteTripButtonClick" prefHeight="25.0" prefWidth="81.0" text="Supprimer" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="93.0" />
+   </children>
+</AnchorPane>
