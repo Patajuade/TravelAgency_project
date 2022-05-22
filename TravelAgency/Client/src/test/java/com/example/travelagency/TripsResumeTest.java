@@ -1,7 +1,7 @@
 package com.example.travelagency;
 
-import com.example.travelagency.models.TripResume;
-import com.example.travelagency.models.TripsResume;
+import be.helha.common.models.TripsResume;
+import be.helha.common.models.TripResume;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

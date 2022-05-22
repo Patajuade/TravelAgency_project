@@ -1,5 +1,6 @@
-package com.example.travelagency.models;
+package be.helha.common.models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -7,7 +8,7 @@ import java.util.ArrayList;
  * Model for TripResume
  * TripResume is a resume of a trip (a trip is composed of multiple HotelStages and PlaneStages)
  */
-public class TripResume {
+public class TripResume implements Serializable {
 
     String name;
     LocalDate date;

@@ -1,4 +1,4 @@
-package com.example.travelagency.models;
+package be.helha.common.models;
 
 /**
  * Model for hotel objects
