@@ -31,6 +31,9 @@ public class TripsResumeViewController {
         this.listener = listener;
     }
 
+    /**
+     * Clears the tripResume window Vbox
+     */
     public void cleanVbox() {
         tripVbox.getChildren().clear();
     }
@@ -40,6 +43,10 @@ public class TripsResumeViewController {
      * Contains action functions
      */
     public interface Listener{
+        /**
+         * Action when CreateTripButton is clicked
+         * @throws IOException management of input/output exceptions.
+         */
         void onClickCreateTripButton() throws IOException;
     }
 

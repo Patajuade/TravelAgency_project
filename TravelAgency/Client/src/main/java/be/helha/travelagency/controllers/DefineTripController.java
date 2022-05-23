@@ -34,6 +34,10 @@ public class DefineTripController implements DefineTripViewController.Listener {
      * Contains action functions
      */
     public interface Listener{
+        /**
+         * Action when close button of the window is clicked
+         * @throws IOException management of input/output exceptions.
+         */
         void isClosed() throws IOException;
     }
 
@@ -129,6 +133,10 @@ public class DefineTripController implements DefineTripViewController.Listener {
         stage.setScene(DefineTripScene);
         stage.show();
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            /**
+             * handles the close button of the whole window
+             * @param windowEvent event related to the whole window
+             */
             @Override
             public void handle(WindowEvent windowEvent) {
                 try {

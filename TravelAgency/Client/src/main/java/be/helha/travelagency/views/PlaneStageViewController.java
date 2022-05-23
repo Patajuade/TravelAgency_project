@@ -138,7 +138,8 @@ public class PlaneStageViewController implements Initializable, IViewController 
      */
     public interface Listener {
         /**
-         * @throws IOException
+         * Action when ChooseButton is clicked
+         * @throws IOException management of input/output exceptions.
          */
         void onChooseButtonClick() throws IOException;
 
