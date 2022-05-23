@@ -25,9 +25,9 @@ public class Server {
             while(true) {
                 System.out.println("En attente de client ...");
                 ObjectSocket os = new ObjectSocket(serverSocket.accept());
-                System.out.println("Nouveau client accepté");
                 ClientThread thread = new ClientThread(this,os);
                 thread.start();
+                System.out.println("Nouveau client accepté, son ID sera " + thread.getId());
                 synchronized (threads) {
                     threads.add(thread);
                 }
@@ -79,6 +79,7 @@ public class Server {
 
     public void deconnect(ClientThread clientThread) {
         synchronized (threads) {
+            System.out.println("Le client " + clientThread.getId() + " s'est déconnecté");
             threads.remove(clientThread);
         }
     }

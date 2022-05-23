@@ -42,6 +42,9 @@ public class NetworkCommunicationThread extends Thread{
                 else if(message instanceof AddTripMessage){
                     listener.setList(((AddTripMessage) message).getTrips());
                 }
+                else if(message instanceof DisconnectMessage){
+                    stopRunning();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {

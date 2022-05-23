@@ -1,5 +1,6 @@
 package be.helha.travelagency.controllers;
 import be.helha.common.messages.AddTripMessage;
+import be.helha.common.messages.DisconnectMessage;
 import be.helha.common.messages.SaveTripsMessage;
 import be.helha.common.models.TripResume;
 import be.helha.common.models.TripsResume;
@@ -10,10 +11,12 @@ import be.helha.travelagency.views.TripResumeViewController;
 import be.helha.travelagency.views.TripsResumeViewController;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -39,6 +42,17 @@ public class Client extends Application implements TripsResumeViewController.Lis
             stage.setTitle("Voyages");
             currentStage = stage;
         }
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                try {
+                    objectSocket.write(new DisconnectMessage());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        currentStage = stage;
     }
 
     public static void main(String[] args) {
@@ -71,11 +85,9 @@ public class Client extends Application implements TripsResumeViewController.Lis
                         }
                     });
                 }
-
             });
             listeningThread.start();
         } catch (IOException e) {
-            //TODO : Faire un truc fxml stylé et obliger à relancer tout
             try {
                 isConnected = false;
                 currentStage = new Stage();
@@ -96,11 +108,6 @@ public class Client extends Application implements TripsResumeViewController.Lis
         defineTripController.show();
         managementTripResumeFxml(tripResume, defineTripController);
         AddTripOnServ();
-    }
-
-    private void AddTripOnServ() throws IOException {
-        objectSocket.write(new AddTripMessage(tripsResume.getTrips()));
-        updateTrips();
     }
 
     private void managementTripResumeFxml(TripResume tripResume, DefineTripController defineTripController) throws IOException {
@@ -135,6 +142,11 @@ public class Client extends Application implements TripsResumeViewController.Lis
                 SaveTripsOnServ();
             }
         });
+    }
+
+    private void AddTripOnServ() throws IOException {
+        objectSocket.write(new AddTripMessage(tripsResume.getTrips()));
+        updateTrips();
     }
 
     private void SaveTripsOnServ() throws IOException {

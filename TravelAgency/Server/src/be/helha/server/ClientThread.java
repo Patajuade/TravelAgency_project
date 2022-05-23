@@ -9,6 +9,7 @@ public class ClientThread extends Thread {
 
     private final ObjectSocket objectSocket;
     private Server server;
+    private boolean isRunning = true;
 
     public ClientThread(Server server, ObjectSocket objectSocket) {
         this.objectSocket = objectSocket;
@@ -18,7 +19,7 @@ public class ClientThread extends Thread {
     @Override
     public void run() {
         try {
-            while (true){
+            while (isRunning){
                 AbstractMessage abstractMessage = objectSocket.read();
                 if(abstractMessage instanceof LoginMessage){
                     objectSocket.write(new LoginMessage(server.getTrips()));
@@ -34,7 +35,11 @@ public class ClientThread extends Thread {
                     server.saveTripsResume(((AddTripMessage) abstractMessage).getTrips());
                     server.butBroadcast(new AddTripMessage(server.getTrips()),this);
                 }
-
+                else if(abstractMessage instanceof DisconnectMessage){
+                    objectSocket.write(abstractMessage);
+                    stopRunning();
+                    server.deconnect(this);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,5 +48,9 @@ public class ClientThread extends Thread {
 
     public void write(Object object) throws IOException {
         objectSocket.write(object);
+    }
+
+    private void stopRunning(){
+        isRunning = false;
     }
 }
