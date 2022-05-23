@@ -4,6 +4,9 @@ import be.helha.common.messages.*;
 
 import java.io.IOException;
 
+/**
+ * Management interface for double dispatch
+ */
 public interface Visitor {
     void visitLoginMessage(LoginMessage loginMessage) throws IOException;
     void visitDisconnectMessage(DisconnectMessage disconnectMessage) throws IOException;

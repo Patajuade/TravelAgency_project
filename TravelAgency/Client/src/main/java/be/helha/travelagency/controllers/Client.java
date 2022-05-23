@@ -23,6 +23,9 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.ArrayList;
 
+/**
+ * Client class
+ */
 public class Client extends Application implements TripsResumeViewController.Listener {
 
     TripsResumeViewController tripsResumeViewController;
@@ -36,8 +39,8 @@ public class Client extends Application implements TripsResumeViewController.Lis
     /**
      * Start method
      * Opens TripsResume window
-     * @param stage
-     * @throws IOException
+     * @param stage is TripsResume window
+     * @throws IOException management of input/output exceptions.
      */
     @Override
     public void start(Stage stage) throws IOException {
@@ -49,6 +52,10 @@ public class Client extends Application implements TripsResumeViewController.Lis
             currentStage = stage;
         }
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            /**
+             * Disconnects the client when tripsResume window is closed
+             * @param windowEvent event
+             */
             @Override
             public void handle(WindowEvent windowEvent) {
                 try {
@@ -65,14 +72,20 @@ public class Client extends Application implements TripsResumeViewController.Lis
         launch();
     }
 
-    //TODO: Javadoc ici
+    /**
+     * Tries to connect client to server, verifies if server is up, creates a listening thread
+     */
     public void onTryToConnect(){
         try {
             this.objectSocket = new ObjectSocket(new Socket("localhost", port));
             isConnected = true;
             NetworkCommunicationThread listeningThread = new NetworkCommunicationThread(objectSocket, new NetworkCommunicationThread.Listener() {
+                /**
+                 * Gets trips on the server
+                 * @param trips is a list of trips
+                 */
                 @Override
-                public void getTrips(ArrayList<TripResume> trips) {
+                public void getListFromServer(ArrayList<TripResume> trips) {
                     Platform.runLater(()-> {
                         try {
                             getTripsFromServer(trips);
@@ -81,8 +94,13 @@ public class Client extends Application implements TripsResumeViewController.Lis
                         }
                     });
                 }
+
+                /**
+                 * Gets the list from server
+                 * @param trips is a list of trips
+                 */
                 @Override
-                public void setList(ArrayList<TripResume> trips) {
+                public void updateList(ArrayList<TripResume> trips) {
                     Platform.runLater(()->{
                         Client.this.tripsResume.setTrips(trips);
                         try {
@@ -179,24 +197,45 @@ public class Client extends Application implements TripsResumeViewController.Lis
         });
     }
 
+    /**
+     * Sends message to disconnect the client
+     * @throws IOException management of input/output exceptions.
+     */
     private void deconnectClientFromServ() throws IOException {
         objectSocket.write(new DisconnectMessage());
     }
 
+    /**
+     * Sends message to addTrip to travel.bin
+     * @throws IOException management of input/output exceptions.
+     */
     private void AddTripOnServ() throws IOException {
         objectSocket.write(new AddTripMessage(tripsResume.getTrips()));
         updateTrips();
     }
 
+    /**
+     * Sends message to saveTrips on travel.bin
+     * @throws IOException management of input/output exceptions.
+     */
     private void SaveTripsOnServ() throws IOException {
         objectSocket.write(new SaveTripsMessage(tripsResume.getTrips()));
         updateTrips();
     }
 
+    /**
+     * Sends message to get trip list
+     * @param tripsList is list of trips
+     * @throws IOException management of input/output exceptions.
+     */
     public void getTripsFromServer(ArrayList<TripResume> tripsList) throws IOException {
         tripsResume.setTrips(tripsList);
     }
 
+    /**
+     * Updates list of tripResume
+     * @throws IOException management of input/output exceptions.
+     */
     public void updateTrips() throws IOException {
         tripsResumeViewController.cleanVbox();
         for (TripResume tripResume : tripsResume.getTrips()) {
@@ -206,6 +245,14 @@ public class Client extends Application implements TripsResumeViewController.Lis
         }
     }
 
+    /**
+     * Generic method to show a FXML
+     * @param stage is the window
+     * @param url directory of the .FXML
+     * @param <T> generic parameter
+     * @return viewController
+     * @throws IOException management of input/output exceptions.
+     */
     private <T> T showFMXL(Stage stage, URL url) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(url);
         Scene scene = new Scene(fxmlLoader.load());

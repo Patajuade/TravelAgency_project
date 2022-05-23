@@ -3,24 +3,33 @@ package be.helha.travelagency.networks;
 import be.helha.common.interfaces.Visitor;
 import be.helha.common.messages.*;
 import be.helha.common.models.TripResume;
-import be.helha.common.models.TripsResume;
 import be.helha.common.networks.ObjectSocket;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 
+/**
+ * Thread class listening for client
+ */
 public class NetworkCommunicationThread extends Thread{
     private final Listener listener;
     private ObjectSocket objectSocket;
     private boolean isRunning = true;
 
+    /**
+     * Class constructor
+     * @param objectSocket objectSocket
+     * @param listener listener
+     */
     public NetworkCommunicationThread(ObjectSocket objectSocket, Listener listener) {
         this.objectSocket = objectSocket;
         this.listener = listener;
     }
 
+    /**
+     * Connects the client and gets current list from server
+     */
     @Override
     public void run() {
         try {
@@ -32,9 +41,12 @@ public class NetworkCommunicationThread extends Thread{
             try {
                 AbstractMessage message = objectSocket.read();
                 message.accept(new Visitor() {
+                    /**
+                     * Management of abstract messages with double dispatch
+                     */
                     @Override
                     public void visitLoginMessage(LoginMessage loginMessage) throws IOException {
-                        listener.setList(((LoginMessage) message).getTrips());
+                        listener.updateList(((LoginMessage) message).getTrips());
                     }
 
                     @Override
@@ -44,17 +56,17 @@ public class NetworkCommunicationThread extends Thread{
 
                     @Override
                     public void visitAddTripMessage(AddTripMessage addTripMessage) throws IOException {
-                        listener.setList(((AddTripMessage) message).getTrips());
+                        listener.updateList(((AddTripMessage) message).getTrips());
                     }
 
                     @Override
                     public void visitSaveTripsMessage(SaveTripsMessage saveTripsMessage) throws IOException {
-                        listener.getTrips(((SaveTripsMessage) message).getTrips());
+                        listener.getListFromServer(((SaveTripsMessage) message).getTrips());
                     }
 
                     @Override
                     public void visitUpdateTripsMessage(UpdateTripsMessage updateTripsMessage) {
-                        listener.setList(((UpdateTripsMessage) message).getTrips());
+                        listener.updateList(((UpdateTripsMessage) message).getTrips());
                     }
                 });
             } catch (IOException e) {
@@ -70,12 +82,24 @@ public class NetworkCommunicationThread extends Thread{
         }
     }
 
+    /**
+     * Stops the listening thread
+     */
     public void stopRunning(){
         isRunning = false;
     }
 
     public interface Listener {
-        void getTrips(ArrayList<TripResume> trips);
-        void setList(ArrayList<TripResume> trips);
+        /**
+         * Gets trips on the server
+         * @param trips trips list
+         */
+        void getListFromServer(ArrayList<TripResume> trips);
+
+        /**
+         * Gets the list from server
+         * @param trips trips list
+         */
+        void updateList(ArrayList<TripResume> trips);
     }
 }

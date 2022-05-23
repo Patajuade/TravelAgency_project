@@ -25,7 +25,8 @@ public class ClientThread extends Thread {
     }
 
     /**
-     * run method
+     * Puts the server in listening mode by creating a listening thread for each client
+     * Management of double dispatch
      */
     @Override
     public void run() {
@@ -77,6 +78,9 @@ public class ClientThread extends Thread {
         objectSocket.write(object);
     }
 
+    /**
+     * Stops the client dedicated thread
+     */
     private void stopRunning(){
         isRunning = false;
     }

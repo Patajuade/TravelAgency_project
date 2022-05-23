@@ -5,6 +5,9 @@ import be.helha.common.models.TripResume;
 
 import java.util.ArrayList;
 
+/**
+ * Updates trip message
+ */
 public class UpdateTripsMessage extends AbstractMessage{
     public ArrayList<TripResume> getTrips() {
         return trips;

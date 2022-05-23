@@ -15,14 +15,18 @@ import java.util.Scanner;
  * Server Class
  */
 public class Server {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
         Server server = new Server();
         server.go();
     }
 
     List<ClientThread> threads = new ArrayList<>();
 
-    private void go() throws IOException {
+    /**
+     * Starts the server listening on the selected ports
+     * for each client requests, creates a client thread
+     */
+    private void go(){
         try {
             ServerSocket serverSocket = new ServerSocket(1099);
             while(true) {
@@ -40,10 +44,19 @@ public class Server {
         }
     }
 
+    /**
+     * Broadcasts an object to all client threads
+     * @param object object
+     */
     public void broadcast(Object object) {
         butBroadcast(object,null);
     }
 
+    /**
+     * Broadcasts an object to all client except the one who asked
+     * @param object object
+     * @param clientThread current client thread
+     */
     public void butBroadcast(Object object,ClientThread clientThread){
         synchronized (threads) {
             for (ClientThread thread : threads) {
@@ -58,6 +71,11 @@ public class Server {
         }
     }
 
+    /**
+     * Modifies database -> travels.bin
+     * @param object object
+     * @throws IOException management of input/output exceptions.
+     */
     public void saveTripsResume(Object object) throws IOException {
        try (ObjectOutputStream output = new ObjectOutputStream(
               new FileOutputStream("travels.bin"))) {
@@ -65,6 +83,10 @@ public class Server {
        }
     }
 
+    /**
+     * reads database (travels.bin) and sends it
+     * @return list of tripresume
+     */
     public ArrayList<TripResume> getTrips(){
         ArrayList<TripResume> trips = new ArrayList<>();
         if(Files.exists(Path.of("travels.bin"))){
@@ -80,6 +102,10 @@ public class Server {
         return trips;
     }
 
+    /**
+     * Disconnects a client thread dedicated to a gone client
+     * @param clientThread client thread
+     */
     public void deconnect(ClientThread clientThread) {
         synchronized (threads) {
             System.out.println("Le client " + clientThread.getId() + " s'est déconnecté");
