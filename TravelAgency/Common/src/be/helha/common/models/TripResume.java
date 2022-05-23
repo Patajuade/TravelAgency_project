@@ -59,7 +59,7 @@ public class TripResume implements Serializable {
     }
 
     /**
-     *Updates the source of a stage and updates its datas
+     *Updates the source city of a stage (if it's a planestage, so that it takes the city of the last planeStage as its source city instead of the first city of the trip) and updates its datas
      */
     public void updateTripStep(){
         TripStage previousTripStage = null;

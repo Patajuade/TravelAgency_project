@@ -1,0 +1,11 @@
+module:Client
+be.helha.travelagency.controllers
+be.helha.travelagency.networks
+be.helha.travelagency.views
+module:Common
+be.helha.common.interfaces
+be.helha.common.messages
+be.helha.common.models
+be.helha.common.networks
+module:Server
+be.helha.server

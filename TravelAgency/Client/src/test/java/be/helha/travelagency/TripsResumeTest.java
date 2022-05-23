@@ -2,6 +2,7 @@ package be.helha.travelagency;
 
 import be.helha.common.models.TripsResume;
 import be.helha.common.models.TripResume;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TripsResumeTest {
     TripsResume tripsResume;
     private TripResume tripResume;
-
 
     @BeforeEach
     public void setUp(){
@@ -34,5 +34,11 @@ public class TripsResumeTest {
         tripsResume.removeTripResume(tripResume);
         ArrayList<TripResume> trips = tripsResume.getTrips();
         assertEquals(trips.size(),0);
+    }
+
+    @AfterEach
+    public void undefTripsResume(){
+        tripsResume = null;
+        tripResume = null;
     }
 }

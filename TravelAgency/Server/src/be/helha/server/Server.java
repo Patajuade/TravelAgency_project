@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Server Class
+ */
 public class Server {
     public static void main(String[] args) throws IOException {
         Server server = new Server();
