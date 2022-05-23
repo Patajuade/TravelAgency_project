@@ -32,10 +32,22 @@ public class HotelStageViewController implements Initializable, IViewController 
 
     /**
      * Listener interface
+     * Contains action functions
      */
     public interface Listener {
+        /**
+         * Action when numberOfNightsSpinner is clicked or written in
+         */
         void onUpperNumberOfNightsSpinner();
+
+        /**
+         * Action when pricePerNightSpinner is clicked or written in
+         */
         void onUpperPricePerNightsSpinner();
+
+        /**
+         * Action when Close is clicked
+         */
         void onCloseButtonClick();
     }
 

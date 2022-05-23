@@ -25,6 +25,15 @@ public abstract class TripStage implements Serializable {
     public abstract void durationCompute();
 
     /**
+     * Calls methods that calculates price and duration
+     * allows to recalculate both at the same time
+     */
+    public void updateDatas() {
+        priceCompute();
+        durationCompute();
+    }
+
+    /**
      * Getter allowing to use source outside this class.
      * @return a starting city
      */
@@ -96,12 +105,4 @@ public abstract class TripStage implements Serializable {
         this.distance = distance;
     }
 
-    /**
-     * Calls methods that calculates price and duration
-     * allows to recalculate both at the same time
-     */
-    public void updateDatas() {
-        priceCompute();
-        durationCompute();
-    }
 }

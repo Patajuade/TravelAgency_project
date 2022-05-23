@@ -19,6 +19,10 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.ArrayList;
 
+/**
+ * Client class
+ * Implementing TripsResumeViewController.Listener
+ */
 public class Client extends Application implements TripsResumeViewController.Listener {
 
     TripsResumeViewController tripsResumeViewController;
@@ -28,6 +32,12 @@ public class Client extends Application implements TripsResumeViewController.Lis
     private ObjectSocket objectSocket;
     public static final int port = 1099;
 
+    /**
+     * Start method
+     * Opens TripsResume window
+     * @param stage
+     * @throws IOException
+     */
     @Override
     public void start(Stage stage) throws IOException {
         onTryToConnect();
@@ -41,6 +51,7 @@ public class Client extends Application implements TripsResumeViewController.Lis
         launch();
     }
 
+//TODO: Javadoc ici
     public void onTryToConnect(){
         try {
             this.objectSocket = new ObjectSocket(new Socket("localhost", port));
@@ -75,6 +86,11 @@ public class Client extends Application implements TripsResumeViewController.Lis
         }
     }
 
+    /**
+     * Overrides onClickCreateTripButton in TripsResumeViewController class
+     * Closes TripsResume window and opens a DefineTrip window
+     * @throws IOException management of input/output exceptions.
+     */
     @Override
     public void onClickCreateTripButton() throws IOException {
         currentStage.close();
@@ -92,6 +108,13 @@ public class Client extends Application implements TripsResumeViewController.Lis
         updateTrips();
     }
 
+    /**
+     * Creates a TripResume anchorPane
+     * Updates its components and labels
+     * @param tripResume is a tripResume anchor pane
+     * @param defineTripController is the controller for the defineTrip window
+     * @throws IOException management of input/output exceptions.
+     */
     private void managementTripResumeFxml(TripResume tripResume, DefineTripController defineTripController) throws IOException {
         FXMLLoader fxmlTripResume =  new FXMLLoader(TripResumeViewController.class.getResource("TripResume.fxml"));
         AnchorPane anchorPane = fxmlTripResume.load();
@@ -100,6 +123,11 @@ public class Client extends Application implements TripsResumeViewController.Lis
         tripResumeViewController.setTripResume(tripResume);
         tripResumeViewController.UpdateDatas();
         defineTripController.setListener(new DefineTripController.Listener() {
+            /**
+             * Overrides isClosed in DefineTripController
+             * Closes DefineTrip window and shows TripsResume window, calculates total distance, price,time, sets date and name, update dates, and save the trip on the server.
+             * @throws IOException management of input/output exceptions.
+             */
             @Override
             public void isClosed() throws IOException {
                 currentStage.show();
@@ -111,12 +139,24 @@ public class Client extends Application implements TripsResumeViewController.Lis
                 SaveTripsOnServ();
             }
         });
+
         tripResumeViewController.setListener(new TripResumeViewController.Listener() {
+            /**
+             * Overrides onClickShowTripButton in TripResumeViewController
+             * Closes TripsResume window and show selected DefineTrip window
+             * @throws IOException management of input/output exceptions.
+             */
             @Override
             public void onClickShowTripButton() throws IOException {
                 currentStage.close();
                 defineTripController.show();
             }
+
+            /**
+             * Overrides onClickDeleteTripButton in TripResumeViewController
+             * Removes the selected anchor pane, removes it from the tripResume list, and saves trips on server
+             * @throws IOException management of input/output exceptions.
+             */
             @Override
             public void onClickDeleteTripButton() throws IOException {
                 tripsResumeViewController.removeTripResumeToTripVbox(anchorPane);
@@ -126,6 +166,7 @@ public class Client extends Application implements TripsResumeViewController.Lis
         });
     }
 
+    //TODO : Javadoc ici
     private void SaveTripsOnServ() throws IOException {
         objectSocket.write(new SaveTripsMessage(tripsResume.getTrips()));
         updateTrips();

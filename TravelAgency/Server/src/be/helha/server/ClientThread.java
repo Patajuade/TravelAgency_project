@@ -5,16 +5,26 @@ import be.helha.common.networks.ObjectSocket;
 
 import java.io.IOException;
 
+/**
+ * Client Thread
+ */
 public class ClientThread extends Thread {
 
     private final ObjectSocket objectSocket;
     private Server server;
 
+    /**
+     * @param server is this server
+     * @param objectSocket is this objectSocket
+     */
     public ClientThread(Server server, ObjectSocket objectSocket) {
         this.objectSocket = objectSocket;
         this.server = server;
     }
 
+    /**
+     * run method
+     */
     @Override
     public void run() {
         try {
@@ -41,6 +51,11 @@ public class ClientThread extends Thread {
         }
     }
 
+    /**
+     * write method
+     * @param object is the object to write
+     * @throws IOException management of input/output exceptions.
+     */
     public void write(Object object) throws IOException {
         objectSocket.write(object);
     }

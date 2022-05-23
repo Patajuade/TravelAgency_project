@@ -33,9 +33,19 @@ public class TripResumeViewController {
 
     /**
      * Listener interface
+     * Contains action functions
      */
     public interface Listener{
+        /**
+         * Action when DeleteTripButton is clicked
+         * @throws IOException management of input/output exceptions.
+         */
         void onClickDeleteTripButton() throws IOException;
+
+        /**
+         * Action when ShowTripButton is clicked
+         * @throws IOException management of input/output exceptions.
+         */
         void onClickShowTripButton() throws IOException;
     }
 
