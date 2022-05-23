@@ -6,6 +6,9 @@ import be.helha.common.models.TripResume;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Adds tripResume message
+ */
 public class AddTripMessage extends AbstractMessage{
     public AddTripMessage(ArrayList<TripResume> trips) {
         this.trips = trips;

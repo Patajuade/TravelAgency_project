@@ -6,6 +6,9 @@ import be.helha.common.models.TripResume;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Login request
+ */
 public class LoginMessage extends AbstractMessage{
 
     public LoginMessage(ArrayList<TripResume> trips) {
