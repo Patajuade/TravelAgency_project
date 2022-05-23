@@ -9,16 +9,27 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
+/**
+ * Thread class listening for client
+ */
 public class NetworkCommunicationThread extends Thread{
     private final Listener listener;
     private ObjectSocket objectSocket;
     private boolean isRunning = true;
 
+    /**
+     * Class constructor
+     * @param objectSocket objectSocket
+     * @param listener listener
+     */
     public NetworkCommunicationThread(ObjectSocket objectSocket, Listener listener) {
         this.objectSocket = objectSocket;
         this.listener = listener;
     }
 
+    /**
+     * Connects the client and gets current list from server
+     */
     @Override
     public void run() {
         try {
@@ -30,6 +41,9 @@ public class NetworkCommunicationThread extends Thread{
             try {
                 AbstractMessage message = objectSocket.read();
                 message.accept(new Visitor() {
+                    /**
+                     * Management of abstract messages with double dispatch
+                     */
                     @Override
                     public void visitLoginMessage(LoginMessage loginMessage) throws IOException {
                         listener.updateList(((LoginMessage) message).getTrips());
@@ -68,12 +82,24 @@ public class NetworkCommunicationThread extends Thread{
         }
     }
 
+    /**
+     * Stops the listening thread
+     */
     public void stopRunning(){
         isRunning = false;
     }
 
     public interface Listener {
+        /**
+         * Gets trips on the server
+         * @param trips trips list
+         */
         void getListFromServer(ArrayList<TripResume> trips);
+
+        /**
+         * Gets the list from server
+         * @param trips trips list
+         */
         void updateList(ArrayList<TripResume> trips);
     }
 }
