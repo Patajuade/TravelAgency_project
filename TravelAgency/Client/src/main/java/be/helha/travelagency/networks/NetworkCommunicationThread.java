@@ -1,5 +1,6 @@
 package be.helha.travelagency.networks;
 
+import be.helha.common.interfaces.Visitor;
 import be.helha.common.messages.*;
 import be.helha.common.models.TripResume;
 import be.helha.common.models.TripsResume;
@@ -30,21 +31,32 @@ public class NetworkCommunicationThread extends Thread{
         while(isRunning){
             try {
                 AbstractMessage message = objectSocket.read();
-                if(message instanceof LoginMessage){
-                    listener.setList(((LoginMessage) message).getTrips());
-                }
-                else if(message instanceof SaveTripsMessage){
-                    listener.getTrips(((SaveTripsMessage) message).getTrips());
-                }
-                else if(message instanceof UpdateTripsMessage){
-                    listener.setList(((UpdateTripsMessage) message).getTrips());
-                }
-                else if(message instanceof AddTripMessage){
-                    listener.setList(((AddTripMessage) message).getTrips());
-                }
-                else if(message instanceof DisconnectMessage){
-                    stopRunning();
-                }
+                message.accept(new Visitor() {
+                    @Override
+                    public void visitLoginMessage(LoginMessage loginMessage) throws IOException {
+                        listener.setList(((LoginMessage) message).getTrips());
+                    }
+
+                    @Override
+                    public void visitDisconnectMessage(DisconnectMessage disconnectMessage) throws IOException {
+                        stopRunning();
+                    }
+
+                    @Override
+                    public void visitAddTripMessage(AddTripMessage addTripMessage) throws IOException {
+                        listener.setList(((AddTripMessage) message).getTrips());
+                    }
+
+                    @Override
+                    public void visitSaveTripsMessage(SaveTripsMessage saveTripsMessage) throws IOException {
+                        listener.getTrips(((SaveTripsMessage) message).getTrips());
+                    }
+
+                    @Override
+                    public void visitUpdateTripsMessage(UpdateTripsMessage updateTripsMessage) {
+                        listener.setList(((UpdateTripsMessage) message).getTrips());
+                    }
+                });
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {

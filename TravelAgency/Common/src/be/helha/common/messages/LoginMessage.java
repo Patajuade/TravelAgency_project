@@ -1,7 +1,9 @@
 package be.helha.common.messages;
 
+import be.helha.common.interfaces.Visitor;
 import be.helha.common.models.TripResume;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class LoginMessage extends AbstractMessage{
@@ -15,4 +17,8 @@ public class LoginMessage extends AbstractMessage{
     }
 
     private ArrayList<TripResume> trips;
+    @Override
+    public void accept(Visitor v) throws IOException {
+        v.visitLoginMessage(this);
+    }
 }

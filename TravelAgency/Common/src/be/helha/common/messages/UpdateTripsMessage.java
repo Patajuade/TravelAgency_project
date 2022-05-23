@@ -1,5 +1,6 @@
 package be.helha.common.messages;
 
+import be.helha.common.interfaces.Visitor;
 import be.helha.common.models.TripResume;
 
 import java.util.ArrayList;
@@ -14,4 +15,8 @@ public class UpdateTripsMessage extends AbstractMessage{
     }
 
     ArrayList<TripResume> trips;
+    @Override
+    public void accept(Visitor v) {
+        v.visitUpdateTripsMessage(this);
+    }
 }

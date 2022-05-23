@@ -1,5 +1,6 @@
 package be.helha.server;
 
+import be.helha.common.interfaces.Visitor;
 import be.helha.common.messages.*;
 import be.helha.common.networks.ObjectSocket;
 
@@ -31,25 +32,36 @@ public class ClientThread extends Thread {
         try {
             while (isRunning){
                 AbstractMessage abstractMessage = objectSocket.read();
-                if(abstractMessage instanceof LoginMessage){
-                    objectSocket.write(new LoginMessage(server.getTrips()));
-                }
-                else if(abstractMessage instanceof SaveTripsMessage){
-                    server.saveTripsResume(((SaveTripsMessage) abstractMessage).getTrips());
-                    server.broadcast(new UpdateTripsMessage(server.getTrips()));
-                }
-                else if(abstractMessage instanceof UpdateTripsMessage){
-                    server.broadcast(new UpdateTripsMessage(server.getTrips()));
-                }
-                else if(abstractMessage instanceof AddTripMessage){
-                    server.saveTripsResume(((AddTripMessage) abstractMessage).getTrips());
-                    server.butBroadcast(new AddTripMessage(server.getTrips()),this);
-                }
-                else if(abstractMessage instanceof DisconnectMessage){
-                    objectSocket.write(abstractMessage);
-                    stopRunning();
-                    server.deconnect(this);
-                }
+                abstractMessage.accept(new Visitor() {
+                    @Override
+                    public void visitLoginMessage(LoginMessage loginMessage) throws IOException {
+                        objectSocket.write(new LoginMessage(server.getTrips()));
+                    }
+
+                    @Override
+                    public void visitDisconnectMessage(DisconnectMessage disconnectMessage) throws IOException {
+                        objectSocket.write(abstractMessage);
+                        stopRunning();
+                        server.deconnect(ClientThread.this);
+                    }
+
+                    @Override
+                    public void visitAddTripMessage(AddTripMessage addTripMessage) throws IOException {
+                        server.saveTripsResume(((AddTripMessage) abstractMessage).getTrips());
+                        server.butBroadcast(new AddTripMessage(server.getTrips()),ClientThread.this);
+                    }
+
+                    @Override
+                    public void visitSaveTripsMessage(SaveTripsMessage saveTripsMessage) throws IOException {
+                        server.saveTripsResume(((SaveTripsMessage) abstractMessage).getTrips());
+                        server.broadcast(new UpdateTripsMessage(server.getTrips()));
+                    }
+
+                    @Override
+                    public void visitUpdateTripsMessage(UpdateTripsMessage updateTripsMessage) {
+                        server.broadcast(new UpdateTripsMessage(server.getTrips()));
+                    }
+                });
             }
         } catch (Exception e) {
             e.printStackTrace();
