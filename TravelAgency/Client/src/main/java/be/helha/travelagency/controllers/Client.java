@@ -46,7 +46,7 @@ public class Client extends Application implements TripsResumeViewController.Lis
             @Override
             public void handle(WindowEvent windowEvent) {
                 try {
-                    objectSocket.write(new DisconnectMessage());
+                    deconnectClientFromServ();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -142,6 +142,10 @@ public class Client extends Application implements TripsResumeViewController.Lis
                 SaveTripsOnServ();
             }
         });
+    }
+
+    private void deconnectClientFromServ() throws IOException {
+        objectSocket.write(new DisconnectMessage());
     }
 
     private void AddTripOnServ() throws IOException {
