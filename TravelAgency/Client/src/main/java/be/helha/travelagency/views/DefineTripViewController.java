@@ -36,10 +36,25 @@ public class DefineTripViewController {
 
     /**
      * Listener interface
+     * Contains action functions
      */
     public interface Listener {
+        /**
+         * Action when ChooseButton of a PlaneStage is clicked
+         * @throws IOException management of input/output exceptions.
+         */
         void onClickChooseDestinationButton() throws IOException;
+
+        /**
+         * Action when AddPlaneStageButton is clicked
+         * @throws IOException management of input/output exceptions.
+         */
         void onClickAddPlaneButton() throws IOException;
+
+        /**
+         * Action when AddHotelStageButton is clicked
+         * @throws IOException management of input/output exceptions.
+         */
         void onClickAddHotelButton() throws IOException;
     }
 

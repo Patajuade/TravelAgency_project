@@ -33,6 +33,7 @@ public class TripResumeViewController {
 
     /**
      * Listener interface
+     * Contains action functions
      */
     public interface Listener{
         void onClickDeleteTripButton() throws IOException;

@@ -14,7 +14,6 @@ public class TripsResumeTest {
     TripsResume tripsResume;
     private TripResume tripResume;
 
-
     @BeforeEach
     public void setUp(){
         tripsResume = new TripsResume();

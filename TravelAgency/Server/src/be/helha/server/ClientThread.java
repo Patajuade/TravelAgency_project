@@ -14,8 +14,8 @@ public class ClientThread extends Thread {
     private Server server;
 
     /**
-     * @param server
-     * @param objectSocket
+     * @param server is this server
+     * @param objectSocket is this objectSocket
      */
     public ClientThread(Server server, ObjectSocket objectSocket) {
         this.objectSocket = objectSocket;
@@ -23,7 +23,7 @@ public class ClientThread extends Thread {
     }
 
     /**
-     *
+     * run method
      */
     @Override
     public void run() {
@@ -52,8 +52,9 @@ public class ClientThread extends Thread {
     }
 
     /**
-     * @param object
-     * @throws IOException
+     * write method
+     * @param object is the object to write
+     * @throws IOException management of input/output exceptions.
      */
     public void write(Object object) throws IOException {
         objectSocket.write(object);

@@ -19,6 +19,10 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.ArrayList;
 
+/**
+ * Client class
+ * Implementing TripsResumeViewController.Listener
+ */
 public class Client extends Application implements TripsResumeViewController.Listener {
 
     TripsResumeViewController tripsResumeViewController;

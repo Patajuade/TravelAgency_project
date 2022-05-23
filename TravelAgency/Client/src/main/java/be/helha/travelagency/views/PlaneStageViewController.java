@@ -23,9 +23,6 @@ public class PlaneStageViewController implements Initializable, IViewController 
     private Button ChooseButton;
 
     @FXML
-    private Button CloseButton;
-
-    @FXML
     private RadioButton RadioButton700;
 
     @FXML
@@ -137,13 +134,38 @@ public class PlaneStageViewController implements Initializable, IViewController 
 
     /**
      * Listener interface
+     * Contains action functions
      */
     public interface Listener {
+        /**
+         * @throws IOException
+         */
         void onChooseButtonClick() throws IOException;
+
+        /**
+         * Action when RadioButton700 is clicked
+         */
         void onRadioButton700Click();
+
+        /**
+         * Action when RadioButton900 is clicked
+         */
         void onRadioButton900Click();
+
+        /**
+         * Action when WaitingTimeSpinner is clicked or written in
+         */
         void onUpperWaitingTimeSpinner();
+
+        /**
+         * Action when Close is clicked
+         */
         void onCloseButtonClick();
+
+        /**
+         * Action when pricePerKmComboBox is clicked
+         * @param value of price per km
+         */
         void onPricePerKmChange(Double value);
     }
 

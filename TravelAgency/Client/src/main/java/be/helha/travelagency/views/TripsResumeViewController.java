@@ -37,6 +37,7 @@ public class TripsResumeViewController {
 
     /**
      * Listener interface
+     * Contains action functions
      */
     public interface Listener{
         void onClickCreateTripButton() throws IOException;

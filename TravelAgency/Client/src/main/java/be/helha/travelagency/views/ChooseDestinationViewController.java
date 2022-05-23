@@ -27,8 +27,12 @@ public class ChooseDestinationViewController    {
 
     /**
      * Listener interface
+     * Contains actions functions
      */
     public interface Listener {
+        /**
+         * Action when a city is selected in the list
+         */
         void selectedDestination();
     }
 
