@@ -31,6 +31,9 @@ public class DefineTripController implements DefineTripViewController.Listener {
     Stage stage;
 
     public interface Listener{
+        /** Action when close button of the window is clicked
+         * @throws IOException management of input/output exceptions.
+         */
         void isClosed() throws IOException;
     }
 
@@ -64,6 +67,7 @@ public class DefineTripController implements DefineTripViewController.Listener {
     }
 
     /**
+     * Shows definetrip window
      * @throws IOException management of input/output exceptions.
      */
     public void show() throws IOException {
@@ -179,7 +183,10 @@ public class DefineTripController implements DefineTripViewController.Listener {
         managementPlaneStageFxml(planeStage);
     }
 
-    //TODO : javadoc
+    /**
+     * Creates a new DefineTrip window
+     * @throws IOException management of input/output exceptions.
+     */
     private void managementDefineTripFxml() throws IOException {
         stage = new Stage();
         fxmlLoader = new FXMLLoader(DefineTripViewController.class.getResource("DefineTrip.fxml"));
