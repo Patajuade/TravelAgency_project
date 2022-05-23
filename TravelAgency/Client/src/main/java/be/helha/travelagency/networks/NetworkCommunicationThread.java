@@ -3,12 +3,10 @@ package be.helha.travelagency.networks;
 import be.helha.common.interfaces.Visitor;
 import be.helha.common.messages.*;
 import be.helha.common.models.TripResume;
-import be.helha.common.models.TripsResume;
 import be.helha.common.networks.ObjectSocket;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class NetworkCommunicationThread extends Thread{
@@ -34,7 +32,7 @@ public class NetworkCommunicationThread extends Thread{
                 message.accept(new Visitor() {
                     @Override
                     public void visitLoginMessage(LoginMessage loginMessage) throws IOException {
-                        listener.setList(((LoginMessage) message).getTrips());
+                        listener.updateList(((LoginMessage) message).getTrips());
                     }
 
                     @Override
@@ -44,17 +42,17 @@ public class NetworkCommunicationThread extends Thread{
 
                     @Override
                     public void visitAddTripMessage(AddTripMessage addTripMessage) throws IOException {
-                        listener.setList(((AddTripMessage) message).getTrips());
+                        listener.updateList(((AddTripMessage) message).getTrips());
                     }
 
                     @Override
                     public void visitSaveTripsMessage(SaveTripsMessage saveTripsMessage) throws IOException {
-                        listener.getTrips(((SaveTripsMessage) message).getTrips());
+                        listener.getListFromServer(((SaveTripsMessage) message).getTrips());
                     }
 
                     @Override
                     public void visitUpdateTripsMessage(UpdateTripsMessage updateTripsMessage) {
-                        listener.setList(((UpdateTripsMessage) message).getTrips());
+                        listener.updateList(((UpdateTripsMessage) message).getTrips());
                     }
                 });
             } catch (IOException e) {
@@ -75,7 +73,7 @@ public class NetworkCommunicationThread extends Thread{
     }
 
     public interface Listener {
-        void getTrips(ArrayList<TripResume> trips);
-        void setList(ArrayList<TripResume> trips);
+        void getListFromServer(ArrayList<TripResume> trips);
+        void updateList(ArrayList<TripResume> trips);
     }
 }
